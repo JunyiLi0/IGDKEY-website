@@ -5,6 +5,7 @@ import AnimatedCounter from "../components/AnimatedCounter";
 import Button from "../components/Button";
 import { words } from "../constants";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
+import { getAssetPath } from "../config";
 
 const Hero = () => {
   useGSAP(() => {
@@ -18,7 +19,7 @@ const Hero = () => {
   return (
     <section id="hero" className="relative overflow-hidden">
       <div className="absolute top-0 left-0 z-10">
-        <img src="/images/bg.png" alt="" />
+        <img src={getAssetPath("/images/bg.png")} alt="" />
       </div>
 
       <div className="hero-layout">
@@ -27,7 +28,6 @@ const Hero = () => {
           <div className="flex flex-col gap-7">
             <div className="hero-text">
               <h1>
-                Transformer
                 <span className="slide">
                   <span className="wrapper">
                     {words.map((word, index) => (
@@ -37,7 +37,7 @@ const Hero = () => {
                       >
                         <img
                           src={word.imgPath}
-                          alt="person"
+                          alt="icon"
                           className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
                         />
                         <span>{word.text}</span>
@@ -45,13 +45,14 @@ const Hero = () => {
                     ))}
                   </span>
                 </span>
+                <span className="mx-2"></span>
               </h1>
-              <h1>en Solutions IA</h1>
-              <h1>pour Votre Entreprise</h1>
+              <h1>votre entreprise</h1>
+              <h1>boostée par l'IA</h1>
             </div>
 
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Cabinet de conseil spécialisé dans l'intégration de nouvelles technologies d'IA
+              L'agence qui fusionne vos technologies avec celles de demain.
             </p>
 
             <Button
