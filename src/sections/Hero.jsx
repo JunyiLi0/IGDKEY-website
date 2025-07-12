@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { words } from "../constants";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
 import { getAssetPath } from "../config";
+import AnimatedLetters from "../components/AnimatedLetters";
 
 const Hero = () => {
   useGSAP(() => {
@@ -24,8 +25,8 @@ const Hero = () => {
 
       <div className="hero-layout">
         {/* LEFT: Hero Content */}
-        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
-          <div className="flex flex-col gap-7">
+        <div className="flex flex-col md:flex-row w-full gap-8">
+          <header className="flex flex-col justify-center md:w-1/2 w-full md:px-20 px-5">
             <div className="hero-text">
               <h1>
                 <span className="slide">
@@ -51,17 +52,23 @@ const Hero = () => {
               <h1>boostée par l'IA</h1>
             </div>
 
-            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
+            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none mb-6">
               L'agence qui fusionne vos technologies avec celles de demain.
             </p>
 
-            <Button
-              text="Découvrir nos services"
-              className="md:w-80 md:h-16 w-60 h-12"
-              id="counter"
-            />
+            <div className="flex justify-center md:justify-start">
+              <Button
+                text="Découvrir nos services"
+                className="md:w-80 w-full h-12"
+                id="counter"
+              />
+            </div>
+          </header>
+
+          <div className="md:w-1/2 w-full">
+            <AnimatedLetters />
           </div>
-        </header>
+        </div>
 
         {/* RIGHT: 3D Model or Visual */}
         <figure>
