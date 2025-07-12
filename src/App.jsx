@@ -5,6 +5,7 @@ import Hero from "./sections/Hero";
 import ShowcaseSection from "./sections/ShowcaseSection";
 import FeatureCards from "./sections/FeatureCards";
 import Navbar from "./components/NavBar";
+import Chat from "./components/Chat";
 
 const App = () => (
   <>
@@ -14,6 +15,7 @@ const App = () => (
     <FeatureCards />
     <TechStack />
     <Contact />
+    <Chat />
     <Footer />
   </>
 );

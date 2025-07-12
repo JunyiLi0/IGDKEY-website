@@ -1,142 +1,284 @@
-<div align="center">
-  <br />
-    <a href="https://www.youtube.com/watch?v=E-fdPfRxkzQ" target="_blank">
-      <img src="public/images/readme.png" alt="Project Banner">
-    </a>
-  <br />
+# IGDKEY Portfolio with AI Chat
 
-  <div>
-    <img src="https://img.shields.io/badge/-Three.js-black?style=for-the-badge&logo=three.js&logoColor=white" />
-    <img src="https://img.shields.io/badge/-GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  </div>
+A 3D portfolio website with an integrated AI chat feature. The project consists of a React frontend deployed on GitHub Pages and a Node.js backend API deployed on Vercel.
 
-  <h3 align="center">Interactive 3D Portfolio Website</h3>
+## 🏗️ Project Structure
 
-   <div align="center">
-     Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
-    </div>
-</div>
-
-## 📋 <a name="table">Table of Contents</a>
-
-1. 🤖 [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🔗 [Assets & Snippets](#links)
-6. 🚀 [More](#more)
-
-## ⚠️ Tutorial
-
-This repository contains the code corresponding to an in-depth tutorial available on our YouTube channel, <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a>.
-
-If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
-
-<a href="https://www.youtube.com/watch?v=E-fdPfRxkzQ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
-
-## <a name="introduction">🤖 Introduction</a>
-
-The 3D Portfolio project is a highly engaging personal website that features animated 3D scenes, smooth camera transitions, interactive model showcases, and responsive design. It’s ideal for developers, designers, or freelancers looking to stand out in the digital crowd.
-
-If you're getting started and need assistance or face any bugs, join our active Discord community with over **50k+** members. It's a place where people help each other out.
-
-<a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
-
-## <a name="tech-stack">⚙️ Tech Stack</a>
-
-- Three.js
-- React Three Fiber
-- Drei
-- GSAP
-- Tailwind CSS
-- Vite
-- React 19
-
-## <a name="features">🔋 Features</a>
-
-### Features of the 3D Portfolio Project
-
-👉 Animated 3D models and reveal animations
-
-👉 Realistic lighting and shadows
-
-👉 GSAP-powered scroll interactions
-
-👉 Responsive design with Tailwind CSS and Flexbox/Grid
-
-👉 Micro Interactions
-
-👉 Multi-section layout (About, Projects, Contact)
-
-👉 Mobile optimized 3D experience
-
-and many more, including code architecture and reusability.
-
-## <a name="quick-start">🤸 Quick Start</a>
-
-Follow these steps to set up the project locally on your machine.
-
-**Prerequisites**
-
-Make sure you have the following installed on your machine:
-
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
-
-**Cloning the Repository**
-
-```bash
-git clone https://github.com/adrianhajdin/3d-portfolio.git
-cd 3d-portfolio
+```
+3d-portfolio/
+├── src/                    # Frontend React code
+│   ├── components/         # React components
+│   │   └── Chat.jsx       # AI Chat component
+│   └── sections/          # Portfolio sections
+├── backend/               # Backend API for Vercel
+│   ├── api/
+│   │   └── chat.mjs      # OpenAI API proxy
+│   ├── package.json      # Backend dependencies
+│   └── vercel.json       # Vercel configuration
+├── package.json          # Frontend dependencies
+└── vite.config.js        # Vite configuration
 ```
 
-**Installation**
+## 🚀 Deployment Guide
 
-Install the project dependencies using npm:
+### Prerequisites
 
-```bash
-npm install
+- Node.js (v18 or higher)
+- npm or yarn
+- GitHub account
+- Vercel account
+- OpenAI API key
+
+### Step 1: Frontend Setup (GitHub Pages)
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd 3d-portfolio
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure for GitHub Pages**
+   - The `vite.config.js` is already configured with `base: "/IGDKEY-website/"`
+   - The `package.json` has the correct `homepage` field
+
+4. **Build and deploy**
+   ```bash
+   npm run build
+   npm run deploy
+   ```
+
+5. **Enable GitHub Pages**
+   - Go to your GitHub repository
+   - Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: `gh-pages`
+   - Your site will be available at: `https://username.github.io/IGDKEY-website/`
+
+### Step 2: Backend Setup (Vercel)
+
+1. **Navigate to backend directory**
+   ```bash
+   cd backend
+   ```
+
+2. **Install backend dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Deploy to Vercel**
+   ```bash
+   vercel
+   ```
+   
+   **Answer the questions:**
+   - Set up and deploy? → `Y`
+   - Link to existing project? → `N`
+   - What's your project's root directory? → `.`
+   - Framework → `None`
+
+4. **Configure Environment Variables**
+   - Go to [Vercel Dashboard](https://vercel.com)
+   - Select your backend project
+   - Settings → Environment Variables
+   - Add: `OPENAI_API_KEY` with your OpenAI API key
+
+5. **Deploy to production**
+   ```bash
+   vercel --prod
+   ```
+
+### Step 3: Connect Frontend to Backend
+
+1. **Update the API URL**
+   - After deploying the backend, Vercel will give you a URL like:
+     `https://your-backend-name.vercel.app`
+   - Update the URL in `src/components/Chat.jsx`:
+   ```javascript
+   const res = await fetch("https://your-backend-name.vercel.app/api/chat", {
+   ```
+
+2. **Redeploy frontend**
+   ```bash
+   npm run build && npm run deploy
+   ```
+
+## 🔧 Configuration Files
+
+### Frontend Configuration
+
+**vite.config.js**
+```javascript
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  base: "/IGDKEY-website/",  // GitHub Pages base path
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    emptyOutDir: true,
+  }
+});
 ```
 
-**Set Up Environment Variables**
-
-Create a new file named `.env` in the root of your project and add the following content:
-
-```env
-VITE_APP_EMAILJS_SERVICE_ID=
-VITE_APP_EMAILJS_TEMPLATE_ID=
-VITE_APP_EMAILJS_PUBLIC_KEY=
+**package.json**
+```json
+{
+  "homepage": "https://junyili0.github.io/IGDKEY-website",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  }
+}
 ```
 
-Replace the placeholder values with your actual **[EmailJS](https://www.emailjs.com/)** credentials.
+### Backend Configuration
 
-**Running the Project**
+**backend/vercel.json**
+```json
+{
+  "functions": {
+    "api/chat.mjs": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-Requested-With, Content-Type, Authorization, Accept, Origin"
+        }
+      ]
+    }
+  ]
+}
+```
 
+**backend/api/chat.mjs**
+```javascript
+import axios from 'axios';
+
+const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+
+export default async (req, res) => {
+  // CORS headers are handled by vercel.json
+  
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  try {
+    const { message } = req.body;
+    
+    if (!message) {
+      return res.status(400).json({ error: 'Message is required' });
+    }
+
+    const response = await axios.post(
+      OPENAI_API_URL,
+      {
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: message }],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    res.json({ reply: response.data.choices[0].message.content });
+  } catch (error) {
+    console.error('OpenAI API Error:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+};
+```
+
+## 🔄 Updating Deployments
+
+### Frontend Updates
 ```bash
+# Make changes to your code
+npm run build
+npm run deploy
+```
+
+### Backend Updates
+```bash
+cd backend
+# Make changes to your API
+vercel --prod
+```
+
+**Important:** After backend updates, the URL might change. Update the frontend accordingly and redeploy.
+
+## 🐛 Troubleshooting
+
+### CORS Issues
+- Ensure `vercel.json` is properly configured
+- Check that the API URL in `Chat.jsx` is correct
+- Verify the backend is deployed and accessible
+
+### API Not Working
+- Check Vercel environment variables
+- Verify OpenAI API key is valid and has credits
+- Check Vercel function logs for errors
+
+### Frontend Not Loading
+- Verify GitHub Pages is enabled
+- Check the `base` path in `vite.config.js`
+- Ensure the `homepage` field in `package.json` is correct
+
+## 📝 Environment Variables
+
+### Vercel (Backend)
+- `OPENAI_API_KEY`: Your OpenAI API key (required)
+
+## 🔗 URLs
+
+- **Frontend**: `https://junyili0.github.io/IGDKEY-website/`
+- **Backend API**: `https://your-backend-name.vercel.app/api/chat`
+
+## 🛠️ Development
+
+### Local Development
+```bash
+# Frontend
 npm run dev
+
+# Backend (if needed)
+cd backend
+node server.js  # For local testing
 ```
 
-Open [http://localhost:5173](http://localhost:5173/) in your browser to view the project.
+### Testing
+- Test the API locally with curl:
+  ```bash
+  curl -X POST http://localhost:3000/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"message": "Hello"}'
+  ```
 
+## 📄 License
 
-## <a name="links">🔗 Assets and Snippets</a>
-
-Assets and snippets used in the project can be found in the **[video kit](https://jsm.dev/pfolio25-kit)**.
-
-<a href="https://jsm.dev/pfolio25-kit" target="_blank">
-  <img src="public/images/readme-video-kit.png" alt="Video Kit Banner">
-</a>
-
-
-## <a name="more">🚀 More</a>
-
-**Advance your skills with JSM Pro Courses**
-
-Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with
-detailed explanations, cool features, and exercises to boost your skills. Give it a go!
-
-<a href="https://beta.jsmastery.pro/" target="_blank">
-  <img src="public/images/readme-bottom.png" alt="Project Banner">
-</a>
+This project is open source and available under the [MIT License](LICENSE).
