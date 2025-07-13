@@ -1,6 +1,6 @@
 import Footer from "./sections/Footer";
 import Contact from "./sections/Contact";
-import TechStack from "./sections/TechStack";
+// import TechStack from "./sections/TechStack";
 import Hero from "./sections/Hero";
 import ShowcaseSection from "./sections/ShowcaseSection";
 import FeatureCards from "./sections/FeatureCards";
@@ -11,11 +11,13 @@ const App = () => (
   <>
     <Navbar />
     <Hero />
-    <ShowcaseSection />
+    {/* <ShowcaseSection /> */}
     <FeatureCards />
-    <TechStack />
+    {/* <TechStack /> */}
+    <div style={{ marginTop: 180 }}>
+      <Chat />
+    </div>
     <Contact />
-    <Chat />
     <Footer />
   </>
 );

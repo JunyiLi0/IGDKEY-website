@@ -48,7 +48,7 @@ const AppShowcase = () => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper">
+          {<div ref={rydeRef} className="first-project-wrapper">
             <div className="image-wrapper">
               <img src={getAssetPath("/images/project1.png")} alt="Ryde App Interface" />
             </div>
@@ -62,7 +62,7 @@ const AppShowcase = () => {
                 user-friendly experience.
               </p>
             </div>
-          </div>
+          </div>}
 
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={libraryRef}>
