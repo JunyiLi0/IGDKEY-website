@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import { words } from "../constants";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
 import { getAssetPath } from "../config";
-import AnimatedLetters from "../components/AnimatedLetters";
+import IGDKeyLogo from "../components/AnimatedLetters";
 
 const Hero = () => {
   useGSAP(() => {
@@ -66,7 +66,7 @@ const Hero = () => {
           </header>
 
           <div className="md:w-1/2 w-full">
-            <AnimatedLetters />
+            <IGDKeyLogo />
           </div>
         </div>
 

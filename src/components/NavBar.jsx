@@ -26,7 +26,11 @@ const NavBar = () => {
     <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
       <div className="inner">
         <a href="#hero" className="logo">
-          IGDKEY
+          <img
+            src={import.meta.env.BASE_URL + "images/igdkey-nobg.png"}
+            alt="IGDKEY logo"
+            style={{ height: 40, width: 'auto', display: 'inline-block', verticalAlign: 'middle' }}
+          />
         </a>
 
         <nav className="desktop">
