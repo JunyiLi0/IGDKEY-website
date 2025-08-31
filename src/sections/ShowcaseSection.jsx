@@ -50,16 +50,14 @@ const AppShowcase = () => {
         <div className="showcaselayout">
           {<div ref={rydeRef} className="first-project-wrapper">
             <div className="image-wrapper">
-              <img src={getAssetPath("/images/project1.png")} alt="Ryde App Interface" />
+              <img src={getAssetPath("/images/project1.png")} alt="Interface de l'application Ryde" />
             </div>
             <div className="text-content">
               <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
+                Une Application de Transport à la Demande, utilisant les dernières technologies d'IA
               </h2>
               <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
+                Une application construite sur mesure répondant à vos besoins spécifiques.
               </p>
             </div>
           </div>}
@@ -69,17 +67,17 @@ const AppShowcase = () => {
               <div className="image-wrapper bg-[#FFEFDB]">
                 <img
                   src={getAssetPath("/images/project2.png")}
-                  alt="Library Management Platform"
+                  alt="Plateforme de Gestion de Bibliothèque"
                 />
               </div>
-              <h2>The Library Management Platform</h2>
+              <h2>Plateforme de Gestion de Bibliothèque</h2>
             </div>
 
             <div className="project" ref={ycDirectoryRef}>
               <div className="image-wrapper bg-[#FFE7EB]">
-                <img src={getAssetPath("/images/project3.png")} alt="YC Directory App" />
+                <img src={getAssetPath("/images/project3.png")} alt="Application YC Directory" />
               </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
+              <h2>Application de Vitrine pour Startups</h2>
             </div>
           </div>
         </div>

@@ -26,15 +26,15 @@ const Hero = () => {
       <div className="hero-layout">
         {/* LEFT: Hero Content */}
         <div className="flex flex-col md:flex-row w-full gap-8">
-          <header className="flex flex-col justify-center md:w-1/2 w-full md:px-20 px-5">
+          <header className="flex flex-col justify-center md:w-1/2 w-full md:px-20 px-5 text-center md:text-left">
             <div className="hero-text">
               <h1>
                 <span className="slide">
-                  <span className="wrapper">
+                  <span className="wrapper flex flex-col items-center md:items-start">
                     {words.map((word, index) => (
                       <span
                         key={index}
-                        className="flex items-center md:gap-3 gap-1 pb-2"
+                        className="flex items-center justify-center md:justify-start md:gap-3 gap-1 pb-2"
                       >
                         <img
                           src={word.imgPath}

@@ -11,7 +11,7 @@ const App = () => (
   <>
     <Navbar />
     <Hero />
-    {/* <ShowcaseSection /> */}
+    <ShowcaseSection />
     <FeatureCards />
     {/* <TechStack /> */}
     <div style={{ marginTop: 180 }}>
