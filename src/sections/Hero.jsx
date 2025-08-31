@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 import AnimatedCounter from "../components/AnimatedCounter";
 import Button from "../components/Button";
+import ChatbotButton from "../components/ChatbotButton";
+import Chat from "../components/Chat";
 import { words } from "../constants";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
 import { getAssetPath } from "../config";
 import IGDKeyLogo from "../components/AnimatedLetters";
 
 const Hero = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+
   useGSAP(() => {
     gsap.fromTo(
       ".hero-text h1",
@@ -30,7 +35,7 @@ const Hero = () => {
             <div className="hero-text">
               <h1>
                 <span className="slide">
-                  <span className="wrapper flex flex-col items-center md:items-start">
+                  <span className="wrapper">
                     {words.map((word, index) => (
                       <span
                         key={index}
@@ -56,11 +61,15 @@ const Hero = () => {
               L'agence qui fusionne vos technologies avec celles de demain.
             </p>
 
-            <div className="flex justify-center md:justify-start">
+            <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
               <Button
                 text="Découvrir nos services"
                 className="md:w-80 w-full h-12"
                 id="counter"
+              />
+              <ChatbotButton
+                onClick={() => setIsChatbotOpen(true)}
+                className="md:w-80 w-full h-12"
               />
             </div>
           </header>
@@ -79,6 +88,11 @@ const Hero = () => {
       </div>
 
       <AnimatedCounter />
+
+      <Chat
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+      />
     </section>
   );
 };
