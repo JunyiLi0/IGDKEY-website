@@ -1,6 +1,6 @@
 # IGDKEY Portfolio with AI Chat
 
-A 3D portfolio website with an integrated AI chat feature. The project consists of a React frontend deployed on GitHub Pages and a Node.js backend API deployed on Vercel.
+A 3D portfolio website with an integrated AI chat feature. The project consists of a React frontend deployed on a custom domain (https://igdkey.com) and a Node.js backend API deployed on Vercel.
 
 ## 🏗️ Project Structure
 
@@ -42,9 +42,9 @@ A 3D portfolio website with an integrated AI chat feature. The project consists 
    npm install
    ```
 
-3. **Configure for GitHub Pages**
-   - The `vite.config.js` is already configured with `base: "/IGDKEY-website/"`
-   - The `package.json` has the correct `homepage` field
+3. **Configure for custom domain**
+   - The `vite.config.js` is configured with `base: "/"` for custom domain
+   - The `package.json` has the correct `homepage` field set to https://igdkey.com
 
 4. **Build and deploy**
    ```bash
@@ -57,7 +57,7 @@ A 3D portfolio website with an integrated AI chat feature. The project consists 
    - Settings → Pages
    - Source: Deploy from a branch
    - Branch: `gh-pages`
-   - Your site will be available at: `https://username.github.io/IGDKEY-website/`
+   - Your site will be available at: `https://igdkey.com`
 
 ### Step 2: Backend Setup (Vercel)
 
@@ -116,7 +116,7 @@ A 3D portfolio website with an integrated AI chat feature. The project consists 
 ```javascript
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "/IGDKEY-website/",  // GitHub Pages base path
+  base: "/",  // Custom domain base path
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -128,7 +128,7 @@ export default defineConfig({
 **package.json**
 ```json
 {
-  "homepage": "https://junyili0.github.io/IGDKEY-website",
+  "homepage": "https://igdkey.com",
   "scripts": {
     "deploy": "gh-pages -d dist"
   }
@@ -256,7 +256,7 @@ vercel --prod
 
 ## 🔗 URLs
 
-- **Frontend**: `https://junyili0.github.io/IGDKEY-website/`
+- **Frontend**: `https://igdkey.com`
 - **Backend API**: `https://your-backend-name.vercel.app/api/chat`
 
 ## 🛠️ Development
