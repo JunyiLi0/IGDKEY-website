@@ -134,86 +134,6 @@ export default defineConfig({
   }
 }
 ```
-
-### Backend Configuration
-
-**backend/vercel.json**
-```json
-{
-  "functions": {
-    "api/chat.mjs": {
-      "maxDuration": 30
-    }
-  },
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "X-Requested-With, Content-Type, Authorization, Accept, Origin"
-        }
-      ]
-    }
-  ]
-}
-```
-
-**backend/api/chat.mjs**
-```javascript
-import axios from 'axios';
-
-const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-
-export default async (req, res) => {
-  // CORS headers are handled by vercel.json
-  
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  try {
-    const { message } = req.body;
-    
-    if (!message) {
-      return res.status(400).json({ error: 'Message is required' });
-    }
-
-    const response = await axios.post(
-      OPENAI_API_URL,
-      {
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: message }],
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    res.json({ reply: response.data.choices[0].message.content });
-  } catch (error) {
-    console.error('OpenAI API Error:', error.response?.data || error.message);
-    res.status(500).json({ error: 'Erreur serveur' });
-  }
-};
-```
-
 ## 🔄 Updating Deployments
 
 ### Frontend Updates
@@ -232,23 +152,6 @@ vercel --prod
 
 **Important:** After backend updates, the URL might change. Update the frontend accordingly and redeploy.
 
-## 🐛 Troubleshooting
-
-### CORS Issues
-- Ensure `vercel.json` is properly configured
-- Check that the API URL in `Chat.jsx` is correct
-- Verify the backend is deployed and accessible
-
-### API Not Working
-- Check Vercel environment variables
-- Verify OpenAI API key is valid and has credits
-- Check Vercel function logs for errors
-
-### Frontend Not Loading
-- Verify GitHub Pages is enabled
-- Check the `base` path in `vite.config.js`
-- Ensure the `homepage` field in `package.json` is correct
-
 ## 📝 Environment Variables
 
 ### Vercel (Backend)
@@ -265,10 +168,6 @@ vercel --prod
 ```bash
 # Frontend
 npm run dev
-
-# Backend (if needed)
-cd backend
-node server.js  # For local testing
 ```
 
 ### Testing

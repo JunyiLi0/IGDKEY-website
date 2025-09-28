@@ -6,7 +6,7 @@ function Chat({ isOpen, onClose }) {
     const [messages, setMessages] = useState([
         {
             id: 1,
-            text: "Bonjour ! Je suis l'assistant IA d'IGDKEY. Comment puis-je vous aider aujourd'hui ?",
+            text: "Bonjour ! Je suis l'assistant IA d'IGDKEY. Comment puis-je vous aider ?",
             sender: "bot",
             timestamp: new Date()
         }
