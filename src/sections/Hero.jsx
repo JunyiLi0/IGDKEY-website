@@ -32,8 +32,8 @@ const Hero = () => {
         {/* LEFT: Hero Content */}
         <div className="flex flex-col md:flex-row w-full gap-8">
           <header className="flex flex-col justify-center md:w-1/2 w-full md:px-20 px-5 text-center md:text-left">
-            <div className="hero-text">
-              <h1>
+            <div className="hero-text flex flex-col items-center md:items-start">
+              <h1 className="flex flex-col items-center md:items-start">
                 <span className="slide">
                   <span className="wrapper">
                     {words.map((word, index) => (
@@ -53,8 +53,8 @@ const Hero = () => {
                 </span>
                 <span className="mx-2"></span>
               </h1>
-              <h1>votre entreprise</h1>
-              <h1>boostée par l'IA</h1>
+              <h1 className="text-center md:text-left">votre entreprise</h1>
+              <h1 className="text-center md:text-left">boostée par l'IA</h1>
             </div>
 
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none mb-6">
