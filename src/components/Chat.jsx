@@ -26,16 +26,29 @@ function Chat({ isOpen, onClose }) {
         setMessages((prev) => [...prev, userMessage]);
         setInput("");
         setLoading(true);
-        // (focus automatique supprimé)
+
         try {
             const res = await fetch("https://igdkey-backend.vercel.app/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: userMessage.text }),
             });
+
             if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
+                // Try to get the actual error message from the response
+                let errorMessage = `Erreur HTTP ${res.status}`;
+                try {
+                    const errorData = await res.json();
+                    if (errorData.error) {
+                        errorMessage = errorData.error;
+                    }
+                } catch (jsonErr) {
+                    // If we can't parse JSON, use the status text
+                    errorMessage = `Erreur HTTP ${res.status}: ${res.statusText}`;
+                }
+                throw new Error(errorMessage);
             }
+
             const data = await res.json();
             setMessages((prev) => [...prev, {
                 id: messages.length + 2,
@@ -48,7 +61,7 @@ function Chat({ isOpen, onClose }) {
             setMessages((prev) => [...prev, {
                 id: messages.length + 2,
                 sender: "bot",
-                text: "Erreur : impossible de contacter le backend.",
+                text: err.message,
                 timestamp: new Date()
             }]);
         } finally {
