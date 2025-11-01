@@ -171,16 +171,18 @@ VITE_APP_EMAILJS_TEMPLATE_ID=your_template_id
 VITE_APP_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-### GitHub Pages (Frontend Deployment)
-Since GitHub Pages doesn't support environment variables, you need to add them directly to your build process or use a different approach. You can either:
-1. Use Vercel for the frontend instead (supports environment variables)
-2. Or configure EmailJS through a different method
+### Vercel (Frontend Deployment)
+For frontend deployment on Vercel, add these environment variables in Vercel dashboard:
+- `VITE_APP_EMAILJS_SERVICE_ID`: your_service_id
+- `VITE_APP_EMAILJS_TEMPLATE_ID`: your_template_id
+- `VITE_APP_EMAILJS_PUBLIC_KEY`: your_public_key
 
-**To get EmailJS credentials:**
-1. Sign up at [EmailJS](https://www.emailjs.com/)
-2. Create an Email Service (Gmail, Outlook, etc.)
-3. Create an Email Template with your email: `junyi4000@gmail.com`
-4. Get your Public Key from Account settings
+### GitHub Pages (Frontend Deployment)
+GitHub Pages doesn't support environment variables. Consider using Vercel instead for full environment variable support.
+
+**To configure EmailJS:**
+- View complete setup guide in [EMAILJS_SETUP.md](./EMAILJS_SETUP.md)
+- All contact form submissions will be sent to your configured email
 
 ## 🔗 URLs
 

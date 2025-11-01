@@ -75,10 +75,13 @@ Replace the placeholder values with your actual IDs from EmailJS.
 2. **Use Vercel** instead, which fully supports environment variables
 
 To deploy on Vercel:
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run `vercel` in your project directory
-3. Add the environment variables in the Vercel dashboard
-4. Deploy
+1. Go to your Vercel dashboard
+2. Navigate to your project settings → Environment Variables
+3. Add the following variables (use your own EmailJS credentials):
+   - `VITE_APP_EMAILJS_SERVICE_ID` = your_service_id
+   - `VITE_APP_EMAILJS_TEMPLATE_ID` = your_template_id
+   - `VITE_APP_EMAILJS_PUBLIC_KEY` = your_public_key
+4. Redeploy your frontend
 
 ## Troubleshooting
 
