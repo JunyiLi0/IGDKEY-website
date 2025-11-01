@@ -91,10 +91,10 @@ function Chat() {
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-white-50 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center"
+                    className="fixed bottom-6 right-6 z-50 w-20 h-20 bg-white-50 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center"
                     aria-label="Ouvrir le chat"
                 >
-                    <img src={getAssetPath("/images/chat.png")} alt="chat" className="w-6 h-6" />
+                    <img src={getAssetPath("/images/chat.png")} alt="chat" className="w-10 h-10 brightness-0" />
                 </button>
             )}
 
