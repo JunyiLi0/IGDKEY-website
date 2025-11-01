@@ -14,9 +14,7 @@ const App = () => (
     <ShowcaseSection />
     <FeatureCards />
     {/* <TechStack /> */}
-    <div style={{ marginTop: 180 }}>
-      <Chat />
-    </div>
+    <Chat />
     <Contact />
     <Footer />
   </>
