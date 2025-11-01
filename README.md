@@ -28,6 +28,7 @@ A 3D portfolio website with an integrated AI chat feature. The project consists 
 - GitHub account
 - Vercel account
 - OpenAI API key
+- EmailJS account (for contact form)
 
 ### Step 1: Frontend Setup (GitHub Pages)
 
@@ -46,13 +47,18 @@ A 3D portfolio website with an integrated AI chat feature. The project consists 
    - The `vite.config.js` is configured with `base: "/"` for custom domain
    - The `package.json` has the correct `homepage` field set to https://igdkey.com
 
-4. **Build and deploy**
+4. **Configure EmailJS (Optional - for contact form)**
+   - Create a `.env` file in the root directory
+   - Add your EmailJS credentials (see Environment Variables section below)
+   - Or skip this if you only need the chat feature
+
+5. **Build and deploy**
    ```bash
    npm run build
    npm run deploy
    ```
 
-5. **Enable GitHub Pages**
+6. **Enable GitHub Pages**
    - Go to your GitHub repository
    - Settings → Pages
    - Source: Deploy from a branch
@@ -156,6 +162,25 @@ vercel --prod
 
 ### Vercel (Backend)
 - `OPENAI_API_KEY`: Your OpenAI API key (required)
+
+### Frontend (Local Development)
+Create a `.env` file in the root directory:
+```env
+VITE_APP_EMAILJS_SERVICE_ID=your_service_id
+VITE_APP_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_APP_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+### GitHub Pages (Frontend Deployment)
+Since GitHub Pages doesn't support environment variables, you need to add them directly to your build process or use a different approach. You can either:
+1. Use Vercel for the frontend instead (supports environment variables)
+2. Or configure EmailJS through a different method
+
+**To get EmailJS credentials:**
+1. Sign up at [EmailJS](https://www.emailjs.com/)
+2. Create an Email Service (Gmail, Outlook, etc.)
+3. Create an Email Template with your email: `junyi4000@gmail.com`
+4. Get your Public Key from Account settings
 
 ## 🔗 URLs
 

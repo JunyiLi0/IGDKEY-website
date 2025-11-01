@@ -8,6 +8,7 @@ import ContactExperience from "../components/models/contact/ContactExperience";
 const Contact = () => {
   const formRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState({ text: "", type: "" });
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -21,7 +22,8 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Show loading state
+    setLoading(true);
+    setMessage({ text: "", type: "" });
 
     try {
       await emailjs.sendForm(
@@ -31,12 +33,14 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       );
 
-      // Reset form and stop loading
+      // Reset form and show success
       setForm({ name: "", email: "", message: "" });
+      setMessage({ text: "Message envoyé avec succès !", type: "success" });
     } catch (error) {
-      console.error("EmailJS Error:", error); // Optional: show toast
+      console.error("EmailJS Error:", error);
+      setMessage({ text: "Erreur lors de l'envoi. Veuillez réessayer.", type: "error" });
     } finally {
-      setLoading(false); // Always stop loading, even on error
+      setLoading(false);
     }
   };
 
@@ -105,6 +109,16 @@ const Contact = () => {
                     </div>
                   </div>
                 </button>
+                
+                {message.text && (
+                  <div className={`p-4 rounded-lg text-center ${
+                    message.type === "success" 
+                      ? "bg-green-500/20 text-green-400 border border-green-500/50" 
+                      : "bg-red-500/20 text-red-400 border border-red-500/50"
+                  }`}>
+                    {message.text}
+                  </div>
+                )}
               </form>
             </div>
           </div>
