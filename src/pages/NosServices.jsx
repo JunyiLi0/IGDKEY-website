@@ -233,7 +233,7 @@ const NosServices = () => {
         <div className="w-full mb-12">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-white font-semibold md:text-4xl text-2xl mb-6">
-              Conclusion : Passez à l'intelligence automatisée avec IGDKEY
+              Passez à l'intelligence automatisée avec IGDKEY
             </h2>
             <p className="text-white-50 md:text-xl text-lg mb-8">
               Ne laissez pas la technologie vous dépasser. IGDKEY vous aide à franchir le pas vers l'avenir en intégrant 
