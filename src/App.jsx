@@ -1,22 +1,38 @@
-import Footer from "./sections/Footer";
-import Contact from "./sections/Contact";
-// import TechStack from "./sections/TechStack";
-import Hero from "./sections/Hero";
-import ShowcaseSection from "./sections/ShowcaseSection";
-import FeatureCards from "./sections/FeatureCards";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "./components/NavBar";
-import Chat from "./components/Chat";
+import Home from "./pages/Home";
+import NosServices from "./pages/NosServices";
+
+// Component to handle 404.html redirects for GitHub Pages
+const RedirectHandler = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if we have a redirect from 404.html
+    if (location.search.includes('?/')) {
+      const path = location.search
+        .replace(/^\?\/?/, '')
+        .replace(/~and~/g, '&')
+        .split('&')[0];
+      if (path) {
+        window.history.replaceState(null, '', path);
+        window.location.reload();
+      }
+    }
+  }, [location]);
+
+  return null;
+};
 
 const App = () => (
   <>
+    <RedirectHandler />
     <Navbar />
-    <Hero />
-    <ShowcaseSection />
-    <FeatureCards />
-    {/* <TechStack /> */}
-    <Chat />
-    <Contact />
-    <Footer />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/services" element={<NosServices />} />
+    </Routes>
   </>
 );
 

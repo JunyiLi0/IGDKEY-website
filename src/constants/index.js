@@ -10,8 +10,8 @@ const navLinks = [
     link: "#work",
   },
   {
-    name: "Nos produits",
-    link: "#skills",
+    name: "Nos services",
+    link: "/services",
   },
 ];
 
