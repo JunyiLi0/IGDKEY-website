@@ -31,13 +31,6 @@ const NavBar = () => {
     }
   };
 
-  const handleContactClick = (e) => {
-    if (location.pathname !== "/") {
-      e.preventDefault();
-      window.location.href = "/#contact";
-    }
-  };
-
   return (
     <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
       <div className="inner">
@@ -73,11 +66,11 @@ const NavBar = () => {
           </ul>
         </nav>
 
-        <a href={location.pathname === "/" ? "#contact" : "/#contact"} onClick={handleContactClick} className="contact-btn group">
+        <Link to="/contact" className="contact-btn group">
           <div className="inner">
             <span>Nous contacter</span>
           </div>
-        </a>
+        </Link>
       </div>
     </header>
   );

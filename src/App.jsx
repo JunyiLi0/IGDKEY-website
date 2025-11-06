@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import Navbar from "./components/NavBar";
 import Home from "./pages/Home";
 import NosServices from "./pages/NosServices";
+import Contact from "./pages/Contact";
 
 // Component to handle 404.html redirects for GitHub Pages
 const RedirectHandler = () => {
@@ -40,6 +41,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/services" element={<NosServices />} />
+      <Route path="/contact" element={<Contact />} />
     </Routes>
   </>
 );

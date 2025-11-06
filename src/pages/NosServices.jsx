@@ -241,7 +241,7 @@ const NosServices = () => {
             </p>
             <div className="flex justify-center">
               <a 
-                href="/#contact"
+                href="/contact"
                 className="md:w-80 w-full h-12 cta-wrapper"
               >
                 <div className="cta-button group">
