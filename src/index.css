@@ -155,6 +155,65 @@ section {
         }
       }
     }
+
+    /* Hamburger button styles */
+    .hamburger-btn {
+      @apply relative z-[110] w-10 h-10 flex items-center justify-center cursor-pointer bg-transparent border-none;
+    }
+
+    .hamburger-icon {
+      @apply relative w-6 h-5 flex flex-col justify-between;
+
+      span {
+        @apply block w-full h-0.5 bg-white transition-all duration-300 ease-in-out;
+      }
+
+      &.open {
+        span:nth-child(1) {
+          @apply rotate-45 translate-y-2;
+        }
+
+        span:nth-child(2) {
+          @apply opacity-0;
+        }
+
+        span:nth-child(3) {
+          @apply -rotate-45 -translate-y-2;
+        }
+      }
+    }
+
+    /* Mobile menu styles */
+    .mobile-menu {
+      @apply lg:hidden fixed top-[70px] left-0 w-full bg-black/95 backdrop-blur-md overflow-hidden transition-all duration-300 ease-in-out z-[90];
+      max-height: 0;
+      opacity: 0;
+
+      &.open {
+        max-height: 100vh;
+        opacity: 1;
+      }
+
+      ul {
+        @apply flex flex-col py-6 px-5;
+
+        li {
+          @apply w-full border-b border-white/10;
+
+          a {
+            @apply block py-4 text-white-50 text-lg transition-colors duration-300 hover:text-white hover:pl-2;
+          }
+
+          &:last-child {
+            @apply border-b-0 mt-4;
+          }
+        }
+      }
+
+      .mobile-contact-btn {
+        @apply w-full text-center py-3 rounded-lg bg-white text-black font-semibold hover:bg-black-50 hover:text-white transition-all duration-300;
+      }
+    }
   }
 
   .app-showcase {

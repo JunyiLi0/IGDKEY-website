@@ -6,6 +6,8 @@ import { navLinks } from "../constants";
 const NavBar = () => {
   // track if the user has scrolled down the page
   const [scrolled, setScrolled] = useState(false);
+  // track if the mobile menu is open
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -31,6 +33,14 @@ const NavBar = () => {
     }
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
       <div className="inner">
@@ -41,6 +51,19 @@ const NavBar = () => {
             style={{ height: 40, width: 'auto', display: 'inline-block', verticalAlign: 'middle' }}
           />
         </Link>
+
+        {/* Hamburger menu button - visible only on mobile */}
+        <button 
+          className="hamburger-btn lg:hidden" 
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
 
         <nav className="desktop">
           <ul>
@@ -66,12 +89,42 @@ const NavBar = () => {
           </ul>
         </nav>
 
-        <Link to="/contact" className="contact-btn group">
+        <Link to="/contact" className="contact-btn group hidden lg:flex">
           <div className="inner">
             <span>Nous contacter</span>
           </div>
         </Link>
       </div>
+
+      {/* Mobile menu */}
+      <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+        <ul>
+          {navLinks.map(({ link, name }) => {
+            const isExternalLink = link.startsWith("#");
+            return (
+              <li key={name}>
+                {isExternalLink ? (
+                  <a 
+                    href={location.pathname === "/" ? link : `/${link}`}
+                    onClick={closeMenu}
+                  >
+                    {name}
+                  </a>
+                ) : (
+                  <Link to={link} onClick={closeMenu}>
+                    {name}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+          <li>
+            <Link to="/contact" onClick={closeMenu} className="mobile-contact-btn">
+              Nous contacter
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
