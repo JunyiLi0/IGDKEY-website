@@ -190,7 +190,7 @@ const NosExpertises = () => {
 
       <section>
         {/* Transform Your Business Section */}
-        <div ref={transformRef} className="w-full mb-20">
+        <div ref={transformRef} className="w-full mb-20 padding-x-lg">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-white font-bold md:text-5xl text-4xl mb-8 text-center leading-tight">
               Transformez Votre Entreprise Avec <br />
@@ -218,7 +218,7 @@ const NosExpertises = () => {
         </div>
 
         {/* Why Choose Us Section */}
-        <div ref={whyChooseRef} className="w-full mb-20">
+        <div ref={whyChooseRef} className="w-full mb-20 padding-x-lg">
           <TitleHeader
             title="Pourquoi Choisir Notre Groupe de Consulting IA & Web ?"
             sub="🧠 Notre expertise"
@@ -251,7 +251,7 @@ const NosExpertises = () => {
         </div>
 
         {/* Values Section */}
-        <div ref={valuesRef} className="w-full mb-20">
+        <div ref={valuesRef} className="w-full mb-20 padding-x-lg">
           <TitleHeader
             title="Les Valeurs qui Guident Notre Accompagnement"
             sub="💎 Nos valeurs"
@@ -273,7 +273,7 @@ const NosExpertises = () => {
         </div>
 
         {/* Services Section */}
-        <div ref={servicesRef} className="w-full mb-20" id="services">
+        <div ref={servicesRef} className="w-full mb-20 padding-x-lg" id="services">
           <TitleHeader
             title="Nos Services en Intelligence Artificielle & Automatisation"
             sub="🤖 Nos solutions"

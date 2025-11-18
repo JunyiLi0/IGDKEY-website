@@ -22,7 +22,6 @@ const Contact = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone: "",
     message: "",
   });
 
@@ -100,7 +99,7 @@ const Contact = () => {
       );
 
       // Reset form and show success
-      setForm({ name: "", email: "", phone: "", message: "" });
+      setForm({ name: "", email: "", message: "" });
       setMessage({ text: "Message envoyé avec succès ! Nous vous répondrons sous 24h.", type: "success" });
     } catch (error) {
       console.error("EmailJS Error:", error);
@@ -135,16 +134,11 @@ const Contact = () => {
         </div>
 
         {/* Contact Info Cards */}
-        <div ref={contactCardsRef} className="grid md:grid-cols-3 gap-6 mb-16">
+        <div ref={contactCardsRef} className="grid md:grid-cols-2 gap-6 mb-16 max-w-2xl mx-auto">
           <div className="contact-info-card card-border rounded-xl p-6 text-center bg-gradient-to-br from-black-100 to-black-200">
             <div className="text-4xl mb-3">✉️</div>
             <h3 className="text-white font-semibold text-lg mb-2">Email</h3>
             <p className="text-white-50">contact@igdkey.com</p>
-          </div>
-          <div className="contact-info-card card-border rounded-xl p-6 text-center bg-gradient-to-br from-black-100 to-black-200">
-            <div className="text-4xl mb-3">📞</div>
-            <h3 className="text-white font-semibold text-lg mb-2">Téléphone</h3>
-            <p className="text-white-50">+33 7 53 95 32 98</p>
           </div>
           <div className="contact-info-card card-border rounded-xl p-6 text-center bg-gradient-to-br from-black-100 to-black-200">
             <div className="text-4xl mb-3">⏱️</div>
@@ -193,22 +187,6 @@ const Contact = () => {
                     placeholder="contact@votreentreprise.com"
                     className="focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
                     required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="flex items-center gap-2 mb-3">
-                    <span className="text-xl">📱</span>
-                    <span className="text-white text-lg">Téléphone (optionnel)</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder="+33 X XX XX XX XX"
-                    className="focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
                   />
                 </div>
 
