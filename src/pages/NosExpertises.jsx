@@ -5,13 +5,19 @@ import { useGSAP } from "@gsap/react";
 import NavBar from "../components/NavBar";
 import Footer from "../sections/Footer";
 import TitleHeader from "../components/TitleHeader";
+import AnimatedCounter from "../components/AnimatedCounter";
+import Button from "../components/Button";
+import { words, abilities } from "../constants";
+import { getAssetPath } from "../config";
+import IGDKeyLogo from "../components/AnimatedLetters";
+import Chat from "../components/Chat";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const NosExpertises = () => {
-  const heroRef = useRef(null);
   const transformRef = useRef(null);
   const whyChooseRef = useRef(null);
+  const valuesRef = useRef(null);
   const servicesRef = useRef(null);
   const targetAudienceRef = useRef(null);
   const investmentRef = useRef(null);
@@ -19,12 +25,23 @@ const NosExpertises = () => {
   const ctaRef = useRef(null);
 
   useGSAP(() => {
-    // Hero section fade in on load
-    gsap.from(heroRef.current, {
+    // Hero text animation
+    gsap.fromTo(
+      ".hero-text h1",
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.inOut" }
+    );
+
+    // Values cards animation
+    gsap.from(".value-card", {
+      y: 50,
       opacity: 0,
-      y: 30,
-      duration: 1.2,
-      ease: "power2.out",
+      duration: 0.8,
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: valuesRef.current,
+        start: "top 75%",
+      },
     });
 
     // Transform section animation
@@ -113,31 +130,73 @@ const NosExpertises = () => {
 
   return (
     <>
-      <NavBar />
-      <section className="section-padding padding-x-lg">
-        {/* Hero Section */}
-        <div ref={heroRef} className="w-full mb-20 mt-10">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="hero-badge mx-auto mb-8">
-              <p>🚀 Solutions IA & Web Sur Mesure</p>
-            </div>
-            <h1 className="text-white font-bold md:text-6xl text-4xl mb-8 leading-tight">
-              Accélérez la Croissance de Votre Entreprise Grâce à l'
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                Intelligence Artificielle
-              </span>
-            </h1>
-            <p className="text-white-50 md:text-2xl text-xl leading-relaxed">
-              Consultation, Automatisation & Solutions Web Sur Mesure
-            </p>
+      {/* Hero Section */}
+      <section id="hero" className="relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0 opacity-30">
+          <img src={getAssetPath("/images/bg.png")} alt="" className="w-full h-full object-cover" />
+        </div>
+
+        {/* Hero Container with Proper Spacing */}
+        <div className="hero-container">
+          <div className="hero-content-wrapper">
+            <header className="hero-header">
+              {/* Main Heading with Animated Word Slider */}
+              <div className="space-y-6">
+                <h1 className="hero-title">
+                  <div className="hero-text-animated">
+                    <div className="flex items-center justify-center gap-3">
+                      <span className="slide">
+                        <span className="wrapper">
+                          {words.map((word, index) => (
+                            <span
+                              key={index}
+                              className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+                            >
+                              {word.text}
+                            </span>
+                          ))}
+                        </span>
+                      </span>
+                    </div>
+                    <span className="mt-2">Votre Entreprise avec l'IA</span>
+                  </div>
+                </h1>
+
+                <p className="hero-subtitle">
+                  L'agence qui fusionne vos technologies avec celles de demain
+                </p>
+              </div>
+
+              {/* Logo */}
+              <div className="hero-logo-wrapper">
+                <IGDKeyLogo />
+              </div>
+
+              {/* CTA Button */}
+              <div className="hero-cta-wrapper">
+                <Button
+                  text="Découvrir nos services"
+                  className="md:w-80 w-full h-14"
+                  id="services"
+                />
+              </div>
+            </header>
           </div>
         </div>
 
+        <AnimatedCounter />
+      </section>
+
+      <section>
         {/* Transform Your Business Section */}
         <div ref={transformRef} className="w-full mb-20">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-white font-semibold md:text-4xl text-3xl mb-8 text-center">
-              Transformez Votre Entreprise Avec l'Intelligence Artificielle
+            <h2 className="text-white font-bold md:text-5xl text-4xl mb-8 text-center leading-tight">
+              Transformez Votre Entreprise Avec <br />
+              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                l'Intelligence Artificielle
+              </span>
             </h2>
             <div className="space-y-6 text-white-50 md:text-xl text-lg">
               <p className="leading-relaxed">
@@ -158,12 +217,9 @@ const NosExpertises = () => {
           </div>
         </div>
 
-        {/* Image Placeholder Comment */}
-        {/* TODO: Add large image illustrating team or AI technology here */}
-
         {/* Why Choose Us Section */}
         <div ref={whyChooseRef} className="w-full mb-20">
-          <TitleHeader 
+          <TitleHeader
             title="Pourquoi Choisir Notre Groupe de Consulting IA & Web ?"
             sub="🧠 Notre expertise"
           />
@@ -194,9 +250,31 @@ const NosExpertises = () => {
           </div>
         </div>
 
+        {/* Values Section */}
+        <div ref={valuesRef} className="w-full mb-20">
+          <TitleHeader
+            title="Les Valeurs qui Guident Notre Accompagnement"
+            sub="💎 Nos valeurs"
+          />
+          <div className="grid-3-cols mt-12">
+            {abilities.map(({ imgPath, title, desc }) => (
+              <div
+                key={title}
+                className="value-card card-border rounded-xl p-8 flex flex-col gap-4"
+              >
+                <div className="size-14 flex items-center justify-center rounded-full">
+                  <img src={imgPath} alt={title} />
+                </div>
+                <h3 className="text-white text-2xl font-semibold mt-2">{title}</h3>
+                <p className="text-white-50 text-lg">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Services Section */}
         <div ref={servicesRef} className="w-full mb-20" id="services">
-          <TitleHeader 
+          <TitleHeader
             title="Nos Services en Intelligence Artificielle & Automatisation"
             sub="🤖 Nos solutions"
           />
@@ -314,11 +392,10 @@ const NosExpertises = () => {
 
         {/* Target Audience Section */}
         <div ref={targetAudienceRef} className="w-full mb-20">
-          <TitleHeader 
+          <TitleHeader
             title="À Qui S'adressent Nos Solutions ?"
             sub="💼 Nos clients"
           />
-          {/* TODO: Add photo representing different types of businesses */}
           <div className="mt-12 max-w-4xl mx-auto">
             <p className="text-white-50 md:text-xl text-lg text-center mb-10 leading-relaxed">
               Nos technologies s'adaptent à tous types d'organisations :
@@ -349,7 +426,7 @@ const NosExpertises = () => {
 
         {/* Investment ROI Section */}
         <div ref={investmentRef} className="w-full mb-20">
-          <TitleHeader 
+          <TitleHeader
             title="Un Investissement qui Rapporte Immédiatement"
             sub="📈 ROI garanti"
           />
@@ -415,7 +492,6 @@ const NosExpertises = () => {
             <h2 className="text-white font-bold md:text-5xl text-3xl mb-6 leading-tight">
               Prêt à Transformer Votre Entreprise Grâce à l'IA ?
             </h2>
-            {/* TODO: Add CTA image or illustration */}
             <p className="text-white-50 md:text-xl text-lg mb-8 leading-relaxed">
               Réservez une consultation gratuite dès maintenant
             </p>
@@ -423,7 +499,7 @@ const NosExpertises = () => {
               Nous analyserons vos besoins, vos objectifs et vous proposerons une stratégie IA complète adaptée à votre activité.
             </p>
             <div className="flex justify-center">
-              <a 
+              <a
                 href="/contact"
                 className="md:w-96 w-full h-14 cta-wrapper group"
               >
@@ -439,10 +515,11 @@ const NosExpertises = () => {
           </div>
         </div>
       </section>
+
+      <Chat />
       <Footer />
     </>
   );
 };
 
 export default NosExpertises;
-

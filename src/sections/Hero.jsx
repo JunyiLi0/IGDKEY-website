@@ -4,7 +4,6 @@ import gsap from "gsap";
 import AnimatedCounter from "../components/AnimatedCounter";
 import Button from "../components/Button";
 import { words } from "../constants";
-import HeroExperience from "../components/models/hero_models/HeroExperience";
 import { getAssetPath } from "../config";
 import IGDKeyLogo from "../components/AnimatedLetters";
 
@@ -12,7 +11,7 @@ const Hero = () => {
 
   useGSAP(() => {
     gsap.fromTo(
-      ".hero-text h1",
+      ".hero-text-animated h1",
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.inOut" }
     );
@@ -20,44 +19,55 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 z-10">
-        <img src={getAssetPath("/images/bg.png")} alt="" />
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 opacity-30">
+        <img src={getAssetPath("/images/bg.png")} alt="" className="w-full h-full object-cover" />
       </div>
 
-      <div className="hero-layout">
-        {/* LEFT: Hero Content */}
-        <div className="flex flex-col md:flex-row w-full gap-8">
-          <header className="flex flex-col justify-center md:w-1/2 w-full md:px-20 px-5 text-center md:text-left">
-            <div className="hero-text flex flex-col items-center md:items-start">
-              <h1 className="flex flex-col items-center md:items-start">
-                <span className="slide">
-                  <span className="wrapper">
-                    {words.map((word, index) => (
-                      <span
-                        key={index}
-                        className="flex items-center justify-center md:justify-start md:gap-3 gap-1 pb-2"
-                      >
-                        <img
-                          src={word.imgPath}
-                          alt="icon"
-                          className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
-                        />
-                        <span>{word.text}</span>
+      {/* Hero Container with Proper Spacing */}
+      <div className="hero-container">
+        <div className="hero-content-wrapper">
+          <header className="hero-header">
+            {/* Main Heading with Animated Word Slider */}
+            <div className="space-y-6">
+              <h1 className="hero-title">
+                <div className="hero-text-animated">
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="slide">
+                      <span className="wrapper">
+                        {words.map((word, index) => (
+                          <span
+                            key={index}
+                            className="flex items-center justify-center gap-2 md:gap-3"
+                          >
+                            <img
+                              src={word.imgPath}
+                              alt="icon"
+                              className="size-8 md:size-12 rounded-full bg-white-50 p-1 md:p-2"
+                            />
+                            <span>{word.text}</span>
+                          </span>
+                        ))}
                       </span>
-                    ))}
-                  </span>
-                </span>
-                <span className="mx-2"></span>
+                    </span>
+                  </div>
+                  <span className="mt-2">votre entreprise</span>
+                  <span className="mt-2">boostée par l'IA</span>
+                </div>
               </h1>
-              <h1 className="text-center md:text-left">votre entreprise</h1>
-              <h1 className="text-center md:text-left">boostée par l'IA</h1>
+
+              <p className="hero-subtitle">
+                L'agence qui fusionne vos technologies avec celles de demain
+              </p>
             </div>
 
-            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none mb-6">
-              L'agence qui fusionne vos technologies avec celles de demain.
-            </p>
+            {/* Logo */}
+            <div className="hero-logo-wrapper">
+              <IGDKeyLogo />
+            </div>
 
-            <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+            {/* CTA Button */}
+            <div className="hero-cta-wrapper">
               <Button
                 text="Découvrir nos services"
                 className="md:w-80 w-full h-12"
@@ -65,18 +75,7 @@ const Hero = () => {
               />
             </div>
           </header>
-
-          <div className="md:w-1/2 w-full">
-            <IGDKeyLogo />
-          </div>
         </div>
-
-        {/* RIGHT: 3D Model or Visual */}
-        <figure>
-          <div className="hero-3d-layout">
-            <HeroExperience />
-          </div>
-        </figure>
       </div>
 
       <AnimatedCounter />

@@ -81,28 +81,52 @@ section {
     @apply grid grid-cols-1 xl:grid-cols-12 gap-10;
   }
 
-  .hero-layout {
-    @apply relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] flex xl:items-center items-start justify-center;
+  /* Hero Section Spacing System */
+  .hero-container {
+    @apply relative z-10 min-h-screen w-full flex items-center justify-center overflow-hidden;
+    @apply px-5 md:px-10 lg:px-16 xl:px-20;
+    @apply py-20 md:py-24 lg:py-32;
   }
 
-  .hero-text {
-    @apply flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 pointer-events-none;
-
-    img {
-      @apply size-8 md:size-10 object-contain;
-    }
-
-    .slide {
-      @apply relative pt-0 px-2 md:px-5 py-[30px] h-[48px] md:h-[78px] md:translate-y-1 translate-y-0 overflow-hidden;
-    }
+  .hero-content-wrapper {
+    @apply w-full max-w-7xl mx-auto;
   }
 
-  .hero-badge {
-    @apply bg-black-200 py-2 px-4 rounded-full w-fit text-sm md:text-base text-nowrap;
+  .hero-header {
+    @apply flex flex-col items-center text-center;
+    @apply space-y-6 md:space-y-8;
   }
 
-  .hero-3d-layout {
-    @apply xl:w-[70%] w-full h-full min-h-[50vh] absolute xl:-top-20 top-24 xl:-right-20 right-0;
+  .hero-title {
+    @apply text-white font-bold;
+    @apply text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+    @apply leading-tight;
+  }
+
+  .hero-subtitle {
+    @apply text-white-50;
+    @apply text-lg md:text-xl lg:text-2xl;
+    @apply max-w-3xl mx-auto leading-relaxed;
+  }
+
+  .hero-logo-wrapper {
+    @apply w-full max-w-xl mx-auto;
+    @apply py-6 md:py-8;
+  }
+
+  .hero-cta-wrapper {
+    @apply flex justify-center;
+    @apply pt-4 md:pt-6;
+  }
+
+  /* Hero Text Animation Styles */
+  .hero-text-animated {
+    @apply inline-flex flex-col items-center;
+  }
+
+  .hero-text-animated .slide {
+    @apply relative overflow-hidden;
+    @apply h-12 md:h-16 lg:h-20;
   }
 
   .navbar {
