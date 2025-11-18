@@ -118,8 +118,8 @@ const AgentsIA = () => {
             </h1>
             <div className="max-w-4xl mx-auto space-y-6">
               <p className="text-white-50 md:text-xl text-lg leading-relaxed">
-                Chez IGDKEY, nous croyons que l'intelligence artificielle n'est plus un luxe réservé aux grandes entreprises. 
-                Nos services d'intégration d'agents IA sont conçus pour aider les petites entreprises à tirer parti de la 
+                Chez IGDKEY, nous croyons que l'intelligence artificielle est désormais accessible à toutes les entreprises. 
+                Nos services d'intégration d'agents IA sont conçus pour aider les entreprises de toutes tailles à tirer parti de la 
                 puissance de l'automatisation, de la personnalisation et des données pour se développer plus rapidement et plus efficacement.
               </p>
               <p className="text-white-50 md:text-xl text-lg leading-relaxed">
@@ -139,11 +139,11 @@ const AgentsIA = () => {
           <div className="grid-2-cols mt-12">
             <div className="why-choose-card card-border rounded-xl p-8 flex flex-col gap-4">
               <div className="text-4xl mb-2">🎯</div>
-              <h3 className="text-white text-2xl font-semibold">Une expertise centrée sur les PME</h3>
+              <h3 className="text-white text-2xl font-semibold">Une expertise adaptée à toutes les entreprises</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                IGDKEY comprend les défis spécifiques auxquels font face les petites entreprises : ressources limitées, 
-                besoin d'efficacité, et volonté d'innover sans complexité technique. Nous développons des agents IA simples 
-                à utiliser, puissants, et rentables.
+                IGDKEY comprend les défis spécifiques auxquels font face les entreprises modernes : optimisation des ressources, 
+                besoin d'efficacité, et volonté d'innover avec des solutions performantes. Nous développons des agents IA simples 
+                à utiliser, puissants, et adaptés à votre échelle.
               </p>
             </div>
             <div className="why-choose-card card-border rounded-xl p-8 flex flex-col gap-4">
@@ -326,9 +326,10 @@ const AgentsIA = () => {
               </p>
             </div>
             <div className="faq-item card-border rounded-xl p-8 flex flex-col gap-4 hover:bg-black-200/30 transition-colors duration-300">
-              <h3 className="text-white text-2xl font-semibold">3. L'IA est-elle adaptée aux petites entreprises ?</h3>
+              <h3 className="text-white text-2xl font-semibold">3. L'IA est-elle adaptée à toutes les entreprises ?</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                Absolument. C'est même un avantage compétitif majeur pour les PME souhaitant gagner du temps et améliorer leur service.
+                Absolument. Quelle que soit la taille de votre entreprise, l'IA offre un avantage compétitif majeur pour gagner du temps, 
+                réduire les coûts et améliorer vos services.
               </p>
             </div>
             <div className="faq-item card-border rounded-xl p-8 flex flex-col gap-4 hover:bg-black-200/30 transition-colors duration-300">

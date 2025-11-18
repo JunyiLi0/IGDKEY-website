@@ -1,7 +1,6 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import Navbar from "./components/NavBar";
-import Home from "./pages/Home";
 import AgentsIA from "./pages/AgentsIA";
 import NosExpertises from "./pages/NosExpertises";
 import Contact from "./pages/Contact";
@@ -53,7 +52,7 @@ const App = () => (
     <ScrollToTop />
     <Navbar />
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<NosExpertises />} />
       <Route path="/expertises" element={<NosExpertises />} />
       <Route path="/agents" element={<AgentsIA />} />
       <Route path="/contact" element={<Contact />} />
