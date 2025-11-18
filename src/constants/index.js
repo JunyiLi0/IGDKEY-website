@@ -7,11 +7,11 @@ const navLinks = [
   },
   {
     name: "Nos expertises",
-    link: "#work",
+    link: "/expertises",
   },
   {
-    name: "Nos services",
-    link: "/services",
+    name: "Agents IA",
+    link: "/agents",
   },
 ];
 
