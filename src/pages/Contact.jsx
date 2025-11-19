@@ -209,13 +209,9 @@ const Contact = () => {
 
                 <button type="submit" className="w-full cta-wrapper group" disabled={loading}>
                   <div className="cta-button">
-                    <div className="bg-circle" />
-                    <p className="text text-lg">
+                    <p className="button-text">
                       {loading ? "Envoi en cours..." : "Envoyer le message"}
                     </p>
-                    <div className="arrow-wrapper">
-                      <img src={getAssetPath("/images/arrow-down.svg")} alt="arrow" />
-                    </div>
                   </div>
                 </button>
 

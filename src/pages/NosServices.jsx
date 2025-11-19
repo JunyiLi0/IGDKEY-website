@@ -242,14 +242,10 @@ const NosServices = () => {
             <div className="flex justify-center">
               <a 
                 href="/contact"
-                className="md:w-80 w-full h-12 cta-wrapper"
+                className="md:w-80 w-full h-12 cta-wrapper group"
               >
-                <div className="cta-button group">
-                  <div className="bg-circle" />
-                  <p className="text">Contactez-nous pour en savoir plus</p>
-                  <div className="arrow-wrapper">
-                    <img src={import.meta.env.BASE_URL + "images/arrow-down.svg"} alt="arrow" />
-                  </div>
+                <div className="cta-button">
+                  <p className="button-text">Contactez-nous pour en savoir plus</p>
                 </div>
               </a>
             </div>

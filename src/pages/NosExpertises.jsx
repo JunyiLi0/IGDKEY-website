@@ -501,14 +501,10 @@ const NosExpertises = () => {
             <div className="flex justify-center">
               <a
                 href="/contact"
-                className="md:w-96 w-full h-14 cta-wrapper group"
+                className="md:w-[500px] w-full h-16 cta-wrapper group"
               >
                 <div className="cta-button">
-                  <div className="bg-circle" />
-                  <p className="text text-lg">Réserver une consultation gratuite</p>
-                  <div className="arrow-wrapper">
-                    <img src={import.meta.env.BASE_URL + "images/arrow-down.svg"} alt="arrow" />
-                  </div>
+                  <p className="button-text">Réserver une consultation gratuite</p>
                 </div>
               </a>
             </div>

@@ -98,15 +98,11 @@ const Contact = () => {
                   />
                 </div>
 
-                <button type="submit">
-                  <div className="cta-button group">
-                    <div className="bg-circle" />
-                    <p className="text">
+                <button type="submit" className="cta-wrapper group">
+                  <div className="cta-button">
+                    <p className="button-text">
                       {loading ? "Envoi en cours..." : "Envoyer le message"}
                     </p>
-                    <div className="arrow-wrapper">
-                      <img src={getAssetPath("/images/arrow-down.svg")} alt="arrow" />
-                    </div>
                   </div>
                 </button>
                 

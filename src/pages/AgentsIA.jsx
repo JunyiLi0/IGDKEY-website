@@ -370,11 +370,7 @@ const AgentsIA = () => {
                   className="md:w-96 w-full h-14 cta-wrapper group"
                 >
                   <div className="cta-button">
-                    <div className="bg-circle" />
-                    <p className="text text-lg">Contactez-nous pour en savoir plus</p>
-                    <div className="arrow-wrapper">
-                      <img src={import.meta.env.BASE_URL + "images/arrow-down.svg"} alt="arrow" />
-                    </div>
+                    <p className="button-text">Contactez-nous pour en savoir plus</p>
                   </div>
                 </a>
               </div>
