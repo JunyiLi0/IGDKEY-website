@@ -182,21 +182,22 @@ const testimonials = [
 ];
 
 const socialImgs = [
-  {
-    name: "insta",
-    imgPath: getAssetPath("/images/insta.png"),
-  },
-  {
-    name: "fb",
-    imgPath: getAssetPath("/images/fb.png"),
-  },
-  {
-    name: "x",
-    imgPath: getAssetPath("/images/x.png"),
-  },
+  // {
+  //   name: "insta",
+  //   imgPath: getAssetPath("/images/insta.png"),
+  // },
+  // {
+  //   name: "fb",
+  //   imgPath: getAssetPath("/images/fb.png"),
+  // },
+  // {
+  //   name: "x",
+  //   imgPath: getAssetPath("/images/x.png"),
+  // },
   {
     name: "linkedin",
     imgPath: getAssetPath("/images/linkedin.png"),
+    url: "https://www.linkedin.com/company/igdkey",
   },
 ];
 

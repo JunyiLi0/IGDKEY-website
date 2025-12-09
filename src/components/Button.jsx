@@ -1,6 +1,6 @@
 /**
  * A reusable CTA button component with simple color change animation.
- * When clicked, it scrolls smoothly to the section with ID "counter",
+ * When clicked, it scrolls smoothly to the section with the specified ID,
  * with a small offset from the top for better visual placement.
  */
 
@@ -8,7 +8,7 @@ const Button = ({ text, className, id }) => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    const target = document.getElementById("counter");
+    const target = document.getElementById(id);
 
     // Only scroll if we found the section and an ID is passed in
     if (target && id) {

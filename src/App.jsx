@@ -1,9 +1,9 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import Navbar from "./components/NavBar";
 import AgentsIA from "./pages/AgentsIA";
 import NosExpertises from "./pages/NosExpertises";
 import Contact from "./pages/Contact";
+import TermsConditions from "./pages/TermsConditions";
 
 // Component to handle 404.html redirects for GitHub Pages
 const RedirectHandler = () => {
@@ -50,12 +50,12 @@ const App = () => (
   <>
     <RedirectHandler />
     <ScrollToTop />
-    <Navbar />
     <Routes>
       <Route path="/" element={<NosExpertises />} />
       <Route path="/expertises" element={<NosExpertises />} />
       <Route path="/agents" element={<AgentsIA />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/conditions" element={<TermsConditions />} />
     </Routes>
   </>
 );

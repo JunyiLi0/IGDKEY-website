@@ -118,7 +118,7 @@ const Contact = () => {
           <div className="text-center mb-12">
             <h1 className="text-white font-bold md:text-5xl text-4xl mb-6 leading-tight">
               Prêt à{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">
                 Transformer
               </span>{" "}
               Votre Entreprise ?
@@ -135,22 +135,22 @@ const Contact = () => {
 
         {/* Contact Info Cards */}
         <div ref={contactCardsRef} className="grid md:grid-cols-2 gap-6 mb-16 max-w-2xl mx-auto">
-          <div className="contact-info-card card-border rounded-xl p-6 text-center bg-gradient-to-br from-black-100 to-black-200">
+          <div className="contact-info-card card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-dusty-grape">
             <div className="text-4xl mb-3">✉️</div>
-            <h3 className="text-white font-semibold text-lg mb-2">Email</h3>
-            <p className="text-white-50">contact@igdkey.com</p>
+            <h3 className="text-mint-cream font-semibold text-lg mb-2">Email</h3>
+            <p className="text-pale-sky">contact@igdkey.com</p>
           </div>
-          <div className="contact-info-card card-border rounded-xl p-6 text-center bg-gradient-to-br from-black-100 to-black-200">
+          <div className="contact-info-card card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-dusty-grape">
             <div className="text-4xl mb-3">⏱️</div>
-            <h3 className="text-white font-semibold text-lg mb-2">Réponse rapide</h3>
-            <p className="text-white-50">Sous 24h</p>
+            <h3 className="text-mint-cream font-semibold text-lg mb-2">Réponse rapide</h3>
+            <p className="text-pale-sky">Sous 24h</p>
           </div>
         </div>
 
         {/* Form Section */}
         <div className="mb-20">
           <div ref={formContainerRef} className="max-w-3xl mx-auto">
-            <div className="card-border rounded-xl p-8 md:p-10 bg-gradient-to-br from-black-100 to-black-200">
+            <div className="card-border rounded-xl p-8 md:p-10 bg-gradient-to-br from-onyx to-dusty-grape">
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -168,7 +168,7 @@ const Contact = () => {
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Votre nom ou nom de votre entreprise"
-                    className="focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
+                    className="focus:ring-2 focus:ring-slate-grey/50 transition-all duration-300"
                     required
                   />
                 </div>
@@ -185,7 +185,7 @@ const Contact = () => {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="contact@votreentreprise.com"
-                    className="focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
+                    className="focus:ring-2 focus:ring-slate-grey/50 transition-all duration-300"
                     required
                   />
                 </div>
@@ -202,7 +202,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Décrivez-nous votre projet, vos besoins en IA, ou posez-nous vos questions..."
                     rows="5"
-                    className="focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
+                    className="focus:ring-2 focus:ring-slate-grey/50 transition-all duration-300"
                     required
                   />
                 </div>
@@ -220,8 +220,8 @@ const Contact = () => {
                     p-6 rounded-xl text-center flex items-center justify-center gap-3
                     transition-all duration-300
                     ${message.type === "success"
-                      ? "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 border-2 border-green-500/50"
-                      : "bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-400 border-2 border-red-500/50"
+                      ? "bg-gradient-to-r from-mint-cream/20 to-mint-cream/30 text-mint-cream border-2 border-mint-cream/50"
+                      : "bg-gradient-to-r from-slate-grey/20 to-slate-grey/30 text-slate-grey border-2 border-slate-grey/50"
                     }
                   `}>
                     <span className="text-2xl">
@@ -242,30 +242,30 @@ const Contact = () => {
             sub="✨ Nos engagements"
           />
           <div className="grid md:grid-cols-3 gap-6 mt-12">
-            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-black-100 to-black-200">
+            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-onyx to-dusty-grape">
               <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-white text-xl font-semibold mb-3">
+              <h3 className="text-mint-cream text-xl font-semibold mb-3">
                 Consultation Gratuite
               </h3>
-              <p className="text-white-50 text-lg leading-relaxed">
+              <p className="text-pale-sky text-lg leading-relaxed">
                 Discutons de vos besoins sans engagement. Une première consultation pour comprendre vos objectifs.
               </p>
             </div>
-            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-black-100 to-black-200">
+            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-onyx to-dusty-grape">
               <div className="text-5xl mb-4">⚡</div>
-              <h3 className="text-white text-xl font-semibold mb-3">
+              <h3 className="text-mint-cream text-xl font-semibold mb-3">
                 Devis Personnalisé
               </h3>
-              <p className="text-white-50 text-lg leading-relaxed">
+              <p className="text-pale-sky text-lg leading-relaxed">
                 Recevez une proposition détaillée et adaptée à votre budget rapidement.
               </p>
             </div>
-            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-black-100 to-black-200">
+            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-onyx to-dusty-grape">
               <div className="text-5xl mb-4">🤝</div>
-              <h3 className="text-white text-xl font-semibold mb-3">
+              <h3 className="text-mint-cream text-xl font-semibold mb-3">
                 Accompagnement de A à Z
               </h3>
-              <p className="text-white-50 text-lg leading-relaxed">
+              <p className="text-pale-sky text-lg leading-relaxed">
                 De l'analyse de vos besoins jusqu'au déploiement, nous sommes à vos côtés.
               </p>
             </div>

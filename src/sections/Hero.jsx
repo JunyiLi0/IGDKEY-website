@@ -43,7 +43,7 @@ const Hero = () => {
                             <img
                               src={word.imgPath}
                               alt="icon"
-                              className="size-8 md:size-12 rounded-full bg-white-50 p-1 md:p-2"
+                              className="size-8 md:size-12 rounded-full bg-pale-sky p-1 md:p-2"
                             />
                             <span>{word.text}</span>
                           </span>

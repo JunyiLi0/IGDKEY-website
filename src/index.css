@@ -21,12 +21,13 @@ section {
 
 @theme {
   --font-sans: "Mona Sans", sans-serif;
-  --color-white-50: #d9ecff;
-  --color-black-50: #1c1c21;
-  --color-black-100: #0e0e10;
-  --color-black-200: #282732;
-  --color-blue-50: #839cb5;
-  --color-blue-100: #2d2d38;
+
+  /* Palette de couleurs - 5 couleurs de base */
+  --color-onyx: #0d0a0b;
+  --color-dusty-grape: #484a6e;
+  --color-slate-grey: #6e708f;
+  --color-pale-sky: #bfd1e5;
+  --color-mint-cream: #ebf5ee;
 }
 
 @layer utilities {
@@ -104,7 +105,7 @@ section {
   }
 
   .hero-subtitle {
-    @apply text-white-50;
+    @apply text-pale-sky;
     @apply text-lg md:text-xl lg:text-2xl;
     @apply max-w-3xl mx-auto leading-relaxed;
   }
@@ -145,7 +146,7 @@ section {
     }
 
     .logo {
-      @apply text-white-50 text-xl md:text-2xl font-semibold transition-transform duration-300 hover:scale-105;
+      @apply text-pale-sky text-xl md:text-2xl font-semibold transition-transform duration-300 hover:scale-105;
     }
 
     nav.desktop {
@@ -155,7 +156,7 @@ section {
         @apply flex space-x-8;
 
         li {
-          @apply text-white-50 relative;
+          @apply text-pale-sky relative;
 
           span {
             @apply transition-colors duration-300 hover:text-white;
@@ -172,7 +173,7 @@ section {
       @apply flex;
 
       .inner {
-        @apply px-5 py-2 rounded-lg bg-white text-black group-hover:bg-black-50 transition-colors duration-300;
+        @apply px-5 py-2 rounded-lg bg-mint-cream text-onyx group-hover:bg-dusty-grape transition-colors duration-300;
 
         span {
           @apply group-hover:text-white transition-colors duration-300;
@@ -225,7 +226,7 @@ section {
           @apply w-full border-b border-white/10;
 
           a {
-            @apply block py-4 text-white-50 text-lg transition-colors duration-300 hover:text-white hover:pl-2;
+            @apply block py-4 text-pale-sky text-lg transition-colors duration-300 hover:text-mint-cream hover:pl-2;
           }
 
           &:last-child {
@@ -235,7 +236,7 @@ section {
       }
 
       .mobile-contact-btn {
-        @apply w-full text-center py-3 rounded-lg bg-white text-black font-semibold hover:bg-black-50 hover:text-white transition-all duration-300;
+        @apply w-full text-center py-3 rounded-lg bg-mint-cream text-onyx font-semibold hover:bg-dusty-grape hover:text-mint-cream transition-all duration-300;
       }
     }
   }
@@ -299,32 +300,32 @@ section {
 
   .cta-button {
     @apply px-10 py-5 rounded-2xl flex justify-center items-center relative cursor-pointer w-full;
-    background-color: #d9ecff;
-    border: 2px solid #d9ecff;
+    background-color: #bfd1e5;
+    border: 2px solid #bfd1e5;
     transition: all 0.3s ease;
     white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(217, 236, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(191, 209, 229, 0.3);
   }
 
   .cta-wrapper:hover .cta-button {
-    background-color: #282732;
-    border-color: #839cb5;
+    background-color: #484a6e;
+    border-color: #6e708f;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transform: translateY(-2px);
   }
 
   .button-text {
     @apply uppercase md:text-lg font-semibold relative z-10;
-    color: #282732;
+    color: #484a6e;
     transition: color 0.3s ease;
   }
 
   .cta-wrapper:hover .button-text {
-    color: #d9ecff;
+    color: #bfd1e5;
   }
 
   .card-border {
-    @apply border border-black-50 bg-black-100;
+    @apply border border-dusty-grape bg-onyx;
   }
 
   .marquee-item {
@@ -340,7 +341,7 @@ section {
   }
 
   .timeline-logo {
-    @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100;
+    @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-dusty-grape bg-onyx;
   }
 
   .exp-card-wrapper {
@@ -352,14 +353,14 @@ section {
   }
 
   .tech-card-animated-bg {
-    @apply absolute left-0 bottom-[-100%] w-full h-full bg-[#2D3240] group-hover:bottom-0 transition-all duration-700;
+    @apply absolute left-0 bottom-[-100%] w-full h-full bg-dusty-grape group-hover:bottom-0 transition-all duration-700;
   }
 
   .tech-card-content {
     @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10 group-hover:cursor-grab;
 
     & p {
-      @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-white-50 text-center;
+      @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-pale-sky text-center;
     }
   }
 
@@ -373,16 +374,16 @@ section {
 
   form {
     label {
-      @apply block text-white-50 mb-2;
+      @apply block text-pale-sky mb-2;
     }
 
     input,
     textarea {
-      @apply w-full px-4 py-4 md:text-base text-sm placeholder:text-blue-50 bg-blue-100 rounded-md;
+      @apply w-full px-4 py-4 md:text-base text-sm placeholder:text-slate-grey bg-dusty-grape rounded-md;
     }
 
     a {
-      @apply w-full py-4 bg-white text-black font-semibold rounded-md flex justify-center items-center gap-2;
+      @apply w-full py-4 bg-mint-cream text-onyx font-semibold rounded-md flex justify-center items-center gap-2;
 
       img {
         @apply inline-block;
@@ -391,7 +392,7 @@ section {
   }
 
   .footer {
-    @apply my-10 md:mt-20 mt-10 text-white-50 px-5 md:px-20 xl:px-20 flex items-center justify-center;
+    @apply my-10 md:mt-20 mt-10 text-pale-sky px-5 md:px-20 xl:px-20 flex items-center justify-center;
 
     .footer-container {
       @apply grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 w-full;
@@ -405,7 +406,7 @@ section {
       @apply flex items-center justify-center gap-5;
 
       .icon {
-        @apply border border-black-50 bg-black-100 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
+        @apply border border-dusty-grape bg-onyx flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-dusty-grape;
       }
 
       img {

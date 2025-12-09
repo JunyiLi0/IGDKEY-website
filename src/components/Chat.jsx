@@ -91,30 +91,30 @@ function Chat() {
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="fixed bottom-6 right-6 z-50 w-20 h-20 bg-white-50 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center"
+                    className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-pale-sky rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 hover:cursor-pointer flex items-center justify-center"
                     aria-label="Ouvrir le chat"
                 >
-                    <img src={getAssetPath("/images/chat.png")} alt="chat" className="w-10 h-10 brightness-0" />
+                    <img src={getAssetPath("/images/chat.png")} alt="chat" className="w-7 h-7 brightness-0" />
                 </button>
             )}
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="fixed bottom-4 right-4 z-50 w-80 h-96 bg-black-100 border border-black-50 rounded-lg shadow-2xl flex flex-col">
+                <div className="fixed bottom-4 right-4 z-50 w-80 h-96 bg-onyx border border-dusty-grape rounded-lg shadow-2xl flex flex-col">
                     {/* Header */}
-                    <div className="flex items-center justify-between p-4 border-b border-black-50">
+                    <div className="flex items-center justify-between p-4 border-b border-dusty-grape">
                         <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 bg-white-50 rounded-full flex items-center justify-center">
+                            <div className="w-8 h-8 bg-pale-sky rounded-full flex items-center justify-center">
                                 <img src={getAssetPath("/images/chat.png")} alt="chat" className="w-5 h-5" />
                             </div>
                             <div>
-                                <h3 className="text-white-50 font-semibold">Assistant IGDKEY</h3>
-                                <p className="text-blue-50 text-xs">En ligne</p>
+                                <h3 className="text-pale-sky font-semibold">Assistant IGDKEY</h3>
+                                <p className="text-slate-grey text-xs">En ligne</p>
                             </div>
                         </div>
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="text-white-50 hover:text-white transition-colors"
+                            className="text-pale-sky hover:text-mint-cream transition-colors"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -131,8 +131,8 @@ function Chat() {
                             >
                                 <div
                                     className={`max-w-xs px-3 py-2 rounded-lg ${message.sender === "bot"
-                                        ? 'bg-black-50 text-white-50'
-                                        : 'bg-white-50 text-black'
+                                        ? 'bg-dusty-grape text-pale-sky'
+                                        : 'bg-pale-sky text-onyx'
                                         }`}
                                 >
                                     <p className="text-sm">{message.text}</p>
@@ -147,7 +147,7 @@ function Chat() {
                         ))}
                         {loading && (
                             <div className="flex justify-start">
-                                <div className="bg-black-50 text-white-50 px-3 py-2 rounded-lg">
+                                <div className="bg-dusty-grape text-pale-sky px-3 py-2 rounded-lg">
                                     <p className="text-sm">Envoi...</p>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@ function Chat() {
                     </div>
 
                     {/* Input */}
-                    <form onSubmit={(e) => { e.preventDefault(); sendMessage(); }} className="p-4 border-t border-black-50">
+                    <form onSubmit={(e) => { e.preventDefault(); sendMessage(); }} className="p-4 border-t border-dusty-grape">
                         <div className="flex gap-2">
                             <input
                                 type="text"
@@ -163,13 +163,13 @@ function Chat() {
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={handleKeyDown}
                                 placeholder="Tapez votre message..."
-                                className="flex-1 px-3 py-2 bg-black-50 text-white-50 rounded-md text-sm placeholder-blue-50 focus:outline-none focus:ring-2 focus:ring-white-50"
+                                className="flex-1 px-3 py-2 bg-dusty-grape text-pale-sky rounded-md text-sm placeholder-slate-grey focus:outline-none focus:ring-2 focus:ring-pale-sky"
                                 disabled={loading}
                             />
                             <button
                                 type="submit"
                                 disabled={loading || !input.trim()}
-                                className="px-4 py-2 bg-white-50 text-black rounded-md hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="px-4 py-2 bg-pale-sky text-onyx rounded-md hover:bg-mint-cream transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

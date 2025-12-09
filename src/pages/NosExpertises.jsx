@@ -130,6 +130,7 @@ const NosExpertises = () => {
 
   return (
     <>
+      <NavBar />
       {/* Hero Section */}
       <section id="hero" className="relative overflow-hidden">
         {/* Background Image */}
@@ -151,7 +152,7 @@ const NosExpertises = () => {
                           {words.map((word, index) => (
                             <span
                               key={index}
-                              className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+                              className="bg-gradient-to-r from-pale-sky via-dusty-grape to-dusty-grape bg-clip-text text-transparent"
                             >
                               {word.text}
                             </span>
@@ -194,7 +195,7 @@ const NosExpertises = () => {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-white font-bold md:text-5xl text-4xl mb-8 text-center leading-tight">
               Transformez Votre Entreprise Avec <br />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">
                 l'Intelligence Artificielle
               </span>
             </h2>
@@ -208,8 +209,8 @@ const NosExpertises = () => {
               <p className="leading-relaxed">
                 Nous aidons les entreprises de tous secteurs à adopter des solutions intelligentes : AI agents, chatbots avancés, automatisation IA, optimisation de sites web, et stratégies machine learning.
               </p>
-              <div className="card-border rounded-xl p-8 mt-8 bg-gradient-to-br from-black-100 to-black-200">
-                <p className="text-white md:text-2xl text-xl font-semibold text-center">
+              <div className="card-border rounded-xl p-8 mt-8 bg-gradient-to-br from-onyx to-dusty-grape">
+                <p className="text-mint-cream md:text-2xl text-xl font-semibold text-center">
                   🔥 Notre mission : vous faire gagner du temps, réduire vos coûts et augmenter vos revenus grâce à l'IA.
                 </p>
               </div>
@@ -247,28 +248,6 @@ const NosExpertises = () => {
                 De l'audit initial à la mise en production des solutions IA, nous vous accompagnons à chaque étape.
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Values Section */}
-        <div ref={valuesRef} className="w-full mb-20 padding-x-lg">
-          <TitleHeader
-            title="Les Valeurs qui Guident Notre Accompagnement"
-            sub="💎 Nos valeurs"
-          />
-          <div className="grid-3-cols mt-12">
-            {abilities.map(({ imgPath, title, desc }) => (
-              <div
-                key={title}
-                className="value-card card-border rounded-xl p-8 flex flex-col gap-4"
-              >
-                <div className="size-14 flex items-center justify-center rounded-full">
-                  <img src={imgPath} alt={title} />
-                </div>
-                <h3 className="text-white text-2xl font-semibold mt-2">{title}</h3>
-                <p className="text-white-50 text-lg">{desc}</p>
-              </div>
-            ))}
           </div>
         </div>
 
@@ -457,17 +436,39 @@ const NosExpertises = () => {
                 </p>
               </div>
             </div>
-            <div className="card-border rounded-xl p-8 mt-10 bg-gradient-to-br from-black-100 to-black-200 text-center">
-              <p className="text-white md:text-2xl text-xl font-semibold">
+            <div className="card-border rounded-xl p-8 mt-10 bg-gradient-to-br from-onyx to-dusty-grape text-center">
+              <p className="text-mint-cream md:text-2xl text-xl font-semibold">
                 Avec nous, vos solutions IA sont rentabilisées en quelques semaines seulement.
               </p>
             </div>
           </div>
         </div>
 
+        {/* Values Section */}
+        <div ref={valuesRef} className="w-full mb-20 padding-x-lg">
+          <TitleHeader
+            title="Les Valeurs qui Guident Notre Accompagnement"
+            sub="💎 Nos valeurs"
+          />
+          <div className="grid-3-cols mt-12">
+            {abilities.map(({ imgPath, title, desc }) => (
+              <div
+                key={title}
+                className="value-card card-border rounded-xl p-8 flex flex-col gap-4"
+              >
+                <div className="size-14 flex items-center justify-center rounded-full">
+                  <img src={imgPath} alt={title} />
+                </div>
+                <h3 className="text-white text-2xl font-semibold mt-2">{title}</h3>
+                <p className="text-white-50 text-lg">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Urgency Section */}
         <div ref={urgencyRef} className="w-full mb-20">
-          <div className="max-w-3xl mx-auto card-border rounded-2xl p-10 md:p-16 bg-gradient-to-br from-purple-900/20 to-blue-900/20">
+          <div className="max-w-3xl mx-auto card-border rounded-2xl p-10 md:p-16 bg-gradient-to-br from-dusty-grape/20 to-pale-sky/20">
             <div className="text-center space-y-6">
               <div className="text-5xl mb-4">⚡</div>
               <h2 className="text-white font-bold md:text-4xl text-3xl">

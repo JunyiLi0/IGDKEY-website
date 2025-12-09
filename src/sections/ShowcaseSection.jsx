@@ -56,7 +56,7 @@ const AppShowcase = () => {
               <h2>
                 Une Application de Transport à la Demande, utilisant les dernières technologies d'IA
               </h2>
-              <p className="text-white-50 md:text-xl">
+              <p className="text-pale-sky md:text-xl">
                 Une application construite sur mesure répondant à vos besoins spécifiques.
               </p>
             </div>
