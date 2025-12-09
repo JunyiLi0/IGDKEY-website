@@ -10,8 +10,8 @@ const navLinks = [
     link: "/agents",
   },
   {
-    name: "Site web intelligent",
-    link: "/site-intelligent",
+    name: "Site Web Intelligent",
+    link: "/site-web-intelligent",
   },
 ];
 

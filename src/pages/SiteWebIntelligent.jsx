@@ -4,349 +4,668 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import NavBar from "../components/NavBar";
 import Footer from "../sections/Footer";
-import TitleHeader from "../components/TitleHeader";
+import Button from "../components/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const featureHighlights = [
-  {
-    title: "Design UI/UX taillé pour votre business",
-    desc: "Design system modulaire, micro-interactions GSAP et parcours adaptés à la conversion, qu'il s'agisse d'une boutique en ligne ou d'une landing B2B.",
-    chips: ["Design system", "Micro-interactions", "Protos rapides"],
-    icon: "🎨",
-  },
-  {
-    title: "Chatbot IA augmenté",
-    desc: "L'agent retrouve le contexte de votre site, navigue sur le web pour vérifier des infos, escalade vers l'humain et trace chaque réponse.",
-    chips: ["RAG web + site", "Sécurité & garde-fous", "Multi-canal"],
-    icon: "🤖",
-  },
-  {
-    title: "Automatisation & réponses clients",
-    desc: "Tri automatique des mails, réponses aux avis, relances paniers abandonnés et notifications internes orchestrées par workflows.",
-    chips: ["Inbox IA", "Avis & SAV", "Relances auto"],
-    icon: "⚡",
-  },
-  {
-    title: "Optimisation SEO & vitesse",
-    desc: "Balises, schémas, maillage interne, score Core Web Vitals et contenus vérifiés pour garder vos positions stables.",
-    chips: ["Core Web Vitals", "Schemas", "Contenu vérifié"],
-    icon: "🚀",
-  },
-];
-
-const useCases = [
-  {
-    title: "E-commerce piloté par l'IA",
-    desc: "Guidage produit, recommandations, relances personnalisées et support 24/7.",
-    tags: ["Retail", "D2C", "Marketplace"],
-  },
-  {
-    title: "Présentation produit & SaaS",
-    desc: "Démos interactives, onboarding assisté, qualification des leads et rendez-vous automatiques.",
-    tags: ["SaaS", "B2B", "Éditeurs"],
-  },
-  {
-    title: "Sites de services & commerces",
-    desc: "Prise de rendez-vous, devis instantané, gestion de disponibilité et réponses aux avis.",
-    tags: ["Services locaux", "Health", "Hospitality"],
-  },
-  {
-    title: "Communautés & contenus",
-    desc: "Moteur de recherche augmenté, génération contrôlée de résumés et alertes sur les tendances.",
-    tags: ["Média", "Éducation", "Communautés"],
-  },
-];
-
-const deliveryTracks = [
-  {
-    title: "Fondations UI/UX",
-    items: [
-      "Audit rapide, storyboards et prototypes cliquables",
-      "Design system harmonisé aux couleurs onyx / dusty-grape / pale-sky",
-      "Guidelines mobiles first, breakpoints et gestures prévues",
-    ],
-  },
-  {
-    title: "Agent IA + données",
-    items: [
-      "Connecteurs site + web pour récupérer les infos manquantes",
-      "Mémoire courte/longue durée et traçabilité des réponses",
-      "Handover humain et monitoring qualité",
-    ],
-  },
-  {
-    title: "Automation & diffusion",
-    items: [
-      "Workflows mails, avis, CRM et relances paniers",
-      "Routing des tickets critiques, alerts et dashboards",
-      "Contenus SEO vérifiés avant publication",
-    ],
-  },
-];
-
 const SiteWebIntelligent = () => {
   const heroRef = useRef(null);
-  const glowRef = useRef(null);
-  const featureRef = useRef(null);
-  const useCaseRef = useRef(null);
-  const stackRef = useRef(null);
-  const closingRef = useRef(null);
+  const heroTitleRef = useRef(null);
+  const heroSubtitleRef = useRef(null);
+  const featuresRef = useRef(null);
+  const chatbotRef = useRef(null);
+  const automationRef = useRef(null);
+  const seoRef = useRef(null);
+  const useCasesRef = useRef(null);
+  const ctaRef = useRef(null);
+  const parallaxRef = useRef(null);
 
   useGSAP(() => {
-    gsap.from(heroRef.current, {
+    // Hero section - Split text animation with stagger
+    const heroTitle = heroTitleRef.current;
+    const heroSubtitle = heroSubtitleRef.current;
+
+    if (heroTitle) {
+      const words = heroTitle.querySelectorAll('.word');
+      gsap.fromTo(words,
+        {
+          y: 100,
+          opacity: 0,
+          rotationX: -90
+        },
+        {
+          y: 0,
+          opacity: 1,
+          rotationX: 0,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          delay: 0.3
+        }
+      );
+    }
+
+    if (heroSubtitle) {
+      gsap.fromTo(heroSubtitle,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1.2, delay: 1, ease: "power2.out" }
+      );
+    }
+
+    // Parallax effect for hero background elements
+    if (parallaxRef.current) {
+      const parallaxElements = parallaxRef.current.querySelectorAll('.parallax-element');
+      parallaxElements.forEach((el, index) => {
+        gsap.to(el, {
+          y: -100 * (index + 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      });
+    }
+
+    // Features cards - 3D tilt and reveal animation
+    gsap.from(".feature-card", {
       opacity: 0,
-      y: 40,
-      duration: 1.1,
-      ease: "power3.out",
+      scale: 0.8,
+      rotationY: -15,
+      duration: 1,
+      stagger: {
+        amount: 0.6,
+        from: "start"
+      },
+      scrollTrigger: {
+        trigger: featuresRef.current,
+        start: "top 85%",
+        toggleActions: "play none none none"
+      },
+      ease: "back.out(1.7)"
     });
 
-    gsap.to(glowRef.current, {
-      rotate: 360,
-      duration: 55,
-      repeat: -1,
-      ease: "none",
+    // Chatbot section - Slide in from different directions
+    gsap.from(".chatbot-feature", {
+      x: (index) => index % 2 === 0 ? -100 : 100,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: chatbotRef.current,
+        start: "top 75%"
+      },
+      ease: "power3.out"
     });
 
-    [
-      { selector: ".sw-card", trigger: featureRef.current, start: "top 80%" },
-      { selector: ".sw-usage-card", trigger: useCaseRef.current, start: "top 85%" },
-      { selector: ".sw-stack-item", trigger: stackRef.current, start: "top 85%" },
-    ].forEach(({ selector, trigger, start }) => {
-      gsap.from(selector, {
-        y: 36,
-        opacity: 0,
-        duration: 0.85,
-        stagger: 0.12,
+    // Automation section - Slide in from different directions with rotation
+    if (automationRef.current) {
+      const automationItems = automationRef.current.querySelectorAll('.automation-item');
+      automationItems.forEach((item, index) => {
+        const positions = [-80, 0, 80];
+        const rotations = [-8, 0, 8];
+
+        gsap.fromTo(item,
+          {
+            opacity: 0,
+            x: positions[index % 3],
+            y: 60,
+            rotation: rotations[index % 3],
+            scale: 0.7
+          },
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            rotation: 0,
+            scale: 1,
+            duration: 0.5,
+            delay: index * 0.15,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 85%",
+              toggleActions: "play none none none"
+            },
+            ease: "back.out(1.4)"
+          }
+        );
+      });
+    }
+
+    // SEO section - Number counter animation
+    const seoNumbers = document.querySelectorAll('.seo-number');
+    seoNumbers.forEach((number) => {
+      const targetValue = parseInt(number.getAttribute('data-target')) || 0;
+      const suffix = number.getAttribute('data-suffix') || '';
+      const obj = { value: 0 };
+
+      gsap.to(obj, {
+        value: targetValue,
+        duration: 2,
         ease: "power2.out",
         scrollTrigger: {
-          trigger,
-          start,
+          trigger: number,
+          start: "top 80%"
         },
+        onUpdate: function () {
+          number.textContent = Math.round(obj.value) + suffix;
+        }
       });
     });
 
-    gsap.from(".sw-tag", {
-      opacity: 0,
-      y: 12,
-      stagger: 0.08,
-      duration: 0.5,
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: featureRef.current,
-        start: "top 85%",
+    // Use cases - Simple fade in animation
+    // Set initial state
+    gsap.set(".use-case-card", { opacity: 0 });
+
+    // Animate on scroll
+    gsap.to(".use-case-card", {
+      opacity: 1,
+      duration: 0.6,
+      stagger: {
+        amount: 0.5,
+        from: "start"
       },
+      scrollTrigger: {
+        trigger: useCasesRef.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      },
+      ease: "power2.out"
     });
 
-    gsap.from(closingRef.current, {
+    // CTA section - Pulse and glow animation
+    gsap.from(ctaRef.current, {
       opacity: 0,
       scale: 0.95,
-      duration: 0.9,
-      ease: "power2.out",
+      y: 40,
+      duration: 1,
       scrollTrigger: {
-        trigger: closingRef.current,
-        start: "top 90%",
+        trigger: ctaRef.current,
+        start: "top 80%"
       },
+      ease: "power2.out"
+    });
+
+    // Continuous glow pulse on CTA
+    gsap.to(".cta-glow", {
+      opacity: 0.6,
+      scale: 1.05,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
     });
   }, []);
+
+  // Split text into words for animation
+  const splitText = (text) => {
+    return text.split(' ').map((word, i) => (
+      <span key={i} className="word inline-block mr-2">{word}</span>
+    ));
+  };
 
   return (
     <>
       <NavBar />
-      <section className="section-padding padding-x-lg pt-32 md:pt-36 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none opacity-60">
-          <div
-            ref={glowRef}
-            className="absolute -top-40 -right-20 w-[38rem] h-[38rem] rounded-full blur-3xl"
-            style={{
-              background: "radial-gradient(circle at 30% 30%, rgba(191,209,229,0.28), rgba(72,74,110,0.05))",
-            }}
-          />
-          <div
-            className="absolute -bottom-52 -left-10 w-[34rem] h-[34rem] rounded-full blur-3xl"
-            style={{
-              background: "radial-gradient(circle at 70% 70%, rgba(72,74,110,0.35), rgba(13,10,11,0.1))",
-            }}
-          />
+
+      {/* Hero Section with Parallax */}
+      <section className="relative min-h-screen overflow-hidden flex items-center">
+        <div ref={parallaxRef} className="absolute inset-0 overflow-hidden">
+          <div className="parallax-element absolute top-20 left-10 w-72 h-72 bg-dusty-grape/20 rounded-full blur-3xl"></div>
+          <div className="parallax-element absolute bottom-20 right-10 w-96 h-96 bg-pale-sky/20 rounded-full blur-3xl"></div>
+          <div className="parallax-element absolute top-1/2 left-1/2 w-64 h-64 bg-slate-grey/20 rounded-full blur-3xl"></div>
         </div>
 
-        {/* Hero */}
-        <div ref={heroRef} className="relative card-border rounded-[28px] overflow-hidden bg-gradient-to-br from-onyx via-onyx to-dusty-grape/40">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-dusty-grape/20 mix-blend-screen" />
-          <div className="grid md:grid-cols-2 gap-10 lg:gap-14 p-8 md:p-12 lg:p-16 relative z-10">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur">
-                <span className="text-lg">✨</span>
-                <p className="text-white/80">Nouveau : Site web intelligent</p>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Un site qui conçoit, répond et optimise
-                <span className="block bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">
-                  en continu pour votre business
-                </span>
-              </h1>
-              <p className="text-white-50 text-lg md:text-xl leading-relaxed">
-                UI/UX moderne, chatbot IA qui connaît vos contenus, automations sur vos emails et avis, SEO robuste : nous assemblons un site vivant, fluide et mesurable.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {["UI/UX sur-mesure", "Agent IA augmenté", "Automations mails & avis", "SEO & vitesse"].map((item) => (
-                  <span key={item} className="sw-tag px-4 py-2 rounded-full bg-dusty-grape/30 text-pale-sky text-sm border border-white/10 backdrop-blur">
-                    {item}
-                  </span>
-                ))}
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <a href="/contact" className="sm:w-60 w-full cta-wrapper group">
-                  <div className="cta-button">
-                    <p className="button-text">Parler d'un projet</p>
-                  </div>
-                </a>
-                <div className="sm:flex-1 card-border rounded-2xl p-4 bg-white/5 backdrop-blur flex items-center gap-3">
-                  <div className="size-10 rounded-xl bg-dusty-grape/30 flex items-center justify-center">📱</div>
-                  <div>
-                    <p className="text-white font-semibold">Mobile ready</p>
-                    <p className="text-white-50 text-sm">Gestures, vitesses, CTA optimisés dès la maquette.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -inset-10 opacity-50 blur-3xl bg-gradient-to-br from-dusty-grape/40 via-onyx to-pale-sky/20" />
-              <div className="relative card-border rounded-3xl p-6 md:p-8 bg-black/60 backdrop-blur space-y-4 shadow-2xl">
-                <div className="flex items-center justify-between">
-                  <p className="text-white/80 text-sm">Blueprint intelligent</p>
-                  <span className="text-lg">🧭</span>
-                </div>
-                <div className="grid grid-cols-1 gap-4">
-                  {[
-                    { title: "UI/UX live", desc: "Animations GSAP fluides + micro feedbacks" },
-                    { title: "Chatbot IA", desc: "Connaît vos pages + recherche web encadrée" },
-                    { title: "Automations", desc: "Inbox mails, avis, CRM et relances" },
-                    { title: "SEO & perf", desc: "Schemas, Core Web Vitals, monitoring" },
-                  ].map((block) => (
-                    <div key={block.title} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                      <p className="text-pale-sky font-semibold">{block.title}</p>
-                      <p className="text-white-50 text-sm">{block.desc}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="grid grid-cols-2 gap-3 pt-2">
-                  <div className="rounded-xl bg-dusty-grape/30 border border-white/10 p-4">
-                    <p className="text-sm text-white/70">Connecteurs</p>
-                    <p className="text-lg font-semibold text-pale-sky">CMS, CRM, Emails</p>
-                  </div>
-                  <div className="rounded-xl bg-pale-sky/20 border border-white/10 p-4">
-                    <p className="text-sm text-white/70">Observabilité</p>
-                    <p className="text-lg font-semibold text-pale-sky">Logs & scores</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Features */}
-        <div ref={featureRef} className="w-full mt-24 space-y-12">
-          <TitleHeader title="Les briques d'un site web intelligent" sub="🧩 Design, IA, automation, SEO" />
-          <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-6">
-            {featureHighlights.map(({ title, desc, chips, icon }) => (
-              <div key={title} className="sw-card card-border rounded-3xl p-6 md:p-8 bg-gradient-to-br from-onyx to-dusty-grape/30 shadow-lg">
-                <div className="flex items-start gap-4 mb-4">
-                  <span className="text-3xl">{icon}</span>
-                  <div>
-                    <h3 className="text-2xl font-semibold text-white mb-2">{title}</h3>
-                    <p className="text-white-50 leading-relaxed">{desc}</p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {chips.map((chip) => (
-                    <span key={chip} className="sw-tag px-3 py-1 rounded-full border border-white/10 bg-white/5 text-pale-sky text-xs">
-                      {chip}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Use cases */}
-        <div ref={useCaseRef} className="w-full mt-24 space-y-12">
-          <TitleHeader title="Utilisations" sub="🚀 E-commerce, produit, service et plus" />
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-            {useCases.map((useCase) => (
-              <div key={useCase.title} className="sw-usage-card card-border rounded-2xl p-6 bg-black/60 backdrop-blur">
-                <p className="text-pale-sky text-sm mb-3 uppercase tracking-wide">Cas d'usage</p>
-                <h3 className="text-white text-xl font-semibold mb-2">{useCase.title}</h3>
-                <p className="text-white-50 text-sm leading-relaxed mb-4">{useCase.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {useCase.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 text-xs rounded-full bg-dusty-grape/25 text-pale-sky border border-white/10">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Delivery tracks */}
-        <div ref={stackRef} className="w-full mt-24 space-y-12">
-          <TitleHeader title="Parcours de livraison" sub="🛠️ Design + IA + Ops" />
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {deliveryTracks.map((track) => (
-              <div key={track.title} className="sw-stack-item card-border rounded-2xl p-6 bg-gradient-to-b from-onyx to-black/70 space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-white text-xl font-semibold">{track.title}</h3>
-                  <span className="text-lg text-pale-sky">•</span>
-                </div>
-                <ul className="space-y-3 list-disc list-inside text-white-50">
-                  {track.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="card-border rounded-2xl p-6 bg-white/5 backdrop-blur flex flex-col md:flex-row gap-4 items-start md:items-center">
-            <div className="flex items-center gap-3">
-              <div className="size-12 rounded-xl bg-dusty-grape/30 flex items-center justify-center">🎯</div>
-              <p className="text-white font-semibold">Palette et cohérence</p>
-            </div>
-            <p className="text-white-50 md:text-base text-sm">
-              Nous restons sur la palette onyx / dusty-grape / pale-sky / mint-cream pour des dégradés harmonieux, même avec les blur et effets glassmorphiques. Chaque bloc possède ses breakpoints pour rester lisible sur mobile.
-            </p>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div ref={closingRef} className="w-full mt-24 mb-12">
-          <div className="card-border rounded-3xl p-10 md:p-14 bg-gradient-to-br from-dusty-grape/30 via-onyx to-pale-sky/15 text-center space-y-6">
-            <h2 className="text-white font-bold text-3xl md:text-4xl leading-tight">
-              Lancez un site web intelligent
-              <span className="block text-pale-sky font-medium text-xl mt-2">
-                UI/UX moderne, agent IA, automatisations et SEO alignés à votre marque.
+        <div ref={heroRef} className="hero-container relative z-10">
+          <div className="hero-content-wrapper text-center">
+            <div className="mb-8">
+              <span className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-dusty-grape/30 to-pale-sky/30 border border-pale-sky/20 text-pale-sky text-sm md:text-base font-medium backdrop-blur-sm">
+                🌐 Site Web Intelligent
               </span>
-            </h2>
-            <p className="text-white-50 md:text-lg max-w-3xl mx-auto">
-              Nous concevons, intégrons et mesurons. Vous gardez la maîtrise, nous automatisons ce qui peut l'être et nous gardons l'humain pour ce qui compte.
+            </div>
+
+            <h1
+              ref={heroTitleRef}
+              className="hero-title mb-8"
+            >
+              {splitText("Créez un Site Web Intelligent")}
+              <br />
+              <span className="bg-gradient-to-r from-pale-sky via-dusty-grape to-pale-sky bg-clip-text text-transparent">
+                {splitText("qui Convertit et Engage")}
+              </span>
+            </h1>
+
+            <p
+              ref={heroSubtitleRef}
+              className="hero-subtitle max-w-3xl mx-auto mb-12"
+            >
+              Des sites web modernes avec IA intégrée, design sur mesure et optimisation SEO avancée.
+              Transformez votre présence digitale en véritable moteur de croissance.
             </p>
-            <div className="flex justify-center">
-              <a href="/contact" className="md:w-80 w-full cta-wrapper group">
-                <div className="cta-button">
-                  <p className="button-text">Démarrer avec IGDKEY</p>
-                </div>
-              </a>
+
+            <div className="flex justify-center max-w-3xl mx-auto">
+              <Button
+                text="Découvrir nos solutions"
+                className="sm:w-auto w-full h-14 px-8"
+                id="features"
+              />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Features Section */}
+      <section ref={featuresRef} className="section-padding padding-x-lg">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
+              Des Fonctionnalités <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Intelligentes</span>
+            </h2>
+            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto">
+              Chaque site web que nous créons est équipé des dernières technologies pour maximiser vos résultats
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Feature 1 - UI/UX Design */}
+            <div className="feature-card group relative card-border rounded-2xl p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-dusty-grape/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">🎨</div>
+                <h3 className="text-white text-xl font-semibold mb-4">Design UI/UX Moderne</h3>
+                <p className="text-pale-sky text-base leading-relaxed">
+                  Interfaces intuitives et esthétiques adaptées à votre secteur d'activité, optimisées pour la conversion
+                </p>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pale-sky to-dusty-grape transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            </div>
+
+            {/* Feature 2 - Chatbot IA */}
+            <div className="feature-card group relative card-border rounded-2xl p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-pale-sky/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">🤖</div>
+                <h3 className="text-white text-xl font-semibold mb-4">Chatbot IA Avancé</h3>
+                <p className="text-pale-sky text-base leading-relaxed">
+                  Assistant intelligent qui retrouve les informations du site, navigue sur le web et répond instantanément aux visiteurs
+                </p>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-dusty-grape to-pale-sky transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            </div>
+
+            {/* Feature 3 - Automation */}
+            <div className="feature-card group relative card-border rounded-2xl p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-grey/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">⚙️</div>
+                <h3 className="text-white text-xl font-semibold mb-4">Automatisation Complète</h3>
+                <p className="text-pale-sky text-base leading-relaxed">
+                  Traitement automatique des emails, réponses aux avis clients et gestion intelligente des processus métier
+                </p>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pale-sky to-slate-grey transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            </div>
+
+            {/* Feature 4 - SEO */}
+            <div className="feature-card group relative card-border rounded-2xl p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-mint-cream/10 to-dusty-grape/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">📈</div>
+                <h3 className="text-white text-xl font-semibold mb-4">Optimisation SEO</h3>
+                <p className="text-pale-sky text-base leading-relaxed">
+                  Référencement naturel avancé, contenu optimisé et structure technique pour dominer les résultats de recherche
+                </p>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-dusty-grape to-mint-cream/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chatbot IA Detailed Section */}
+      <section ref={chatbotRef} className="section-padding padding-x-lg bg-gradient-to-b from-transparent to-dusty-grape/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
+              Chatbot IA <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Intelligent</span>
+            </h2>
+            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto">
+              Un assistant conversationnel qui comprend le contexte, accède à vos données et répond avec précision
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="chatbot-feature card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/30">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="text-4xl">🔍</div>
+                <div>
+                  <h3 className="text-white text-2xl font-semibold mb-3">Recherche Intelligente</h3>
+                  <p className="text-pale-sky leading-relaxed">
+                    Le chatbot analyse votre site web en profondeur, indexe toutes les pages et retrouve instantanément les informations pertinentes pour répondre aux questions des visiteurs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="chatbot-feature card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="text-4xl">🌐</div>
+                <div>
+                  <h3 className="text-white text-2xl font-semibold mb-3">Navigation Web</h3>
+                  <p className="text-pale-sky leading-relaxed">
+                    Accès à internet pour rechercher des informations en temps réel, vérifier des données et fournir des réponses toujours à jour à vos clients.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="chatbot-feature card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-slate-grey/30">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="text-4xl">💬</div>
+                <div>
+                  <h3 className="text-white text-2xl font-semibold mb-3">Conversations Naturelles</h3>
+                  <p className="text-pale-sky leading-relaxed">
+                    Compréhension du langage naturel, gestion du contexte conversationnel et personnalisation des réponses selon le profil du visiteur.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="chatbot-feature card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/30">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="text-4xl">📊</div>
+                <div>
+                  <h3 className="text-white text-2xl font-semibold mb-3">Analytics Intégrés</h3>
+                  <p className="text-pale-sky leading-relaxed">
+                    Suivi des interactions, analyse des questions fréquentes et insights pour améliorer continuellement l'expérience utilisateur.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Automation Section */}
+      <section ref={automationRef} className="section-padding padding-x-lg">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
+              Automatisation <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Intelligente</span>
+            </h2>
+            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto">
+              Libérez votre équipe des tâches répétitives et concentrez-vous sur ce qui compte vraiment
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="automation-item card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/20 hover:from-dusty-grape/30 transition-all duration-300">
+              <div className="text-5xl mb-4">📧</div>
+              <h3 className="text-white text-xl font-semibold mb-4">Gestion Automatique des Emails</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Tri, catégorisation et réponses automatiques aux emails selon leur contenu et leur urgence.
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-2">
+                <li>• Classification intelligente</li>
+                <li>• Réponses contextuelles</li>
+                <li>• Escalade automatique</li>
+              </ul>
+            </div>
+
+            <div className="automation-item card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20 hover:from-pale-sky/30 transition-all duration-300">
+              <div className="text-5xl mb-4">⭐</div>
+              <h3 className="text-white text-xl font-semibold mb-4">Réponses aux Avis Clients</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Analyse et réponse automatique aux avis Google, TripAdvisor et autres plateformes avec ton adapté.
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-2">
+                <li>• Détection du sentiment</li>
+                <li>• Réponses personnalisées</li>
+                <li>• Suivi multi-plateformes</li>
+              </ul>
+            </div>
+
+            <div className="automation-item card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-slate-grey/20 hover:from-slate-grey/30 transition-all duration-300">
+              <div className="text-5xl mb-4">🔄</div>
+              <h3 className="text-white text-xl font-semibold mb-4">Processus Métier Automatisés</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Automatisation complète des workflows : commandes, facturation, rapports et bien plus.
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-2">
+                <li>• Workflows personnalisés</li>
+                <li>• Intégrations API</li>
+                <li>• Monitoring en temps réel</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Section with Stats */}
+      <section ref={seoRef} className="section-padding padding-x-lg bg-gradient-to-b from-transparent to-dusty-grape/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
+              Optimisation SEO <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Avancée</span>
+            </h2>
+            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto mb-12">
+              Dominez les résultats de recherche avec une stratégie SEO complète et des performances techniques optimales
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/30">
+              <h3 className="text-white text-2xl font-semibold mb-6">Stratégie SEO Complète</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">🎯</div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-2">Recherche de Mots-Clés</h4>
+                    <p className="text-pale-sky text-sm">Analyse approfondie pour identifier les opportunités de référencement</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">✍️</div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-2">Contenu Optimisé</h4>
+                    <p className="text-pale-sky text-sm">Rédaction de contenus pertinents et optimisés pour les moteurs de recherche</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">🔗</div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-2">Netlinking Stratégique</h4>
+                    <p className="text-pale-sky text-sm">Construction de liens de qualité pour améliorer votre autorité</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20">
+              <h3 className="text-white text-2xl font-semibold mb-6">Performance Technique</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">⚡</div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-2">Vitesse de Chargement</h4>
+                    <p className="text-pale-sky text-sm">Optimisation pour des temps de chargement ultra-rapides</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">📱</div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-2">Mobile-First</h4>
+                    <p className="text-pale-sky text-sm">Design responsive optimisé pour tous les appareils</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">🔍</div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-2">Structure Technique</h4>
+                    <p className="text-pale-sky text-sm">Balises HTML, sitemap XML et schémas structurés</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* SEO Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-dusty-grape/20">
+              <div className="seo-number text-4xl md:text-5xl font-bold text-pale-sky mb-2" data-target="95" data-suffix="%">0%</div>
+              <p className="text-pale-sky/80 text-sm">Taux de Conversion</p>
+            </div>
+            <div className="card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-pale-sky/20">
+              <div className="seo-number text-4xl md:text-5xl font-bold text-pale-sky mb-2" data-target="300" data-suffix="%">0%</div>
+              <p className="text-pale-sky/80 text-sm">Augmentation Trafic</p>
+            </div>
+            <div className="card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-slate-grey/20">
+              <div className="seo-number text-4xl md:text-5xl font-bold text-pale-sky mb-2" data-target="2" data-suffix="s">0s</div>
+              <p className="text-pale-sky/80 text-sm">Temps de Chargement</p>
+            </div>
+            <div className="card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-dusty-grape/20">
+              <div className="seo-number text-4xl md:text-5xl font-bold text-pale-sky mb-2" data-target="100" data-suffix="+">0+</div>
+              <p className="text-pale-sky/80 text-sm">Mots-Clés Classés</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section ref={useCasesRef} className="section-padding padding-x-lg">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
+              Cas d'Utilisation <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Variés</span>
+            </h2>
+            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto">
+              Nos sites web intelligents s'adaptent à tous les secteurs d'activité
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/20 hover:to-dusty-grape/40 transition-all duration-300 cursor-pointer">
+              <div className="text-5xl mb-4">🛒</div>
+              <h3 className="text-white text-xl font-semibold mb-4">E-commerce Intelligent</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Boutiques en ligne avec recommandations IA, chatbot d'assistance et optimisation du parcours d'achat
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-1">
+                <li>✓ Catalogue dynamique</li>
+                <li>✓ Panier intelligent</li>
+                <li>✓ Checkout optimisé</li>
+              </ul>
+            </div>
+
+            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20 hover:to-pale-sky/40 transition-all duration-300 cursor-pointer">
+              <div className="text-5xl mb-4">📦</div>
+              <h3 className="text-white text-xl font-semibold mb-4">Présentation de Produit</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Pages produits interactives avec visualisation 3D, configurateur et démonstrations virtuelles
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-1">
+                <li>✓ Galeries interactives</li>
+                <li>✓ Configurateurs IA</li>
+                <li>✓ AR/VR intégré</li>
+              </ul>
+            </div>
+
+            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-slate-grey/20 hover:to-slate-grey/40 transition-all duration-300 cursor-pointer">
+              <div className="text-5xl mb-4">🏢</div>
+              <h3 className="text-white text-xl font-semibold mb-4">Site Vitrine Premium</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Sites institutionnels avec design premium, animations fluides et expérience utilisateur exceptionnelle
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-1">
+                <li>✓ Design sur mesure</li>
+                <li>✓ Animations GSAP</li>
+                <li>✓ Portfolio interactif</li>
+              </ul>
+            </div>
+
+            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/20 hover:to-dusty-grape/40 transition-all duration-300 cursor-pointer">
+              <div className="text-5xl mb-4">📚</div>
+              <h3 className="text-white text-xl font-semibold mb-4">Plateforme Éducative</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Sites de formation avec contenu adaptatif, quiz interactifs et suivi de progression intelligent
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-1">
+                <li>✓ Contenu adaptatif</li>
+                <li>✓ Gamification</li>
+                <li>✓ Analytics avancés</li>
+              </ul>
+            </div>
+
+            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20 hover:to-pale-sky/40 transition-all duration-300 cursor-pointer">
+              <div className="text-5xl mb-4">🏥</div>
+              <h3 className="text-white text-xl font-semibold mb-4">Secteur Santé</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Sites médicaux avec prise de rendez-vous automatisée, chatbot santé et gestion de dossiers sécurisée
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-1">
+                <li>✓ Conformité RGPD</li>
+                <li>✓ Prise de RDV IA</li>
+                <li>✓ Sécurité renforcée</li>
+              </ul>
+            </div>
+
+            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-slate-grey/20 hover:to-slate-grey/40 transition-all duration-300 cursor-pointer">
+              <div className="text-5xl mb-4">🍽️</div>
+              <h3 className="text-white text-xl font-semibold mb-4">Restauration & Hôtellerie</h3>
+              <p className="text-pale-sky leading-relaxed mb-4">
+                Sites avec réservation en ligne, menus interactifs et gestion automatique des avis clients
+              </p>
+              <ul className="text-pale-sky/80 text-sm space-y-1">
+                <li>✓ Réservation automatique</li>
+                <li>✓ Menus digitaux</li>
+                <li>✓ Gestion avis IA</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section ref={ctaRef} className="section-padding padding-x-lg">
+        <div className="max-w-4xl mx-auto">
+          <div className="card-border rounded-3xl p-10 md:p-16 bg-gradient-to-br from-dusty-grape/30 via-onyx to-pale-sky/20 text-center relative overflow-hidden">
+            <div className="cta-glow absolute inset-0 bg-gradient-to-r from-pale-sky/20 via-dusty-grape/20 to-pale-sky/20 blur-3xl"></div>
+            <div className="relative z-10">
+              <h2 className="text-white font-bold md:text-5xl text-3xl mb-6 leading-tight">
+                Prêt à Transformer Votre Présence Digitale ?
+              </h2>
+              <p className="text-pale-sky md:text-xl text-lg mb-8 leading-relaxed">
+                Obtenez un site web intelligent qui convertit, engage et fait croître votre entreprise
+              </p>
+              <p className="text-pale-sky/80 md:text-lg text-base mb-10 max-w-2xl mx-auto">
+                Réservez une consultation gratuite et découvrez comment nos solutions peuvent révolutionner votre activité en ligne
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="/contact"
+                  className="md:w-80 w-full h-16 cta-wrapper group"
+                >
+                  <div className="cta-button">
+                    <p className="button-text">Consultation gratuite</p>
+                  </div>
+                </a>
+                <a
+                  href="/agents"
+                  className="md:w-80 w-full h-16 flex items-center justify-center rounded-2xl border-2 border-pale-sky/50 text-pale-sky hover:bg-pale-sky/10 transition-all duration-300 font-semibold"
+                >
+                  Découvrir nos agents IA
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </>
   );
 };
 
 export default SiteWebIntelligent;
-

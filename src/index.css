@@ -11,7 +11,7 @@ body {
   overflow-x: hidden;
   background-color: black;
   color: white;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   font-family: "Mona Sans", sans-serif;
 }
 
@@ -118,6 +118,10 @@ section {
   .hero-cta-wrapper {
     @apply flex justify-center;
     @apply pt-4 md:pt-6;
+  }
+
+  .hero-badge {
+    @apply inline-block px-6 py-3 rounded-full bg-gradient-to-r from-dusty-grape/30 to-pale-sky/30 border border-pale-sky/20 text-pale-sky text-sm md:text-base font-medium backdrop-blur-sm;
   }
 
   /* Hero Text Animation Styles */
