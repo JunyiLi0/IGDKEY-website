@@ -1,17 +1,17 @@
 import { getAssetPath } from "../config";
 
 const navLinks = [
-  {
-    name: "Accueil",
-    link: "/",
-  },
-  {
-    name: "Agents IA",
-    link: "/agents",
-  },
+  // {
+  //   name: "Accueil",
+  //   link: "/",
+  // },
+  // {
+  //   name: "Agents IA",
+  //   link: "/agents",
+  // },
   {
     name: "Site Web Intelligent",
-    link: "/site-intelligent",
+    link: "/",
   },
 ];
 
