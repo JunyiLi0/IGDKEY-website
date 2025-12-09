@@ -9,6 +9,10 @@ const navLinks = [
     name: "Agents IA",
     link: "/agents",
   },
+  {
+    name: "Site web intelligent",
+    link: "/site-intelligent",
+  },
 ];
 
 const words = [

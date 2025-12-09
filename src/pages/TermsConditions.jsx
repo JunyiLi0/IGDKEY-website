@@ -6,8 +6,8 @@ const TermsConditions = () => {
     <>
       {/* Header avec logo */}
       <header className="w-full bg-black py-5 px-5 md:px-20">
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="inline-block transition-transform duration-300 hover:scale-105"
         >
           <img

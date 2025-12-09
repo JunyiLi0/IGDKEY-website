@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import AgentsIA from "./pages/AgentsIA";
+import SiteWebIntelligent from "./pages/SiteWebIntelligent";
 import NosExpertises from "./pages/NosExpertises";
 import Contact from "./pages/Contact";
 import TermsConditions from "./pages/TermsConditions";
@@ -54,6 +55,7 @@ const App = () => (
       <Route path="/" element={<NosExpertises />} />
       <Route path="/expertises" element={<NosExpertises />} />
       <Route path="/agents" element={<AgentsIA />} />
+      <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/conditions" element={<TermsConditions />} />
     </Routes>

@@ -118,12 +118,12 @@ const AgentsIA = () => {
             </h1>
             <div className="max-w-4xl mx-auto space-y-6">
               <p className="text-white-50 md:text-xl text-lg leading-relaxed">
-                Chez IGDKEY, nous croyons que l'intelligence artificielle est désormais accessible à toutes les entreprises. 
-                Nos services d'intégration d'agents IA sont conçus pour aider les entreprises de toutes tailles à tirer parti de la 
+                Chez IGDKEY, nous croyons que l'intelligence artificielle est désormais accessible à toutes les entreprises.
+                Nos services d'intégration d'agents IA sont conçus pour aider les entreprises de toutes tailles à tirer parti de la
                 puissance de l'automatisation, de la personnalisation et des données pour se développer plus rapidement et plus efficacement.
               </p>
               <p className="text-white-50 md:text-xl text-lg leading-relaxed">
-                Grâce à notre expertise, nous transformons vos processus internes et vos interactions clients à l'aide de 
+                Grâce à notre expertise, nous transformons vos processus internes et vos interactions clients à l'aide de
                 solutions d'IA sur mesure qui s'intègrent parfaitement à vos outils existants.
               </p>
             </div>
@@ -132,7 +132,7 @@ const AgentsIA = () => {
 
         {/* Why Choose IGDKEY Section */}
         <div ref={whyChooseRef} className="w-full mb-20">
-          <TitleHeader 
+          <TitleHeader
             title="Pourquoi choisir IGDKEY pour l'intégration d'agents IA ?"
             sub="💡 Notre valeur ajoutée"
           />
@@ -141,8 +141,8 @@ const AgentsIA = () => {
               <div className="text-4xl mb-2">🎯</div>
               <h3 className="text-white text-2xl font-semibold">Une expertise adaptée à toutes les entreprises</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                IGDKEY comprend les défis spécifiques auxquels font face les entreprises modernes : optimisation des ressources, 
-                besoin d'efficacité, et volonté d'innover avec des solutions performantes. Nous développons des agents IA simples 
+                IGDKEY comprend les défis spécifiques auxquels font face les entreprises modernes : optimisation des ressources,
+                besoin d'efficacité, et volonté d'innover avec des solutions performantes. Nous développons des agents IA simples
                 à utiliser, puissants, et adaptés à votre échelle.
               </p>
             </div>
@@ -150,7 +150,7 @@ const AgentsIA = () => {
               <div className="text-4xl mb-2">🔧</div>
               <h3 className="text-white text-2xl font-semibold">Des solutions IA sur mesure et évolutives</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                Chaque entreprise est unique. Nos agents IA s'adaptent à vos systèmes (CRM, ERP, outils de support client, etc.) 
+                Chaque entreprise est unique. Nos agents IA s'adaptent à vos systèmes (CRM, ERP, outils de support client, etc.)
                 et évoluent avec votre croissance. Notre objectif : une intégration fluide, rapide et sans interruption de vos activités.
               </p>
             </div>
@@ -159,7 +159,7 @@ const AgentsIA = () => {
 
         {/* Main Services Section */}
         <div ref={servicesRef} className="w-full mb-20" id="services">
-          <TitleHeader 
+          <TitleHeader
             title="Nos principaux services d'agents IA"
             sub="🚀 Nos offres"
           />
@@ -173,7 +173,7 @@ const AgentsIA = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <p className="text-white-50 text-lg leading-relaxed mb-4">
-                    Nos développeurs conçoivent et intègrent des agents IA intelligents capables de gérer vos tâches répétitives, 
+                    Nos développeurs conçoivent et intègrent des agents IA intelligents capables de gérer vos tâches répétitives,
                     d'automatiser vos processus internes, et de soutenir vos équipes dans la prise de décision.
                   </p>
                   <p className="text-white-50 text-lg leading-relaxed">
@@ -204,7 +204,7 @@ const AgentsIA = () => {
                 2. Formation et accompagnement à l'usage de l'IA
               </h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                Nous accompagnons vos équipes dans la compréhension et la maîtrise de leurs nouveaux outils d'IA. 
+                Nous accompagnons vos équipes dans la compréhension et la maîtrise de leurs nouveaux outils d'IA.
                 IGDKEY propose des sessions de formation, des tutoriels et un support continu.
               </p>
             </div>
@@ -216,7 +216,7 @@ const AgentsIA = () => {
                 3. Maintenance et optimisation continue des agents IA
               </h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                L'IA évolue constamment. IGDKEY assure la maintenance, les mises à jour et l'optimisation de vos agents 
+                L'IA évolue constamment. IGDKEY assure la maintenance, les mises à jour et l'optimisation de vos agents
                 afin de garantir des performances durables.
               </p>
             </div>
@@ -225,7 +225,7 @@ const AgentsIA = () => {
 
         {/* Benefits Section */}
         <div ref={benefitsRef} className="w-full mb-20">
-          <TitleHeader 
+          <TitleHeader
             title="Les bénéfices de l'intégration d'agents IA avec IGDKEY"
             sub="✨ Vos avantages"
           />
@@ -234,7 +234,7 @@ const AgentsIA = () => {
               <div className="text-5xl mb-2">⚡</div>
               <h3 className="text-white text-2xl font-semibold">Gain de temps et réduction des coûts</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                L'automatisation permet de libérer du temps pour vos équipes, réduire les coûts opérationnels et concentrer 
+                L'automatisation permet de libérer du temps pour vos équipes, réduire les coûts opérationnels et concentrer
                 vos efforts sur des tâches à forte valeur ajoutée.
               </p>
             </div>
@@ -242,7 +242,7 @@ const AgentsIA = () => {
               <div className="text-5xl mb-2">😊</div>
               <h3 className="text-white text-2xl font-semibold">Expérience client améliorée</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                Des agents IA réactifs et personnalisés garantissent une meilleure expérience utilisateur, une assistance 24/7 
+                Des agents IA réactifs et personnalisés garantissent une meilleure expérience utilisateur, une assistance 24/7
                 et une satisfaction accrue.
               </p>
             </div>
@@ -250,7 +250,7 @@ const AgentsIA = () => {
               <div className="text-5xl mb-2">📊</div>
               <h3 className="text-white text-2xl font-semibold">Décisions plus intelligentes grâce aux données</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                Nos agents collectent et analysent vos données en temps réel, vous aidant à prendre des décisions plus stratégiques 
+                Nos agents collectent et analysent vos données en temps réel, vous aidant à prendre des décisions plus stratégiques
                 et basées sur des faits concrets.
               </p>
             </div>
@@ -259,7 +259,7 @@ const AgentsIA = () => {
 
         {/* Integration Process Section */}
         <div ref={processRef} className="w-full mb-20">
-          <TitleHeader 
+          <TitleHeader
             title="Notre processus d'intégration IA"
             sub="📋 Comment ça marche"
           />
@@ -307,7 +307,7 @@ const AgentsIA = () => {
 
         {/* FAQ Section */}
         <div ref={faqRef} className="w-full mb-20">
-          <TitleHeader 
+          <TitleHeader
             title="Foire aux questions (FAQ)"
             sub="❓ Questions fréquentes"
           />
@@ -315,7 +315,7 @@ const AgentsIA = () => {
             <div className="faq-item card-border rounded-xl p-8 flex flex-col gap-4 hover:bg-dusty-grape/30 transition-colors duration-300">
               <h3 className="text-white text-2xl font-semibold">1. Qu'est-ce qu'un agent IA ?</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                Un agent IA est un programme intelligent capable d'automatiser des tâches, d'interagir avec les clients et 
+                Un agent IA est un programme intelligent capable d'automatiser des tâches, d'interagir avec les clients et
                 d'analyser les données pour prendre des décisions.
               </p>
             </div>
@@ -328,7 +328,7 @@ const AgentsIA = () => {
             <div className="faq-item card-border rounded-xl p-8 flex flex-col gap-4 hover:bg-dusty-grape/30 transition-colors duration-300">
               <h3 className="text-white text-2xl font-semibold">3. L'IA est-elle adaptée à toutes les entreprises ?</h3>
               <p className="text-white-50 text-lg leading-relaxed">
-                Absolument. Quelle que soit la taille de votre entreprise, l'IA offre un avantage compétitif majeur pour gagner du temps, 
+                Absolument. Quelle que soit la taille de votre entreprise, l'IA offre un avantage compétitif majeur pour gagner du temps,
                 réduire les coûts et améliorer vos services.
               </p>
             </div>
@@ -361,11 +361,11 @@ const AgentsIA = () => {
                 Passez à l'intelligence automatisée avec IGDKEY
               </h2>
               <p className="text-white-50 md:text-xl text-lg mb-8 leading-relaxed">
-                Ne laissez pas la technologie vous dépasser. IGDKEY vous aide à franchir le pas vers l'avenir en intégrant 
+                Ne laissez pas la technologie vous dépasser. IGDKEY vous aide à franchir le pas vers l'avenir en intégrant
                 des agents IA puissants, fiables et évolutifs. Ensemble, rendons votre entreprise plus intelligente, plus rapide et plus performante.
               </p>
               <div className="flex justify-center">
-                <a 
+                <a
                   href="/contact"
                   className="md:w-96 w-full h-14 cta-wrapper group"
                 >
