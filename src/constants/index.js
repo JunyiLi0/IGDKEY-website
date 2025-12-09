@@ -11,7 +11,7 @@ const navLinks = [
   },
   {
     name: "Site Web Intelligent",
-    link: "/site-web-intelligent",
+    link: "/site-intelligent",
   },
 ];
 

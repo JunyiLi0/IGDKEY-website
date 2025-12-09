@@ -4,668 +4,282 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import NavBar from "../components/NavBar";
 import Footer from "../sections/Footer";
-import Button from "../components/Button";
+import TitleHeader from "../components/TitleHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SiteWebIntelligent = () => {
   const heroRef = useRef(null);
-  const heroTitleRef = useRef(null);
-  const heroSubtitleRef = useRef(null);
   const featuresRef = useRef(null);
-  const chatbotRef = useRef(null);
-  const automationRef = useRef(null);
-  const seoRef = useRef(null);
   const useCasesRef = useRef(null);
+  const cardsContainerRef = useRef(null);
+  const techRef = useRef(null);
   const ctaRef = useRef(null);
-  const parallaxRef = useRef(null);
 
   useGSAP(() => {
-    // Hero section - Split text animation with stagger
-    const heroTitle = heroTitleRef.current;
-    const heroSubtitle = heroSubtitleRef.current;
-
-    if (heroTitle) {
-      const words = heroTitle.querySelectorAll('.word');
-      gsap.fromTo(words,
-        {
-          y: 100,
-          opacity: 0,
-          rotationX: -90
-        },
-        {
-          y: 0,
-          opacity: 1,
-          rotationX: 0,
-          duration: 1,
-          stagger: 0.1,
-          ease: "power3.out",
-          delay: 0.3
-        }
-      );
-    }
-
-    if (heroSubtitle) {
-      gsap.fromTo(heroSubtitle,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1.2, delay: 1, ease: "power2.out" }
-      );
-    }
-
-    // Parallax effect for hero background elements
-    if (parallaxRef.current) {
-      const parallaxElements = parallaxRef.current.querySelectorAll('.parallax-element');
-      parallaxElements.forEach((el, index) => {
-        gsap.to(el, {
-          y: -100 * (index + 1),
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-          }
-        });
-      });
-    }
-
-    // Features cards - 3D tilt and reveal animation
-    gsap.from(".feature-card", {
+    // Hero Animation
+    gsap.from(heroRef.current, {
       opacity: 0,
-      scale: 0.8,
-      rotationY: -15,
-      duration: 1,
-      stagger: {
-        amount: 0.6,
-        from: "start"
-      },
-      scrollTrigger: {
-        trigger: featuresRef.current,
-        start: "top 85%",
-        toggleActions: "play none none none"
-      },
-      ease: "back.out(1.7)"
+      y: 50,
+      duration: 1.5,
+      ease: "power3.out",
     });
 
-    // Chatbot section - Slide in from different directions
-    gsap.from(".chatbot-feature", {
-      x: (index) => index % 2 === 0 ? -100 : 100,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: chatbotRef.current,
-        start: "top 75%"
-      },
-      ease: "power3.out"
-    });
-
-    // Automation section - Slide in from different directions with rotation
-    if (automationRef.current) {
-      const automationItems = automationRef.current.querySelectorAll('.automation-item');
-      automationItems.forEach((item, index) => {
-        const positions = [-80, 0, 80];
-        const rotations = [-8, 0, 8];
-
-        gsap.fromTo(item,
-          {
-            opacity: 0,
-            x: positions[index % 3],
-            y: 60,
-            rotation: rotations[index % 3],
-            scale: 0.7
-          },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            rotation: 0,
-            scale: 1,
-            duration: 0.5,
-            delay: index * 0.15,
-            scrollTrigger: {
-              trigger: item,
-              start: "top 85%",
-              toggleActions: "play none none none"
-            },
-            ease: "back.out(1.4)"
-          }
-        );
-      });
-    }
-
-    // SEO section - Number counter animation
-    const seoNumbers = document.querySelectorAll('.seo-number');
-    seoNumbers.forEach((number) => {
-      const targetValue = parseInt(number.getAttribute('data-target')) || 0;
-      const suffix = number.getAttribute('data-suffix') || '';
-      const obj = { value: 0 };
-
-      gsap.to(obj, {
-        value: targetValue,
-        duration: 2,
-        ease: "power2.out",
+    // Features Animation (Staggered from sides)
+    const features = gsap.utils.toArray(".feature-row");
+    features.forEach((feature, i) => {
+      gsap.from(feature, {
+        x: i % 2 === 0 ? -100 : 100,
+        opacity: 0,
+        duration: 1,
         scrollTrigger: {
-          trigger: number,
-          start: "top 80%"
+          trigger: feature,
+          start: "top 80%",
         },
-        onUpdate: function () {
-          number.textContent = Math.round(obj.value) + suffix;
-        }
       });
     });
 
-    // Use cases - Simple fade in animation
-    // Set initial state
-    gsap.set(".use-case-card", { opacity: 0 });
+    // Use Cases Cards (Scale up)
+    gsap.fromTo(
+      ".use-case-card",
+      { scale: 0.8, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: cardsContainerRef.current,
+          start: "top 95%",
+        },
+      }
+    );
 
-    // Animate on scroll
-    gsap.to(".use-case-card", {
-      opacity: 1,
-      duration: 0.6,
-      stagger: {
-        amount: 0.5,
-        from: "start"
-      },
+    // Tech Section
+    gsap.from(techRef.current, {
+      opacity: 0,
+      y: 30,
+      duration: 1,
       scrollTrigger: {
-        trigger: useCasesRef.current,
-        start: "top 85%",
-        toggleActions: "play none none reverse"
+        trigger: techRef.current,
+        start: "top 80%",
       },
-      ease: "power2.out"
     });
 
-    // CTA section - Pulse and glow animation
+    // CTA Animation
     gsap.from(ctaRef.current, {
       opacity: 0,
-      scale: 0.95,
-      y: 40,
-      duration: 1,
+      scale: 0.9,
+      duration: 0.8,
       scrollTrigger: {
         trigger: ctaRef.current,
-        start: "top 80%"
+        start: "top 85%",
       },
-      ease: "power2.out"
-    });
-
-    // Continuous glow pulse on CTA
-    gsap.to(".cta-glow", {
-      opacity: 0.6,
-      scale: 1.05,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
     });
   }, []);
-
-  // Split text into words for animation
-  const splitText = (text) => {
-    return text.split(' ').map((word, i) => (
-      <span key={i} className="word inline-block mr-2">{word}</span>
-    ));
-  };
 
   return (
     <>
       <NavBar />
-
-      {/* Hero Section with Parallax */}
-      <section className="relative min-h-screen overflow-hidden flex items-center">
-        <div ref={parallaxRef} className="absolute inset-0 overflow-hidden">
-          <div className="parallax-element absolute top-20 left-10 w-72 h-72 bg-dusty-grape/20 rounded-full blur-3xl"></div>
-          <div className="parallax-element absolute bottom-20 right-10 w-96 h-96 bg-pale-sky/20 rounded-full blur-3xl"></div>
-          <div className="parallax-element absolute top-1/2 left-1/2 w-64 h-64 bg-slate-grey/20 rounded-full blur-3xl"></div>
-        </div>
-
-        <div ref={heroRef} className="hero-container relative z-10">
-          <div className="hero-content-wrapper text-center">
-            <div className="mb-8">
-              <span className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-dusty-grape/30 to-pale-sky/30 border border-pale-sky/20 text-pale-sky text-sm md:text-base font-medium backdrop-blur-sm">
-                🌐 Site Web Intelligent
+      <section className="section-padding padding-x-lg overflow-hidden">
+        {/* Hero Section */}
+        <div ref={heroRef} className="w-full mb-32 mt-10 relative">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-dusty-grape/20 rounded-full blur-[100px] -z-10"></div>
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="inline-block px-4 py-1.5 rounded-full border border-dusty-grape bg-onyx/50 backdrop-blur-md mb-8">
+              <span className="bg-gradient-to-r from-pale-sky to-mint-cream bg-clip-text text-transparent font-medium">
+                ✨ Nouvelle Génération de Sites Web
               </span>
             </div>
-
-            <h1
-              ref={heroTitleRef}
-              className="hero-title mb-8"
-            >
-              {splitText("Créez un Site Web Intelligent")}
-              <br />
-              <span className="bg-gradient-to-r from-pale-sky via-dusty-grape to-pale-sky bg-clip-text text-transparent">
-                {splitText("qui Convertit et Engage")}
-              </span>
+            <h1 className="text-white font-bold md:text-7xl text-5xl mb-8 leading-tight tracking-tight">
+              Site Web <span className="text-transparent bg-clip-text bg-gradient-to-r from-pale-sky via-white to-dusty-grape">Intelligent</span>
+              <br /> & Autonome
             </h1>
-
-            <p
-              ref={heroSubtitleRef}
-              className="hero-subtitle max-w-3xl mx-auto mb-12"
-            >
-              Des sites web modernes avec IA intégrée, design sur mesure et optimisation SEO avancée.
-              Transformez votre présence digitale en véritable moteur de croissance.
+            <p className="text-slate-grey md:text-xl text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+              Transformez votre présence en ligne avec une interface ultra-moderne propulsée par l'IA.
+              Un site qui ne se contente pas d'afficher des informations, mais qui interagit, vend et travaille pour vous 24/7.
             </p>
-
-            <div className="flex justify-center max-w-3xl mx-auto">
-              <Button
-                text="Découvrir nos solutions"
-                className="sm:w-auto w-full h-14 px-8"
-                id="features"
-              />
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <a href="#features" className="px-8 py-4 bg-mint-cream text-onyx font-bold rounded-xl hover:scale-105 transition-transform duration-300">
+                Découvrir les fonctionnalités
+              </a>
+              <a href="/contact" className="px-8 py-4 border border-dusty-grape text-pale-sky font-bold rounded-xl hover:bg-dusty-grape/20 transition-all duration-300">
+                Démarrer votre projet
+              </a>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Features Section */}
-      <section ref={featuresRef} className="section-padding padding-x-lg">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
-              Des Fonctionnalités <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Intelligentes</span>
-            </h2>
-            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto">
-              Chaque site web que nous créons est équipé des dernières technologies pour maximiser vos résultats
-            </p>
-          </div>
+        {/* Features Section - Alternating Layout */}
+        <div ref={featuresRef} className="w-full mb-32" id="features">
+          <TitleHeader
+            title="L'intelligence artificielle au cœur de votre site"
+            sub="🚀 Fonctionnalités Avancées"
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Feature 1 - UI/UX Design */}
-            <div className="feature-card group relative card-border rounded-2xl p-8 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-dusty-grape/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="text-5xl mb-4">🎨</div>
-                <h3 className="text-white text-xl font-semibold mb-4">Design UI/UX Moderne</h3>
-                <p className="text-pale-sky text-base leading-relaxed">
-                  Interfaces intuitives et esthétiques adaptées à votre secteur d'activité, optimisées pour la conversion
-                </p>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pale-sky to-dusty-grape transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-            </div>
-
-            {/* Feature 2 - Chatbot IA */}
-            <div className="feature-card group relative card-border rounded-2xl p-8 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-pale-sky/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="text-5xl mb-4">🤖</div>
-                <h3 className="text-white text-xl font-semibold mb-4">Chatbot IA Avancé</h3>
-                <p className="text-pale-sky text-base leading-relaxed">
-                  Assistant intelligent qui retrouve les informations du site, navigue sur le web et répond instantanément aux visiteurs
-                </p>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-dusty-grape to-pale-sky transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-            </div>
-
-            {/* Feature 3 - Automation */}
-            <div className="feature-card group relative card-border rounded-2xl p-8 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-grey/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="text-5xl mb-4">⚙️</div>
-                <h3 className="text-white text-xl font-semibold mb-4">Automatisation Complète</h3>
-                <p className="text-pale-sky text-base leading-relaxed">
-                  Traitement automatique des emails, réponses aux avis clients et gestion intelligente des processus métier
-                </p>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pale-sky to-slate-grey transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-            </div>
-
-            {/* Feature 4 - SEO */}
-            <div className="feature-card group relative card-border rounded-2xl p-8 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-mint-cream/10 to-dusty-grape/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10">
-                <div className="text-5xl mb-4">📈</div>
-                <h3 className="text-white text-xl font-semibold mb-4">Optimisation SEO</h3>
-                <p className="text-pale-sky text-base leading-relaxed">
-                  Référencement naturel avancé, contenu optimisé et structure technique pour dominer les résultats de recherche
-                </p>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-dusty-grape to-mint-cream/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Chatbot IA Detailed Section */}
-      <section ref={chatbotRef} className="section-padding padding-x-lg bg-gradient-to-b from-transparent to-dusty-grape/10">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
-              Chatbot IA <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Intelligent</span>
-            </h2>
-            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto">
-              Un assistant conversationnel qui comprend le contexte, accède à vos données et répond avec précision
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="chatbot-feature card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/30">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="text-4xl">🔍</div>
-                <div>
-                  <h3 className="text-white text-2xl font-semibold mb-3">Recherche Intelligente</h3>
-                  <p className="text-pale-sky leading-relaxed">
-                    Le chatbot analyse votre site web en profondeur, indexe toutes les pages et retrouve instantanément les informations pertinentes pour répondre aux questions des visiteurs.
+          <div className="mt-20 space-y-24">
+            {/* Feature 1: Chatbot IA */}
+            <div className="feature-row grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1 relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
+                <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 h-full flex flex-col justify-center min-h-[300px]">
+                  <div className="text-6xl mb-6">🤖</div>
+                  <h3 className="text-white text-3xl font-bold mb-4">Chatbot IA Contextuel</h3>
+                  <p className="text-slate-grey text-lg">
+                    Plus qu'un simple bot. Notre IA analyse tout votre site, comprend votre business et répond précisément aux visiteurs.
+                    Elle peut naviguer sur le web pour enrichir ses réponses et guider l'utilisateur vers le bon produit ou service.
                   </p>
                 </div>
               </div>
+              <div className="order-1 lg:order-2 flex flex-col gap-6">
+                <div className="p-6 rounded-xl bg-gradient-to-br from-onyx to-dusty-grape/20 border border-white/5 backdrop-blur-sm">
+                  <span className="text-pale-sky font-mono text-sm block mb-2">{`> User Query`}</span>
+                  <p className="text-white">"Quel produit est le mieux pour l'extérieur ?"</p>
+                </div>
+                <div className="p-6 rounded-xl bg-mint-cream/5 border border-mint-cream/10 backdrop-blur-sm ml-8">
+                  <span className="text-mint-cream font-mono text-sm block mb-2">{`> AI Response`}</span>
+                  <p className="text-white-50">"Basé sur notre catalogue, le modèle X200 est idéal grâce à sa résistance IP68. Je vous dirige vers la page produit..."</p>
+                </div>
+              </div>
             </div>
 
-            <div className="chatbot-feature card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="text-4xl">🌐</div>
-                <div>
-                  <h3 className="text-white text-2xl font-semibold mb-3">Navigation Web</h3>
-                  <p className="text-pale-sky leading-relaxed">
-                    Accès à internet pour rechercher des informations en temps réel, vérifier des données et fournir des réponses toujours à jour à vos clients.
+            {/* Feature 2: Automation */}
+            <div className="feature-row grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-1 lg:order-1 flex justify-center">
+                <div className="relative w-full rounded-2xl overflow-hidden border border-dusty-grape/30 flex items-center justify-center">
+                  <img
+                    src={import.meta.env.BASE_URL + "ai-workflow-automationA--1-.png"}
+                    alt="AI Automation Workflow"
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
+              <div className="order-2 lg:order-2 relative group">
+                <div className="absolute inset-0 bg-gradient-to-l from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
+                <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 h-full flex flex-col justify-center min-h-[300px]">
+                  <h3 className="text-white text-3xl font-bold mb-4">Automatisation Totale</h3>
+                  <ul className="space-y-4 text-slate-grey text-lg">
+                    <li className="flex items-start gap-3">
+                      <span className="text-mint-cream mt-1">✓</span>
+                      Réponses automatiques et personnalisées aux emails entrants.
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-mint-cream mt-1">✓</span>
+                      Gestion et réponse aux avis clients (Google, Trustpilot).
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-mint-cream mt-1">✓</span>
+                      Prise de rendez-vous et synchronisation agenda sans intervention humaine.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Feature 3: SEO & Design */}
+            <div className="feature-row grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1 relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-pale-sky to-white opacity-10 blur-xl rounded-2xl group-hover:opacity-20 transition-opacity duration-500"></div>
+                <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 h-full flex flex-col justify-center min-h-[300px]">
+                  <div className="flex gap-4 mb-6">
+                    <span className="text-4xl">🎨</span>
+                    <span className="text-4xl">📈</span>
+                  </div>
+                  <h3 className="text-white text-3xl font-bold mb-4">Design UI/UX & SEO Natif</h3>
+                  <p className="text-slate-grey text-lg">
+                    Une architecture pensée pour la conversion et les moteurs de recherche.
+                    Design adaptatif qui sublime votre image de marque, combiné à une structure technique optimisée pour le référencement naturel dès le premier jour.
                   </p>
                 </div>
               </div>
+              <div className="order-1 lg:order-2 grid grid-cols-2 gap-4 h-full">
+                <div className="bg-dusty-grape/20 p-4 rounded-xl border border-white/5 flex flex-col items-center justify-center text-center hover:bg-dusty-grape/30 transition-colors">
+                  <span className="text-pale-sky font-bold text-lg">Ultra Rapide</span>
+                </div>
+                <div className="bg-dusty-grape/20 p-4 rounded-xl border border-white/5 flex flex-col items-center justify-center text-center hover:bg-dusty-grape/30 transition-colors">
+                  <span className="text-pale-sky font-bold text-lg">Mobile First</span>
+                </div>
+                <div className="bg-dusty-grape/20 p-4 rounded-xl border border-white/5 flex flex-col items-center justify-center text-center hover:bg-dusty-grape/30 transition-colors">
+                  <span className="text-pale-sky font-bold text-lg">SEO Ready</span>
+                </div>
+                <div className="bg-dusty-grape/20 p-4 rounded-xl border border-white/5 flex flex-col items-center justify-center text-center hover:bg-dusty-grape/30 transition-colors">
+                  <span className="text-pale-sky font-bold text-lg">Accessible</span>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div className="chatbot-feature card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-slate-grey/30">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="text-4xl">💬</div>
-                <div>
-                  <h3 className="text-white text-2xl font-semibold mb-3">Conversations Naturelles</h3>
-                  <p className="text-pale-sky leading-relaxed">
-                    Compréhension du langage naturel, gestion du contexte conversationnel et personnalisation des réponses selon le profil du visiteur.
+        {/* Use Cases Section */}
+        <div ref={useCasesRef} className="w-full mb-32">
+          <TitleHeader
+            title="Applications Concrètes"
+            sub="💼 Pour votre activité"
+          />
+          <div ref={cardsContainerRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-12">
+            {[
+              { icon: "🛍️", title: "E-Commerce", desc: "Assistant shopping personnel, recommandation produits dynamique, support commande 24/7." },
+              { icon: "🏢", title: "Site Vitrine", desc: "Présentation interactive de votre entreprise, qualification de leads automatique." },
+              { icon: "📦", title: "Présentation Produit", desc: "Démos interactives, réponses aux spécifications techniques, comparateur intelligent." },
+              { icon: "🏥", title: "Services & Pro", desc: "Professions libérales, agences : gestion de planning et pré-diagnostic client." }
+            ].map((item, idx) => (
+              <div key={idx} className="use-case-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
+                <div className="bg-onyx h-full rounded-xl p-6 flex flex-col items-center text-center relative z-10">
+                  <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                  <h3 className="text-white text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-slate-grey text-sm leading-relaxed group-hover:text-white-50 transition-colors">
+                    {item.desc}
                   </p>
                 </div>
               </div>
-            </div>
-
-            <div className="chatbot-feature card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/30">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="text-4xl">📊</div>
-                <div>
-                  <h3 className="text-white text-2xl font-semibold mb-3">Analytics Intégrés</h3>
-                  <p className="text-pale-sky leading-relaxed">
-                    Suivi des interactions, analyse des questions fréquentes et insights pour améliorer continuellement l'expérience utilisateur.
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
 
-      {/* Automation Section */}
-      <section ref={automationRef} className="section-padding padding-x-lg">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
-              Automatisation <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Intelligente</span>
-            </h2>
-            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto">
-              Libérez votre équipe des tâches répétitives et concentrez-vous sur ce qui compte vraiment
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="automation-item card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/20 hover:from-dusty-grape/30 transition-all duration-300">
-              <div className="text-5xl mb-4">📧</div>
-              <h3 className="text-white text-xl font-semibold mb-4">Gestion Automatique des Emails</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Tri, catégorisation et réponses automatiques aux emails selon leur contenu et leur urgence.
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-2">
-                <li>• Classification intelligente</li>
-                <li>• Réponses contextuelles</li>
-                <li>• Escalade automatique</li>
-              </ul>
-            </div>
-
-            <div className="automation-item card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20 hover:from-pale-sky/30 transition-all duration-300">
-              <div className="text-5xl mb-4">⭐</div>
-              <h3 className="text-white text-xl font-semibold mb-4">Réponses aux Avis Clients</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Analyse et réponse automatique aux avis Google, TripAdvisor et autres plateformes avec ton adapté.
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-2">
-                <li>• Détection du sentiment</li>
-                <li>• Réponses personnalisées</li>
-                <li>• Suivi multi-plateformes</li>
-              </ul>
-            </div>
-
-            <div className="automation-item card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-slate-grey/20 hover:from-slate-grey/30 transition-all duration-300">
-              <div className="text-5xl mb-4">🔄</div>
-              <h3 className="text-white text-xl font-semibold mb-4">Processus Métier Automatisés</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Automatisation complète des workflows : commandes, facturation, rapports et bien plus.
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-2">
-                <li>• Workflows personnalisés</li>
-                <li>• Intégrations API</li>
-                <li>• Monitoring en temps réel</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SEO Section with Stats */}
-      <section ref={seoRef} className="section-padding padding-x-lg bg-gradient-to-b from-transparent to-dusty-grape/10">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
-              Optimisation SEO <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Avancée</span>
-            </h2>
-            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto mb-12">
-              Dominez les résultats de recherche avec une stratégie SEO complète et des performances techniques optimales
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/30">
-              <h3 className="text-white text-2xl font-semibold mb-6">Stratégie SEO Complète</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">🎯</div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">Recherche de Mots-Clés</h4>
-                    <p className="text-pale-sky text-sm">Analyse approfondie pour identifier les opportunités de référencement</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">✍️</div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">Contenu Optimisé</h4>
-                    <p className="text-pale-sky text-sm">Rédaction de contenus pertinents et optimisés pour les moteurs de recherche</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">🔗</div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">Netlinking Stratégique</h4>
-                    <p className="text-pale-sky text-sm">Construction de liens de qualité pour améliorer votre autorité</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20">
-              <h3 className="text-white text-2xl font-semibold mb-6">Performance Technique</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">⚡</div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">Vitesse de Chargement</h4>
-                    <p className="text-pale-sky text-sm">Optimisation pour des temps de chargement ultra-rapides</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">📱</div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">Mobile-First</h4>
-                    <p className="text-pale-sky text-sm">Design responsive optimisé pour tous les appareils</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="text-2xl">🔍</div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">Structure Technique</h4>
-                    <p className="text-pale-sky text-sm">Balises HTML, sitemap XML et schémas structurés</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* SEO Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-dusty-grape/20">
-              <div className="seo-number text-4xl md:text-5xl font-bold text-pale-sky mb-2" data-target="95" data-suffix="%">0%</div>
-              <p className="text-pale-sky/80 text-sm">Taux de Conversion</p>
-            </div>
-            <div className="card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-pale-sky/20">
-              <div className="seo-number text-4xl md:text-5xl font-bold text-pale-sky mb-2" data-target="300" data-suffix="%">0%</div>
-              <p className="text-pale-sky/80 text-sm">Augmentation Trafic</p>
-            </div>
-            <div className="card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-slate-grey/20">
-              <div className="seo-number text-4xl md:text-5xl font-bold text-pale-sky mb-2" data-target="2" data-suffix="s">0s</div>
-              <p className="text-pale-sky/80 text-sm">Temps de Chargement</p>
-            </div>
-            <div className="card-border rounded-xl p-6 text-center bg-gradient-to-br from-onyx to-dusty-grape/20">
-              <div className="seo-number text-4xl md:text-5xl font-bold text-pale-sky mb-2" data-target="100" data-suffix="+">0+</div>
-              <p className="text-pale-sky/80 text-sm">Mots-Clés Classés</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section ref={useCasesRef} className="section-padding padding-x-lg">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-white font-bold md:text-5xl text-4xl mb-6">
-              Cas d'Utilisation <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">Variés</span>
-            </h2>
-            <p className="text-pale-sky md:text-xl text-lg max-w-3xl mx-auto">
-              Nos sites web intelligents s'adaptent à tous les secteurs d'activité
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/20 hover:to-dusty-grape/40 transition-all duration-300 cursor-pointer">
-              <div className="text-5xl mb-4">🛒</div>
-              <h3 className="text-white text-xl font-semibold mb-4">E-commerce Intelligent</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Boutiques en ligne avec recommandations IA, chatbot d'assistance et optimisation du parcours d'achat
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-1">
-                <li>✓ Catalogue dynamique</li>
-                <li>✓ Panier intelligent</li>
-                <li>✓ Checkout optimisé</li>
-              </ul>
-            </div>
-
-            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20 hover:to-pale-sky/40 transition-all duration-300 cursor-pointer">
-              <div className="text-5xl mb-4">📦</div>
-              <h3 className="text-white text-xl font-semibold mb-4">Présentation de Produit</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Pages produits interactives avec visualisation 3D, configurateur et démonstrations virtuelles
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-1">
-                <li>✓ Galeries interactives</li>
-                <li>✓ Configurateurs IA</li>
-                <li>✓ AR/VR intégré</li>
-              </ul>
-            </div>
-
-            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-slate-grey/20 hover:to-slate-grey/40 transition-all duration-300 cursor-pointer">
-              <div className="text-5xl mb-4">🏢</div>
-              <h3 className="text-white text-xl font-semibold mb-4">Site Vitrine Premium</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Sites institutionnels avec design premium, animations fluides et expérience utilisateur exceptionnelle
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-1">
-                <li>✓ Design sur mesure</li>
-                <li>✓ Animations GSAP</li>
-                <li>✓ Portfolio interactif</li>
-              </ul>
-            </div>
-
-            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-dusty-grape/20 hover:to-dusty-grape/40 transition-all duration-300 cursor-pointer">
-              <div className="text-5xl mb-4">📚</div>
-              <h3 className="text-white text-xl font-semibold mb-4">Plateforme Éducative</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Sites de formation avec contenu adaptatif, quiz interactifs et suivi de progression intelligent
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-1">
-                <li>✓ Contenu adaptatif</li>
-                <li>✓ Gamification</li>
-                <li>✓ Analytics avancés</li>
-              </ul>
-            </div>
-
-            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-pale-sky/20 hover:to-pale-sky/40 transition-all duration-300 cursor-pointer">
-              <div className="text-5xl mb-4">🏥</div>
-              <h3 className="text-white text-xl font-semibold mb-4">Secteur Santé</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Sites médicaux avec prise de rendez-vous automatisée, chatbot santé et gestion de dossiers sécurisée
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-1">
-                <li>✓ Conformité RGPD</li>
-                <li>✓ Prise de RDV IA</li>
-                <li>✓ Sécurité renforcée</li>
-              </ul>
-            </div>
-
-            <div className="use-case-card card-border rounded-2xl p-8 bg-gradient-to-br from-onyx to-slate-grey/20 hover:to-slate-grey/40 transition-all duration-300 cursor-pointer">
-              <div className="text-5xl mb-4">🍽️</div>
-              <h3 className="text-white text-xl font-semibold mb-4">Restauration & Hôtellerie</h3>
-              <p className="text-pale-sky leading-relaxed mb-4">
-                Sites avec réservation en ligne, menus interactifs et gestion automatique des avis clients
-              </p>
-              <ul className="text-pale-sky/80 text-sm space-y-1">
-                <li>✓ Réservation automatique</li>
-                <li>✓ Menus digitaux</li>
-                <li>✓ Gestion avis IA</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section ref={ctaRef} className="section-padding padding-x-lg">
-        <div className="max-w-4xl mx-auto">
-          <div className="card-border rounded-3xl p-10 md:p-16 bg-gradient-to-br from-dusty-grape/30 via-onyx to-pale-sky/20 text-center relative overflow-hidden">
-            <div className="cta-glow absolute inset-0 bg-gradient-to-r from-pale-sky/20 via-dusty-grape/20 to-pale-sky/20 blur-3xl"></div>
-            <div className="relative z-10">
-              <h2 className="text-white font-bold md:text-5xl text-3xl mb-6 leading-tight">
-                Prêt à Transformer Votre Présence Digitale ?
+        {/* Tech/Harmony Check Section (Implicit) */}
+        <div ref={techRef} className="w-full mb-20">
+          <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape">
+            <div className="bg-onyx rounded-[22px] px-6 py-16 md:px-20 text-center relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">
+                Harmonie Visuelle & Performance
               </h2>
-              <p className="text-pale-sky md:text-xl text-lg mb-8 leading-relaxed">
-                Obtenez un site web intelligent qui convertit, engage et fait croître votre entreprise
+              <p className="text-pale-sky text-lg max-w-2xl mx-auto relative z-10">
+                Nos designs respectent votre charte graphique tout en y ajoutant une touche de modernité (gradients, glassmorphism, animations fluides).
+                Compatible mobile, tablette et desktop pour une expérience utilisateur sans faille.
               </p>
-              <p className="text-pale-sky/80 md:text-lg text-base mb-10 max-w-2xl mx-auto">
-                Réservez une consultation gratuite et découvrez comment nos solutions peuvent révolutionner votre activité en ligne
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div ref={ctaRef} className="w-full mb-12">
+          <div className="max-w-4xl mx-auto">
+            <div className="card-border rounded-2xl p-10 md:p-16 bg-gradient-to-br from-dusty-grape/10 to-pale-sky/10 text-center backdrop-blur-sm">
+              <h2 className="text-white font-bold md:text-5xl text-3xl mb-6 leading-tight">
+                Prêt à futuriser votre web ?
+              </h2>
+              <p className="text-slate-grey md:text-xl text-lg mb-8 leading-relaxed">
+                Ne vous contentez plus d'un site statique. Adoptez un site web intelligent qui travaille pour vous.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex justify-center">
                 <a
                   href="/contact"
-                  className="md:w-80 w-full h-16 cta-wrapper group"
+                  className="md:w-96 w-full h-14 cta-wrapper group"
                 >
-                  <div className="cta-button">
-                    <p className="button-text">Consultation gratuite</p>
+                  <div className="cta-button bg-pale-sky hover:bg-dusty-grape">
+                    <p className="button-text text-onyx group-hover:text-white">Demander un devis gratuit</p>
                   </div>
-                </a>
-                <a
-                  href="/agents"
-                  className="md:w-80 w-full h-16 flex items-center justify-center rounded-2xl border-2 border-pale-sky/50 text-pale-sky hover:bg-pale-sky/10 transition-all duration-300 font-semibold"
-                >
-                  Découvrir nos agents IA
                 </a>
               </div>
             </div>
           </div>
         </div>
       </section>
-
       <Footer />
     </>
   );
 };
 
 export default SiteWebIntelligent;
+
