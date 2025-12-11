@@ -5,10 +5,10 @@ const navLinks = [
     name: "Accueil",
     link: "/",
   },
-  {
-    name: "Agents IA",
-    link: "/agents",
-  },
+  // {
+  //   name: "Agents IA",
+  //   link: "/agents",
+  // },
   {
     name: "Site Web Intelligent",
     link: "/site-intelligent",
