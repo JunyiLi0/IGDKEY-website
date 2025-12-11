@@ -10,6 +10,8 @@ import { words, abilities } from "../constants";
 import { getAssetPath } from "../config";
 import IGDKeyLogo from "../components/AnimatedLetters";
 import Chat from "../components/Chat";
+import Button from "../components/Button";
+import TiltCard from "../components/TiltCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -160,13 +162,6 @@ const LandingPage = () => {
         <div ref={heroRef} className="hero-container">
           <div className="hero-content-wrapper">
             <header className="hero-header">
-              {/* Badge */}
-              <div className="inline-block px-4 py-1.5 rounded-full border border-dusty-grape bg-onyx/50 backdrop-blur-md mb-4">
-                <span className="bg-gradient-to-r from-pale-sky to-mint-cream bg-clip-text text-transparent font-medium">
-                  ✨ Agence IA & Automatisation
-                </span>
-              </div>
-
               {/* Main Heading with Animated Word Slider */}
               <div className="space-y-6">
                 <h1 className="hero-title">
@@ -201,12 +196,11 @@ const LandingPage = () => {
 
               {/* CTA Buttons */}
               <div className="hero-cta-wrapper flex flex-col md:flex-row gap-4">
-                <a href="#services" className="px-8 py-4 bg-mint-cream text-onyx font-bold rounded-xl hover:scale-105 transition-transform duration-300">
-                  Découvrir nos services
-                </a>
-                <a href="/contact" className="px-8 py-4 border border-dusty-grape text-pale-sky font-bold rounded-xl hover:bg-dusty-grape/20 transition-all duration-300">
-                  Démarrer votre projet
-                </a>
+                <Button
+                  text="Découvrir nos services"
+                  className="md:w-80 w-full h-14"
+                  id="services"
+                />
               </div>
             </header>
           </div>
@@ -244,40 +238,54 @@ const LandingPage = () => {
         <div ref={whyChooseRef} className="w-full mb-32">
           <TitleHeader
             title="Pourquoi Nous Choisir ?"
-            sub="🧠 Notre expertise"
           />
-          <div className="mt-16 space-y-12">
+          <div className="mt-16 space-y-12 max-w-4xl mx-auto">
             {/* Card 1 */}
             <div className="why-choose-card relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8">
-                <h3 className="text-white text-2xl font-bold mb-4">Expertise IA Complète</h3>
-                <p className="text-slate-grey text-lg leading-relaxed">
-                  Technologies de pointe : agents autonomes, modèles prédictifs, automatisation intelligente. 
-                  Solutions sur mesure pour chaque entreprise.
-                </p>
+              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 flex items-center gap-6">
+                <div className="size-16 flex-shrink-0 flex items-center justify-center rounded-full bg-dusty-grape/30 text-3xl">
+                  ⚡
+                </div>
+                <div>
+                  <h3 className="text-white text-2xl font-bold mb-2">Expertise IA Complète</h3>
+                  <p className="text-slate-grey text-lg leading-relaxed">
+                    Technologies de pointe : agents autonomes, modèles prédictifs, automatisation intelligente.
+                    Solutions sur mesure pour chaque entreprise.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 2 */}
             <div className="why-choose-card relative group">
               <div className="absolute inset-0 bg-gradient-to-l from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8">
-                <h3 className="text-white text-2xl font-bold mb-4">Approche 100% Personnalisée</h3>
-                <p className="text-slate-grey text-lg leading-relaxed">
-                  Chaque entreprise est unique. Nos solutions s'adaptent à votre secteur, vos objectifs et votre budget.
-                </p>
+              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 flex items-center gap-6">
+                <div className="size-16 flex-shrink-0 flex items-center justify-center rounded-full bg-dusty-grape/30 text-3xl">
+                  🎯
+                </div>
+                <div>
+                  <h3 className="text-white text-2xl font-bold mb-2">Approche 100% Personnalisée</h3>
+                  <p className="text-slate-grey text-lg leading-relaxed">
+                    Chaque entreprise est unique. Nos solutions s'adaptent à votre secteur, vos objectifs et votre budget.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 3 */}
             <div className="why-choose-card relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-pale-sky to-white opacity-10 blur-xl rounded-2xl group-hover:opacity-20 transition-opacity duration-500"></div>
-              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8">
-                <h3 className="text-white text-2xl font-bold mb-4">Accompagnement de A à Z</h3>
-                <p className="text-slate-grey text-lg leading-relaxed">
-                  De l'audit initial à la mise en production, nous vous guidons à chaque étape.
-                </p>
+              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 flex items-center gap-6">
+                <div className="size-16 flex-shrink-0 flex items-center justify-center rounded-full bg-dusty-grape/30 text-3xl">
+                  🤝
+                </div>
+                <div>
+                  <h3 className="text-white text-2xl font-bold mb-2">Accompagnement de A à Z</h3>
+                  <p className="text-slate-grey text-lg leading-relaxed">
+                    De l'audit initial à la mise en production, nous vous guidons à chaque étape.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -287,81 +295,82 @@ const LandingPage = () => {
         <div ref={servicesRef} className="w-full mb-32" id="services">
           <TitleHeader
             title="Nos Solutions IA"
-            sub="🤖 Services"
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-12">
-            {/* Service 1 - AI Agents */}
-            <div className="service-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
-              <div className="bg-onyx h-full rounded-xl p-6 flex flex-col">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">🤖</div>
-                <h3 className="text-white text-xl font-bold mb-3">AI Agents Autonomes</h3>
-                <ul className="text-slate-grey text-sm space-y-2 group-hover:text-white-50 transition-colors">
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Gestion de données</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Traitement de demandes</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Suivi client 24/7</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Veille automatisée</li>
-                </ul>
-              </div>
+          <div className="mt-12">
+            {/* Top Row: 3 Columns */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+              {/* Service 1 - AI Agents */}
+              <TiltCard className="service-card rounded-2xl h-full">
+                <div className="p-6 flex flex-col h-full text-center items-center">
+                  <div className="text-5xl mb-4">🤖</div>
+                  <h3 className="text-white text-xl font-bold mb-3">AI Agents Autonomes</h3>
+                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Gestion de données</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Traitement de demandes</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Suivi client 24/7</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Veille automatisée</li>
+                  </ul>
+                </div>
+              </TiltCard>
+
+              {/* Service 2 - Chatbots */}
+              <TiltCard className="service-card rounded-2xl h-full">
+                <div className="p-6 flex flex-col h-full text-center items-center">
+                  <div className="text-5xl mb-4">💬</div>
+                  <h3 className="text-white text-xl font-bold mb-3">Chatbots Avancés</h3>
+                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Réponses instantanées</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Qualification prospects</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Prise de rendez-vous</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Langage naturel</li>
+                  </ul>
+                </div>
+              </TiltCard>
+
+              {/* Service 3 - Automation */}
+              <TiltCard className="service-card rounded-2xl h-full">
+                <div className="p-6 flex flex-col h-full text-center items-center">
+                  <div className="text-5xl mb-4">⚙️</div>
+                  <h3 className="text-white text-xl font-bold mb-3">Automatisation IA</h3>
+                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Saisie & analyse données</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Reporting automatique</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Gestion des emails</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Facturation</li>
+                  </ul>
+                </div>
+              </TiltCard>
             </div>
 
-            {/* Service 2 - Chatbots */}
-            <div className="service-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
-              <div className="bg-onyx h-full rounded-xl p-6 flex flex-col">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">💬</div>
-                <h3 className="text-white text-xl font-bold mb-3">Chatbots Avancés</h3>
-                <ul className="text-slate-grey text-sm space-y-2 group-hover:text-white-50 transition-colors">
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Réponses instantanées</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Qualification prospects</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Prise de rendez-vous</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Langage naturel</li>
-                </ul>
-              </div>
-            </div>
+            {/* Bottom Row: 2 Columns centered */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:w-4/5 lg:mx-auto gap-6">
+              {/* Service 4 - Machine Learning */}
+              <TiltCard className="service-card rounded-2xl h-full">
+                <div className="p-6 flex flex-col h-full text-center items-center">
+                  <div className="text-5xl mb-4">📊</div>
+                  <h3 className="text-white text-xl font-bold mb-3">Machine Learning</h3>
+                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Prédiction de ventes</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Segmentation clients</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Détection opportunités</li>
+                    <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Forecasting avancé</li>
+                  </ul>
+                </div>
+              </TiltCard>
 
-            {/* Service 3 - Automation */}
-            <div className="service-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
-              <div className="bg-onyx h-full rounded-xl p-6 flex flex-col">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">⚙️</div>
-                <h3 className="text-white text-xl font-bold mb-3">Automatisation IA</h3>
-                <ul className="text-slate-grey text-sm space-y-2 group-hover:text-white-50 transition-colors">
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Saisie & analyse données</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Reporting automatique</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Gestion des emails</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Facturation</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Service 4 - Machine Learning */}
-            <div className="service-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
-              <div className="bg-onyx h-full rounded-xl p-6 flex flex-col">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">📊</div>
-                <h3 className="text-white text-xl font-bold mb-3">Machine Learning</h3>
-                <ul className="text-slate-grey text-sm space-y-2 group-hover:text-white-50 transition-colors">
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Prédiction de ventes</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Segmentation clients</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Détection opportunités</li>
-                  <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Forecasting avancé</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Service 5 - Web Development */}
-            <div className="service-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300 md:col-span-2 xl:col-span-2">
-              <div className="bg-onyx h-full rounded-xl p-6 flex flex-col">
-                <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">🌐</div>
-                <h3 className="text-white text-xl font-bold mb-3">Sites Web Intelligents</h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <ul className="text-slate-grey text-sm space-y-2 group-hover:text-white-50 transition-colors">
+              {/* Service 5 - Web Development */}
+              <TiltCard className="service-card rounded-2xl h-full">
+                <div className="p-6 flex flex-col h-full text-center items-center">
+                  <div className="text-5xl mb-4">🌐</div>
+                  <h3 className="text-white text-xl font-bold mb-3">Sites Web Intelligents</h3>
+                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Analyse comportementale</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Optimisation automatique</li>
-                  </ul>
-                  <ul className="text-slate-grey text-sm space-y-2 group-hover:text-white-50 transition-colors">
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Intégration agents IA</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Expériences personnalisées</li>
                   </ul>
                 </div>
-              </div>
+              </TiltCard>
             </div>
           </div>
         </div>
@@ -370,7 +379,6 @@ const LandingPage = () => {
         <div ref={targetAudienceRef} className="w-full mb-32">
           <TitleHeader
             title="Pour Qui ?"
-            sub="💼 Nos clients"
           />
           <div className="mt-12 max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -404,7 +412,6 @@ const LandingPage = () => {
         <div ref={investmentRef} className="w-full mb-32">
           <TitleHeader
             title="ROI Immédiat"
-            sub="📈 Investissement rentable"
           />
           <div className="mt-12 max-w-5xl mx-auto">
             <div className="grid md:grid-cols-3 gap-6">
@@ -450,7 +457,6 @@ const LandingPage = () => {
         <div ref={valuesRef} className="w-full mb-32">
           <TitleHeader
             title="Nos Valeurs"
-            sub="💎 Ce qui nous guide"
           />
           <div className="mt-16 space-y-12 max-w-4xl mx-auto">
             {abilities.map(({ imgPath, title, desc }, i) => (
