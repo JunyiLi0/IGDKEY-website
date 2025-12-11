@@ -5,125 +5,74 @@ import { useGSAP } from "@gsap/react";
 import NavBar from "../components/NavBar";
 import Footer from "../sections/Footer";
 import TitleHeader from "../components/TitleHeader";
-import AnimatedCounter from "../components/AnimatedCounter";
-import Button from "../components/Button";
-import { words, abilities } from "../constants";
-import { getAssetPath } from "../config";
 import IGDKeyLogo from "../components/AnimatedLetters";
 import Chat from "../components/Chat";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const LandingPage = () => {
+  const heroRef = useRef(null);
   const transformRef = useRef(null);
   const whyChooseRef = useRef(null);
-  const valuesRef = useRef(null);
   const servicesRef = useRef(null);
-  const targetAudienceRef = useRef(null);
+  const audienceRef = useRef(null);
   const investmentRef = useRef(null);
-  const urgencyRef = useRef(null);
   const ctaRef = useRef(null);
 
   useGSAP(() => {
-    // Hero text animation
-    gsap.fromTo(
-      ".hero-text-animated",
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power2.inOut" }
-    );
-
-    // Values cards animation
-    gsap.from(".value-card", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: valuesRef.current,
-        start: "top 75%",
-      },
-    });
-
-    // Transform section animation
-    gsap.from(transformRef.current, {
+    // Hero Animation
+    gsap.from(heroRef.current, {
       opacity: 0,
       y: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: transformRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
+      duration: 1.5,
+      ease: "power3.out",
     });
 
-    // Why choose us cards staggered animation
-    gsap.from(".why-choose-card", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: whyChooseRef.current,
-        start: "top 70%",
-      },
+    // Features Animation (Staggered from sides)
+    const features = gsap.utils.toArray(".feature-row");
+    features.forEach((feature, i) => {
+      gsap.from(feature, {
+        x: i % 2 === 0 ? -100 : 100,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: feature,
+          start: "top 80%",
+        },
+      });
     });
 
-    // Services cards staggered animation
-    gsap.from(".service-card", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: servicesRef.current,
-        start: "top 70%",
-      },
+    // Cards Animation (Scale up for all card grids)
+    const grids = [whyChooseRef.current, servicesRef.current, audienceRef.current, investmentRef.current];
+    grids.forEach(grid => {
+      if (!grid) return;
+      const cards = grid.querySelectorAll(".animate-card");
+      if (cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          { scale: 0.8, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: grid,
+              start: "top 95%",
+            },
+          }
+        );
+      }
     });
 
-    // Target audience animation
-    gsap.from(".audience-card", {
-      y: 40,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: targetAudienceRef.current,
-        start: "top 75%",
-      },
-    });
-
-    // Investment section animation
-    gsap.from(".investment-item", {
-      scale: 0.9,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: investmentRef.current,
-        start: "top 75%",
-      },
-    });
-
-    // Urgency section animation
-    gsap.from(urgencyRef.current, {
-      opacity: 0,
-      y: 40,
-      duration: 1,
-      scrollTrigger: {
-        trigger: urgencyRef.current,
-        start: "top 80%",
-      },
-    });
-
-    // CTA section animation with scale
+    // CTA Animation
     gsap.from(ctaRef.current, {
       opacity: 0,
-      scale: 0.95,
-      y: 30,
-      duration: 1,
+      scale: 0.9,
+      duration: 0.8,
       scrollTrigger: {
         trigger: ctaRef.current,
-        start: "top 80%",
+        start: "top 85%",
       },
     });
   }, []);
@@ -131,393 +80,193 @@ const LandingPage = () => {
   return (
     <>
       <NavBar />
-      {/* Hero Section */}
-      <section id="hero" className="relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 opacity-30">
-          <img src={getAssetPath("/images/bg.png")} alt="" className="w-full h-full object-cover" />
-        </div>
-
-        {/* Hero Container with Proper Spacing */}
-        <div className="hero-container">
-          <div className="hero-content-wrapper">
-            <header className="hero-header">
-              {/* Main Heading with Animated Word Slider */}
-              <div className="space-y-6">
-                <h1 className="hero-title">
-                  <div className="hero-text-animated">
-                    <div className="flex items-center justify-center gap-3">
-                      <span className="slide">
-                        <span className="wrapper">
-                          {words.map((word, index) => (
-                            <span
-                              key={index}
-                              className="bg-gradient-to-r from-pale-sky via-dusty-grape to-dusty-grape bg-clip-text text-transparent"
-                            >
-                              {word.text}
-                            </span>
-                          ))}
-                        </span>
-                      </span>
-                    </div>
-                    <span className="mt-2">Votre Entreprise avec l'IA</span>
-                  </div>
-                </h1>
-
-                <p className="hero-subtitle">
-                  L'agence qui fusionne vos technologies avec celles de demain
-                </p>
-              </div>
-
-              {/* Logo */}
-              <div className="hero-logo-wrapper">
+      <section className="section-padding padding-x-lg overflow-hidden">
+        {/* Hero Section */}
+        <div ref={heroRef} className="w-full mb-32 mt-10 relative">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-dusty-grape/20 rounded-full blur-[100px] -z-10"></div>
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="inline-block px-4 py-1.5 rounded-full border border-dusty-grape bg-onyx/50 backdrop-blur-md mb-8">
+              <span className="bg-gradient-to-r from-pale-sky to-mint-cream bg-clip-text text-transparent font-medium">
+                ✨ Agence IA & Web
+              </span>
+            </div>
+            
+            <div className="mb-8 flex justify-center">
+              <div className="w-full max-w-[400px]">
                 <IGDKeyLogo />
               </div>
+            </div>
 
-              {/* CTA Button */}
-              <div className="hero-cta-wrapper">
-                <Button
-                  text="Découvrir nos services"
-                  className="md:w-80 w-full h-14"
-                  id="services"
-                />
-              </div>
-            </header>
+            <h1 className="text-white font-bold md:text-7xl text-5xl mb-8 leading-tight tracking-tight">
+              Votre Entreprise <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pale-sky via-white to-dusty-grape">Propulsée par l'IA</span>
+            </h1>
+            <p className="text-slate-grey md:text-xl text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+              Fusionnez vos technologies avec celles de demain. Nous transformons vos processus pour un avantage concurrentiel décisif.
+            </p>
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <a href="#services" className="px-8 py-4 bg-mint-cream text-onyx font-bold rounded-xl hover:scale-105 transition-transform duration-300">
+                Découvrir nos services
+              </a>
+              <a href="/contact" className="px-8 py-4 border border-dusty-grape text-pale-sky font-bold rounded-xl hover:bg-dusty-grape/20 transition-all duration-300">
+                Parler à un expert
+              </a>
+            </div>
           </div>
         </div>
 
-        <AnimatedCounter />
-      </section>
-
-      <section>
-        {/* Transform Your Business Section */}
-        <div ref={transformRef} className="w-full mb-20 padding-x-lg">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-white font-bold md:text-5xl text-4xl mb-8 text-center leading-tight">
-              Transformez Votre Entreprise Avec <br />
-              <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">
-                l'Intelligence Artificielle
-              </span>
-            </h2>
-            <div className="space-y-6 text-white-50 md:text-xl text-lg">
-              <p className="leading-relaxed">
-                Votre entreprise mérite mieux que des processus lents, des tâches répétitives et des outils dépassés.
-              </p>
-              <p className="leading-relaxed">
-                Aujourd'hui, l'Intelligence Artificielle n'est plus une option. C'est l'avantage concurrentiel qui différencie les leaders du marché.
-              </p>
-              <p className="leading-relaxed">
-                Nous aidons les entreprises de tous secteurs à adopter des solutions intelligentes : AI agents, chatbots avancés, automatisation IA, optimisation de sites web, et stratégies machine learning.
-              </p>
-              <div className="card-border rounded-xl p-8 mt-8 bg-gradient-to-br from-onyx to-dusty-grape">
-                <p className="text-mint-cream md:text-2xl text-xl font-semibold text-center">
-                  🔥 Notre mission : vous faire gagner du temps, réduire vos coûts et augmenter vos revenus grâce à l'IA.
+        {/* Transform Section */}
+        <div ref={transformRef} className="w-full mb-32">
+          <div className="feature-row grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1 relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 h-full flex flex-col justify-center min-h-[300px]">
+                <div className="text-6xl mb-6">🚀</div>
+                <h3 className="text-white text-3xl font-bold mb-4">L'IA comme Moteur de Croissance</h3>
+                <p className="text-slate-grey text-lg">
+                  L'intelligence artificielle n'est plus une option, c'est la norme. Ne laissez pas les tâches répétitives ralentir votre équipe.
+                  Automatisez, optimisez et innovez pour rester en tête de votre marché.
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Why Choose Us Section */}
-        <div ref={whyChooseRef} className="w-full mb-20 padding-x-lg">
-          <TitleHeader
-            title="Pourquoi Choisir Notre Groupe de Consulting IA & Web ?"
-            sub="🧠 Notre expertise"
-          />
-          <div className="grid-3-cols mt-12">
-            <div className="why-choose-card card-border rounded-xl p-8 flex flex-col gap-4">
-              <h3 className="text-white text-2xl font-semibold">Une expertise complète en intelligence artificielle</h3>
-              <p className="text-white-50 text-lg leading-relaxed">
-                Nous combinons l'expertise humaine avec la puissance de l'IA pour créer des solutions sur mesure pour chaque entreprise.
-              </p>
-              <p className="text-white-50 text-lg leading-relaxed">
-                Nos consultants travaillent avec les technologies les plus avancées : systèmes d'IA autonomes, modèles prédictifs, optimisation de données, agents automatisés et plus encore.
-              </p>
-            </div>
-
-            <div className="why-choose-card card-border rounded-xl p-8 flex flex-col gap-4">
-              <h3 className="text-white text-2xl font-semibold">Approche 100 % personnalisée</h3>
-              <p className="text-white-50 text-lg leading-relaxed">
-                Chaque entreprise a des besoins uniques. C'est pourquoi nous créons des solutions entièrement adaptées à votre secteur, à vos objectifs et à votre budget.
-              </p>
-            </div>
-
-            <div className="why-choose-card card-border rounded-xl p-8 flex flex-col gap-4">
-              <h3 className="text-white text-2xl font-semibold">Accompagnement de A à Z</h3>
-              <p className="text-white-50 text-lg leading-relaxed">
-                De l'audit initial à la mise en production des solutions IA, nous vous accompagnons à chaque étape.
+            <div className="order-1 lg:order-2">
+              <TitleHeader
+                title="Transformez Votre Entreprise"
+                sub="💡 Innovation"
+              />
+              <p className="text-slate-grey text-lg mt-6 leading-relaxed">
+                Nous aidons les entreprises à intégrer des solutions intelligentes : agents IA, chatbots, automatisation et sites web nouvelle génération.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Services Section */}
-        <div ref={servicesRef} className="w-full mb-20 padding-x-lg" id="services">
+        {/* Why Choose Us */}
+        <div ref={whyChooseRef} className="w-full mb-32">
           <TitleHeader
-            title="Nos Services en Intelligence Artificielle & Automatisation"
-            sub="🤖 Nos solutions"
+            title="Pourquoi Nous Choisir ?"
+            sub="🧠 Notre Expertise"
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-            {/* Service 1 - AI Agents */}
-            <div className="service-card card-border rounded-xl p-8 flex flex-col gap-4">
-              <div className="text-4xl mb-2">🤖</div>
-              <h3 className="text-white text-2xl font-semibold">
-                1. Développement d'AI Agents Autonomes
-              </h3>
-              <p className="text-white-50 text-lg leading-relaxed">
-                Nos agents IA exécutent des tâches humaines de manière autonome :
-              </p>
-              <ul className="text-white-50 text-lg space-y-2 list-disc list-inside">
-                <li>Gestion de données</li>
-                <li>Traitement de demandes</li>
-                <li>Suivi client</li>
-                <li>Veille de marché</li>
-                <li>Analyses automatisées</li>
-              </ul>
-              <p className="text-white-50 text-lg leading-relaxed mt-4">
-                Ils travaillent 24/7 pour optimiser vos opérations.
-              </p>
-            </div>
-
-            {/* Service 2 - Chatbots */}
-            <div className="service-card card-border rounded-xl p-8 flex flex-col gap-4">
-              <div className="text-4xl mb-2">💬</div>
-              <h3 className="text-white text-2xl font-semibold">
-                2. Chatbots Avancés & Assistants Conversationnels
-              </h3>
-              <p className="text-white-50 text-lg leading-relaxed">
-                Boostez votre service client grâce à des chatbots intelligents capables de :
-              </p>
-              <ul className="text-white-50 text-lg space-y-2 list-disc list-inside">
-                <li>Répondre instantanément</li>
-                <li>Qualifier des prospects</li>
-                <li>Prendre des rendez-vous</li>
-                <li>Effectuer des actions automatisées</li>
-              </ul>
-              <p className="text-white-50 text-lg leading-relaxed mt-4">
-                Ces chatbots s'adaptent au langage naturel et évoluent en fonction des interactions.
-              </p>
-            </div>
-
-            {/* Service 3 - Automation */}
-            <div className="service-card card-border rounded-xl p-8 flex flex-col gap-4">
-              <div className="text-4xl mb-2">⚙️</div>
-              <h3 className="text-white text-2xl font-semibold">
-                3. Automatisation IA & Optimisation Opérationnelle
-              </h3>
-              <p className="text-white-50 text-lg leading-relaxed">
-                Nous automatisons vos tâches chronophages :
-              </p>
-              <ul className="text-white-50 text-lg space-y-2 list-disc list-inside">
-                <li>Saisie et analyse de données</li>
-                <li>Reporting</li>
-                <li>Facturation</li>
-                <li>Gestion des emails</li>
-                <li>Onboarding interne</li>
-              </ul>
-              <p className="text-white font-semibold text-lg mt-4">
-                Résultat : moins d'erreurs, plus de productivité, et une équipe concentrée sur l'essentiel.
-              </p>
-            </div>
-
-            {/* Service 4 - Machine Learning */}
-            <div className="service-card card-border rounded-xl p-8 flex flex-col gap-4">
-              <div className="text-4xl mb-2">📊</div>
-              <h3 className="text-white text-2xl font-semibold">
-                4. Machine Learning & Analyse Prédictive
-              </h3>
-              <p className="text-white-50 text-lg leading-relaxed">
-                Nos solutions ML transforment vos données en puissance décisionnelle :
-              </p>
-              <ul className="text-white-50 text-lg space-y-2 list-disc list-inside">
-                <li>Prédiction de ventes</li>
-                <li>Segmentation clients</li>
-                <li>Détection d'opportunités</li>
-                <li>Analyse comportementale</li>
-                <li>Forecasting avancé</li>
-              </ul>
-              <p className="text-white font-semibold text-lg mt-4">
-                Le futur de votre entreprise se construit aujourd'hui.
-              </p>
-            </div>
-
-            {/* Service 5 - Web Development */}
-            <div className="service-card card-border rounded-xl p-8 flex flex-col gap-4 md:col-span-2">
-              <div className="text-4xl mb-2">🌐</div>
-              <h3 className="text-white text-2xl font-semibold">
-                5. Création & Optimisation de Sites Web Intelligents
-              </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <p className="text-white-50 text-lg leading-relaxed mb-4">
-                    Nous développons des sites web modernes, rapides et connectés aux outils IA :
-                  </p>
-                  <ul className="text-white-50 text-lg space-y-2 list-disc list-inside">
-                    <li>Analyse du comportement visiteur</li>
-                    <li>Optimisation automatique</li>
-                    <li>Intégration d'agents IA</li>
-                    <li>Expériences personnalisées pour chaque utilisateur</li>
-                  </ul>
-                </div>
-                <div className="flex items-center">
-                  <p className="text-white text-xl font-semibold">
-                    Votre site ne sera plus une simple vitrine, mais un véritable moteur de conversion.
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            {[
+              { icon: "⚡", title: "Expertise IA & Web", desc: "La combinaison parfaite entre développement web moderne et intelligence artificielle avancée." },
+              { icon: "🎯", title: "Approche Sur-Mesure", desc: "Des solutions adaptées précisément à votre secteur, vos objectifs et vos contraintes." },
+              { icon: "🤝", title: "Accompagnement 360°", desc: "De l'audit initial à la mise en production, nous sommes partenaires de votre réussite." }
+            ].map((item, idx) => (
+              <div key={idx} className="animate-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
+                <div className="bg-onyx h-full rounded-xl p-6 flex flex-col items-center text-center relative z-10">
+                  <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                  <h3 className="text-white text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-slate-grey text-sm leading-relaxed group-hover:text-white-50 transition-colors">
+                    {item.desc}
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Target Audience Section */}
-        <div ref={targetAudienceRef} className="w-full mb-20">
-          <TitleHeader
-            title="À Qui S'adressent Nos Solutions ?"
-            sub="💼 Nos clients"
-          />
-          <div className="mt-12 max-w-4xl mx-auto">
-            <p className="text-white-50 md:text-xl text-lg text-center mb-10 leading-relaxed">
-              Nos technologies s'adaptent à tous types d'organisations :
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {[
-                "PME & startups",
-                "Cabinets professionnels",
-                "E-commerce",
-                "Immobilier",
-                "Santé",
-                "Industrie",
-                "Finance",
-                "Éducation",
-                "Services B2B",
-                "Services B2C",
-              ].map((industry, index) => (
-                <div key={index} className="audience-card card-border rounded-lg p-4 text-center">
-                  <p className="text-white text-lg font-semibold">{industry}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-white md:text-xl text-lg text-center mt-10 leading-relaxed font-semibold">
-              Si votre entreprise utilise des processus, des données ou un site web… l'IA peut vous faire gagner de l'argent.
-            </p>
-          </div>
-        </div>
-
-        {/* Investment ROI Section */}
-        <div ref={investmentRef} className="w-full mb-20">
-          <TitleHeader
-            title="Un Investissement qui Rapporte Immédiatement"
-            sub="📈 ROI garanti"
-          />
-          <div className="mt-12 max-w-4xl mx-auto">
-            <p className="text-white-50 md:text-xl text-lg text-center mb-10 leading-relaxed">
-              Intégrer l'IA dans votre entreprise n'est pas une dépense :
-            </p>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="investment-item card-border rounded-xl p-8 text-center">
-                <div className="text-5xl mb-4">💪</div>
-                <p className="text-white text-xl font-semibold mb-2">Un multiplicateur de productivité</p>
-                <p className="text-white-50 text-lg">
-                  Vos équipes accomplissent plus en moins de temps
-                </p>
-              </div>
-              <div className="investment-item card-border rounded-xl p-8 text-center">
-                <div className="text-5xl mb-4">💰</div>
-                <p className="text-white text-xl font-semibold mb-2">Un générateur de revenus</p>
-                <p className="text-white-50 text-lg">
-                  Convertissez plus de prospects et optimisez vos ventes
-                </p>
-              </div>
-              <div className="investment-item card-border rounded-xl p-8 text-center">
-                <div className="text-5xl mb-4">🎯</div>
-                <p className="text-white text-xl font-semibold mb-2">Un avantage stratégique décisif</p>
-                <p className="text-white-50 text-lg">
-                  Dépassez vos concurrents avec la technologie
-                </p>
-              </div>
-            </div>
-            <div className="card-border rounded-xl p-8 mt-10 bg-gradient-to-br from-onyx to-dusty-grape text-center">
-              <p className="text-mint-cream md:text-2xl text-xl font-semibold">
-                Avec nous, vos solutions IA sont rentabilisées en quelques semaines seulement.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Values Section */}
-        <div ref={valuesRef} className="w-full mb-20 padding-x-lg">
-          <TitleHeader
-            title="Les Valeurs qui Guident Notre Accompagnement"
-            sub="💎 Nos valeurs"
-          />
-          <div className="grid-3-cols mt-12">
-            {abilities.map(({ imgPath, title, desc }) => (
-              <div
-                key={title}
-                className="value-card card-border rounded-xl p-8 flex flex-col gap-4"
-              >
-                <div className="size-14 flex items-center justify-center rounded-full">
-                  <img src={imgPath} alt={title} />
-                </div>
-                <h3 className="text-white text-2xl font-semibold mt-2">{title}</h3>
-                <p className="text-white-50 text-lg">{desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Urgency Section */}
-        <div ref={urgencyRef} className="w-full mb-20">
-          <div className="max-w-3xl mx-auto card-border rounded-2xl p-10 md:p-16 bg-gradient-to-br from-dusty-grape/20 to-pale-sky/20">
-            <div className="text-center space-y-6">
-              <div className="text-5xl mb-4">⚡</div>
-              <h2 className="text-white font-bold md:text-4xl text-3xl">
-                Pourquoi Passer à l'Action Maintenant ?
-              </h2>
-              <p className="text-white-50 md:text-2xl text-xl leading-relaxed">
-                L'IA évolue vite. Très vite.
-              </p>
-              <p className="text-white md:text-2xl text-xl font-semibold leading-relaxed">
-                Les entreprises qui l'adoptent aujourd'hui dominent le marché demain.
-              </p>
-              <p className="text-white-50 md:text-2xl text-xl leading-relaxed">
-                Ne laissez pas vos concurrents prendre de l'avance.
-              </p>
+        {/* Services Section */}
+        <div ref={servicesRef} className="w-full mb-32" id="services">
+          <TitleHeader
+            title="Nos Solutions Intelligentes"
+            sub="🛠️ Services"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            {[
+              { icon: "🤖", title: "Agents IA Autonomes", desc: "Déléguez la gestion de données, le suivi client et la veille à des agents infatigables." },
+              { icon: "💬", title: "Chatbots Contextuels", desc: "Support client 24/7, qualification de leads et prise de RDV automatique." },
+              { icon: "⚙️", title: "Automatisation", desc: "Éliminez les tâches manuelles : reporting, facturation, emails et workflows complexes." },
+              { icon: "📊", title: "Machine Learning", desc: "Exploitez vos données pour prédire les ventes et segmenter vos clients." },
+              { icon: "🌐", title: "Sites Web Intelligents", desc: "Des interfaces modernes qui s'adaptent et convertissent vos visiteurs." },
+            ].map((item, idx) => (
+              <div key={idx} className="animate-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
+                <div className="bg-onyx h-full rounded-xl p-6 flex flex-col items-start relative z-10">
+                  <div className="text-4xl mb-4 p-3 bg-dusty-grape/20 rounded-lg">{item.icon}</div>
+                  <h3 className="text-white text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-slate-grey text-sm leading-relaxed group-hover:text-white-50 transition-colors">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Audience Section */}
+        <div ref={audienceRef} className="w-full mb-32">
+          <TitleHeader
+            title="Pour Qui ?"
+            sub="💼 Secteurs"
+          />
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-12">
+            {[
+              "Startups", "PME", "E-commerce", "Immobilier", "Santé",
+              "Finance", "Juridique", "Industrie", "Services B2B", "Consulting"
+            ].map((sector, idx) => (
+               <div key={idx} className="animate-card p-4 rounded-xl border border-dusty-grape/30 bg-onyx/50 backdrop-blur-sm text-center hover:bg-dusty-grape/20 transition-colors">
+                 <span className="text-white font-medium">{sector}</span>
+               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Investment ROI */}
+        <div ref={investmentRef} className="w-full mb-20">
+          <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape">
+            <div className="bg-onyx rounded-[22px] px-6 py-16 md:px-20 text-center relative overflow-hidden">
+               <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+               <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 relative z-10">
+                 Un Retour sur Investissement Rapide
+               </h2>
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                  <div className="animate-card flex flex-col items-center">
+                    <span className="text-5xl mb-4">💪</span>
+                    <h3 className="text-white font-bold text-xl mb-2">Productivité</h3>
+                    <p className="text-slate-grey">Faites plus avec moins de ressources.</p>
+                  </div>
+                  <div className="animate-card flex flex-col items-center">
+                    <span className="text-5xl mb-4">💰</span>
+                    <h3 className="text-white font-bold text-xl mb-2">Revenus</h3>
+                    <p className="text-slate-grey">Augmentez vos conversions et ventes.</p>
+                  </div>
+                  <div className="animate-card flex flex-col items-center">
+                    <span className="text-5xl mb-4">🛡️</span>
+                    <h3 className="text-white font-bold text-xl mb-2">Pérennité</h3>
+                    <p className="text-slate-grey">Sécurisez l'avenir de votre activité.</p>
+                  </div>
+               </div>
             </div>
           </div>
         </div>
 
-        {/* Final CTA Section */}
+        {/* CTA Section */}
         <div ref={ctaRef} className="w-full mb-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-white font-bold md:text-5xl text-3xl mb-6 leading-tight">
-              Prêt à Transformer Votre Entreprise Grâce à l'IA ?
-            </h2>
-            <p className="text-white-50 md:text-xl text-lg mb-8 leading-relaxed">
-              Réservez une consultation gratuite dès maintenant
-            </p>
-            <p className="text-white-50 md:text-lg text-base mb-10 max-w-2xl mx-auto leading-relaxed">
-              Nous analyserons vos besoins, vos objectifs et vous proposerons une stratégie IA complète adaptée à votre activité.
-            </p>
-            <div className="flex justify-center">
-              <a
-                href="/contact"
-                className="md:w-[500px] w-full h-16 cta-wrapper group"
-              >
-                <div className="cta-button">
-                  <p className="button-text">Réserver une consultation gratuite</p>
-                </div>
-              </a>
+          <div className="max-w-4xl mx-auto">
+            <div className="card-border rounded-2xl p-10 md:p-16 bg-gradient-to-br from-dusty-grape/10 to-pale-sky/10 text-center backdrop-blur-sm">
+              <h2 className="text-white font-bold md:text-5xl text-3xl mb-6 leading-tight">
+                Prêt à Transformer votre Business ?
+              </h2>
+              <p className="text-slate-grey md:text-xl text-lg mb-8 leading-relaxed">
+                Réservez votre consultation gratuite. Nous analyserons vos besoins et établirons une stratégie IA sur mesure.
+              </p>
+              <div className="flex justify-center">
+                <a
+                  href="/contact"
+                  className="md:w-96 w-full h-14 cta-wrapper group"
+                >
+                  <div className="cta-button bg-pale-sky hover:bg-dusty-grape">
+                    <p className="button-text text-onyx group-hover:text-white">Réserver un appel découverte</p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      <Chat />
       <Footer />
     </>
   );
 };
 
 export default LandingPage;
-
