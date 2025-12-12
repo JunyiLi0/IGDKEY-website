@@ -1,14 +1,11 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import AgentsIA from "./pages/AgentsIA";
-import LandingPage from "./pages/LandingPage";
-import SiteWebIntelligent from "./pages/SiteWebIntelligent";
-import Contact from "./pages/Contact";
-import TermsConditions from "./pages/TermsConditions";
+import { useEffect, useRef, useLayoutEffect, lazy, Suspense } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+const LandingPage = lazy(() => import("./pages/LandingPage"));
+const SiteWebIntelligent = lazy(() => import("./pages/SiteWebIntelligent"));
+const AgentsIA = lazy(() => import("./pages/AgentsIA"));
+const Contact = lazy(() => import("./pages/Contact"));
+const TermsConditions = lazy(() => import("./pages/TermsConditions"));
 
 // Component to handle 404.html redirects for GitHub Pages
 const RedirectHandler = () => {
@@ -50,18 +47,20 @@ const ScrollToTop = () => {
     if (previousPath.current !== location.pathname) {
       previousPath.current = location.pathname;
 
-      // Kill all existing ScrollTrigger instances to prevent stale triggers
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      // IMPORTANT: don't dynamically import ScrollTrigger here.
+      // Doing it async can race with the next route and kill *new* triggers.
+      // If GSAP is already loaded by the current/previous route, it exposes ScrollTrigger on window.
+      const ScrollTrigger = window.__ScrollTrigger;
+      if (ScrollTrigger) {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        ScrollTrigger.clearScrollMemory();
+      }
 
       // Scroll to top instantly without any animation
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
-      // Clear any inline GSAP styles that might persist from killed animations
-      ScrollTrigger.clearScrollMemory();
-
-      // Refresh ScrollTrigger after a microtask to let the new page render
       requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
+        window.__ScrollTrigger?.refresh?.();
       });
     }
   }, [location.pathname]);
@@ -73,13 +72,15 @@ const App = () => (
   <>
     <RedirectHandler />
     <ScrollToTop />
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
-      <Route path="/agents" element={<AgentsIA />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/conditions" element={<TermsConditions />} />
-    </Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
+        <Route path="/agents" element={<AgentsIA />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/conditions" element={<TermsConditions />} />
+      </Routes>
+    </Suspense>
   </>
 );
 

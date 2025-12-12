@@ -21,7 +21,16 @@ const Hero = () => {
     <section id="hero" className="relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 opacity-30">
-        <img src={getAssetPath("/images/bg.png")} alt="" className="w-full h-full object-cover" />
+        <img
+          src={getAssetPath("/images/bg.png")}
+          alt=""
+          className="w-full h-full object-cover"
+          width={418}
+          height={327}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
       </div>
 
       {/* Hero Container with Proper Spacing */}

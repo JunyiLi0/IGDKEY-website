@@ -9,6 +9,10 @@ import Footer from "../sections/Footer";
 import TitleHeader from "../components/TitleHeader";
 
 gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  window.__gsap = gsap;
+  window.__ScrollTrigger = ScrollTrigger;
+}
 
 const Contact = () => {
   const formRef = useRef(null);

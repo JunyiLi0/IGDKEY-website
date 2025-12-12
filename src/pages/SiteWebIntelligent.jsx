@@ -7,6 +7,11 @@ import Footer from "../sections/Footer";
 import TitleHeader from "../components/TitleHeader";
 
 gsap.registerPlugin(ScrollTrigger);
+// Allow central route-change logic to synchronously cleanup/refresh without racing dynamic imports
+if (typeof window !== "undefined") {
+  window.__gsap = gsap;
+  window.__ScrollTrigger = ScrollTrigger;
+}
 
 const SiteWebIntelligent = () => {
   const heroRef = useRef(null);
@@ -240,7 +245,7 @@ const SiteWebIntelligent = () => {
         <div ref={techRef} className="w-full mb-20">
           <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape">
             <div className="bg-onyx rounded-[22px] px-6 py-16 md:px-20 text-center relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.svg')] opacity-20"></div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">
                 Harmonie Visuelle & Performance
               </h2>

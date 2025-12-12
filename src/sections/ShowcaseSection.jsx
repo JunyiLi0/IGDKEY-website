@@ -5,6 +5,10 @@ import { useGSAP } from "@gsap/react";
 import { getAssetPath } from "../config";
 
 gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  window.__gsap = gsap;
+  window.__ScrollTrigger = ScrollTrigger;
+}
 
 const AppShowcase = () => {
   const sectionRef = useRef(null);

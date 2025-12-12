@@ -1,37 +1,70 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 const TiltCard = ({ children, className = "" }) => {
     const cardRef = useRef(null);
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
     const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
     const [isHovered, setIsHovered] = useState(false);
+    const rectRef = useRef(null);
+    const rafRef = useRef(null);
+    const latestPosRef = useRef({ x: 0, y: 0 });
 
     const handleMouseMove = (e) => {
         const card = cardRef.current;
         if (!card) return;
 
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        // Avoid forcing layout on every mouse move: reuse a cached rect.
+        const rect = rectRef.current ?? card.getBoundingClientRect();
+        rectRef.current = rect;
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+        latestPosRef.current = {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+        };
 
-        const rotateX = ((y - centerY) / centerY) * -10; // Max rotation 10 deg
-        const rotateY = ((x - centerX) / centerX) * 10;
+        if (rafRef.current) return;
+        rafRef.current = window.requestAnimationFrame(() => {
+            rafRef.current = null;
+            const { x, y } = latestPosRef.current;
 
-        setRotation({ x: rotateX, y: rotateY });
-        setMousePosition({ x: (x / rect.width) * 100, y: (y / rect.height) * 100 });
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -10; // Max rotation 10 deg
+            const rotateY = ((x - centerX) / centerX) * 10;
+
+            setRotation({ x: rotateX, y: rotateY });
+            setMousePosition({ x: (x / rect.width) * 100, y: (y / rect.height) * 100 });
+        });
     };
 
     const handleMouseEnter = () => {
         setIsHovered(true);
+        if (cardRef.current) {
+            rectRef.current = cardRef.current.getBoundingClientRect();
+        }
     };
 
     const handleMouseLeave = () => {
         setRotation({ x: 0, y: 0 });
         setIsHovered(false);
+        rectRef.current = null;
+        if (rafRef.current) {
+            window.cancelAnimationFrame(rafRef.current);
+            rafRef.current = null;
+        }
     };
+
+    useEffect(() => {
+        const handleResize = () => {
+            rectRef.current = cardRef.current ? cardRef.current.getBoundingClientRect() : null;
+        };
+        window.addEventListener("resize", handleResize, { passive: true });
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
+        };
+    }, []);
 
     return (
         <div

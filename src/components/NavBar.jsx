@@ -53,8 +53,8 @@ const NavBar = () => {
         </Link>
 
         {/* Hamburger menu button - visible only on mobile */}
-        <button 
-          className="hamburger-btn lg:hidden" 
+        <button
+          className="hamburger-btn lg:hidden"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -70,6 +70,20 @@ const NavBar = () => {
             {navLinks.map(({ link, name }) => {
               // Si c'est un lien externe (commence par #), utiliser <a>, sinon utiliser <Link>
               const isExternalLink = link.startsWith("#");
+              // Si c'est le lien Accueil "/", on applique la même logique que le logo pour forcer le scroll top via reload si besoin
+              const isHomeLink = link === "/";
+
+              const handleHomeClick = (e) => {
+                if (isHomeLink && location.pathname !== "/") {
+                  // Si on clique sur Accueil depuis une autre page, comportement "Logo" (reload pour être sûr d'être en haut)
+                  e.preventDefault();
+                  window.location.href = "/";
+                } else if (isHomeLink && location.pathname === "/") {
+                  // Si on est déjà sur l'accueil et qu'on clique sur Accueil, scroll top doux
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              };
+
               return (
                 <li key={name} className="group">
                   {isExternalLink ? (
@@ -78,7 +92,7 @@ const NavBar = () => {
                       <span className="underline" />
                     </a>
                   ) : (
-                    <Link to={link}>
+                    <Link to={link} onClick={handleHomeClick}>
                       <span>{name}</span>
                       <span className="underline" />
                     </Link>
@@ -101,17 +115,29 @@ const NavBar = () => {
         <ul>
           {navLinks.map(({ link, name }) => {
             const isExternalLink = link.startsWith("#");
+            const isHomeLink = link === "/";
+
+            const handleHomeClick = (e) => {
+              closeMenu();
+              if (isHomeLink && location.pathname !== "/") {
+                e.preventDefault();
+                window.location.href = "/";
+              } else if (isHomeLink && location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            };
+
             return (
               <li key={name}>
                 {isExternalLink ? (
-                  <a 
+                  <a
                     href={location.pathname === "/" ? link : `/${link}`}
                     onClick={closeMenu}
                   >
                     {name}
                   </a>
                 ) : (
-                  <Link to={link} onClick={closeMenu}>
+                  <Link to={link} onClick={handleHomeClick}>
                     {name}
                   </Link>
                 )}

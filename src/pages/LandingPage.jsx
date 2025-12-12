@@ -1,7 +1,4 @@
-import { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../sections/Footer";
 import TitleHeader from "../components/TitleHeader";
@@ -9,11 +6,10 @@ import AnimatedCounter from "../components/AnimatedCounter";
 import { words, abilities } from "../constants";
 import { getAssetPath } from "../config";
 import IGDKeyLogo from "../components/AnimatedLetters";
-import Chat from "../components/Chat";
 import Button from "../components/Button";
 import TiltCard from "../components/TiltCard";
 
-gsap.registerPlugin(ScrollTrigger);
+const Chat = lazy(() => import("../components/Chat"));
 
 const LandingPage = () => {
   const heroRef = useRef(null);
@@ -25,124 +21,174 @@ const LandingPage = () => {
   const investmentRef = useRef(null);
   const urgencyRef = useRef(null);
   const ctaRef = useRef(null);
+  const [showChat, setShowChat] = useState(false);
 
-  useGSAP(() => {
-    // Hero Animation
-    gsap.from(heroRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1.5,
-      ease: "power3.out",
-    });
+  useEffect(() => {
+    // Load the chat widget when the browser is idle (keeps initial bundle smaller)
+    const schedule = window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 1500));
+    const cancel = window.cancelIdleCallback ?? ((id) => window.clearTimeout(id));
+    const id = schedule(() => setShowChat(true), { timeout: 3000 });
+    return () => cancel(id);
+  }, []);
 
-    // Transform section animation
-    gsap.from(transformRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: transformRef.current,
-        start: "top 80%",
-      },
-    });
+  useEffect(() => {
+    // Defer GSAP + ScrollTrigger to idle time to reduce render-blocking JS on first load
+    let cancelled = false;
+    const schedule = window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 500));
+    const cancel = window.cancelIdleCallback ?? ((id) => window.clearTimeout(id));
 
-    // Why choose us cards - alternating from sides
-    const whyChooseCards = gsap.utils.toArray(".why-choose-card");
-    whyChooseCards.forEach((card, i) => {
-      gsap.from(card, {
-        x: i % 2 === 0 ? -100 : 100,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: card,
-          start: "top 85%",
-        },
-      });
-    });
+    const id = schedule(async () => {
+      try {
+        const gsapMod = await import("gsap");
+        const stMod = await import("gsap/ScrollTrigger");
+        if (cancelled) return;
 
-    // Services cards - scale animation
-    gsap.fromTo(
-      ".service-card",
-      { scale: 0.8, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: servicesRef.current,
-          start: "top 85%",
-        },
+        const gsap = gsapMod.gsap ?? gsapMod.default ?? gsapMod;
+        const ScrollTrigger = stMod.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+        window.__gsap = gsap;
+        window.__ScrollTrigger = ScrollTrigger;
+
+        // Hero Animation
+        if (heroRef.current) {
+          gsap.from(heroRef.current, {
+            opacity: 0,
+            y: 50,
+            duration: 1.5,
+            ease: "power3.out",
+          });
+        }
+
+        // Transform section animation
+        if (transformRef.current) {
+          gsap.from(transformRef.current, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            scrollTrigger: {
+              trigger: transformRef.current,
+              start: "top 80%",
+            },
+          });
+        }
+
+        // Why choose us cards - alternating from sides
+        const whyChooseCards = gsap.utils.toArray(".why-choose-card");
+        whyChooseCards.forEach((card, i) => {
+          gsap.from(card, {
+            x: i % 2 === 0 ? -100 : 100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+            },
+          });
+        });
+
+        // Services cards - scale animation
+        if (servicesRef.current) {
+          gsap.fromTo(
+            ".service-card",
+            { scale: 0.8, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.1,
+              scrollTrigger: {
+                trigger: servicesRef.current,
+                start: "top 85%",
+              },
+            }
+          );
+        }
+
+        // Target audience cards - scale animation
+        if (targetAudienceRef.current) {
+          gsap.fromTo(
+            ".audience-card",
+            { scale: 0.8, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.5,
+              stagger: 0.05,
+              scrollTrigger: {
+                trigger: targetAudienceRef.current,
+                start: "top 95%",
+              },
+            }
+          );
+        }
+
+        // Investment section - scale animation
+        if (investmentRef.current) {
+          gsap.fromTo(
+            ".investment-item",
+            { scale: 0.8, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.1,
+              scrollTrigger: {
+                trigger: investmentRef.current,
+                start: "top 95%",
+              },
+            }
+          );
+        }
+
+        // Values cards - alternating from sides
+        const valueCards = gsap.utils.toArray(".value-card");
+        valueCards.forEach((card, i) => {
+          gsap.from(card, {
+            x: i % 2 === 0 ? -100 : 100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+            },
+          });
+        });
+
+        // Urgency section animation
+        if (urgencyRef.current) {
+          gsap.from(urgencyRef.current, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: urgencyRef.current,
+              start: "top 85%",
+            },
+          });
+        }
+
+        // CTA section animation with scale
+        if (ctaRef.current) {
+          gsap.from(ctaRef.current, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: ctaRef.current,
+              start: "top 85%",
+            },
+          });
+        }
+      } catch (e) {
+        // If GSAP fails to load, keep the page functional without animations
+        console.warn("GSAP deferred load failed:", e);
       }
-    );
+    }, { timeout: 2500 });
 
-    // Target audience cards - scale animation
-    gsap.fromTo(
-      ".audience-card",
-      { scale: 0.8, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: targetAudienceRef.current,
-          start: "top 85%",
-        },
-      }
-    );
-
-    // Investment section - scale animation
-    gsap.fromTo(
-      ".investment-item",
-      { scale: 0.8, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: investmentRef.current,
-          start: "top 85%",
-        },
-      }
-    );
-
-    // Values cards - alternating from sides
-    const valueCards = gsap.utils.toArray(".value-card");
-    valueCards.forEach((card, i) => {
-      gsap.from(card, {
-        x: i % 2 === 0 ? -100 : 100,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: card,
-          start: "top 85%",
-        },
-      });
-    });
-
-    // Urgency section animation
-    gsap.from(urgencyRef.current, {
-      opacity: 0,
-      scale: 0.9,
-      duration: 0.8,
-      scrollTrigger: {
-        trigger: urgencyRef.current,
-        start: "top 85%",
-      },
-    });
-
-    // CTA section animation with scale
-    gsap.from(ctaRef.current, {
-      opacity: 0,
-      scale: 0.9,
-      duration: 0.8,
-      scrollTrigger: {
-        trigger: ctaRef.current,
-        start: "top 85%",
-      },
-    });
+    return () => {
+      cancelled = true;
+      cancel(id);
+    };
   }, []);
 
   return (
@@ -152,7 +198,16 @@ const LandingPage = () => {
       <section id="hero" className="relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 opacity-30">
-          <img src={getAssetPath("/images/bg.png")} alt="" className="w-full h-full object-cover" />
+          <img
+            src={getAssetPath("/images/bg.png")}
+            alt=""
+            className="w-full h-full object-cover"
+            width={418}
+            height={327}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
         </div>
 
         {/* Blurred Gradient Blob */}
@@ -483,7 +538,7 @@ const LandingPage = () => {
         <div ref={urgencyRef} className="w-full mb-20">
           <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape max-w-3xl mx-auto">
             <div className="bg-onyx rounded-[22px] px-6 py-16 md:px-20 text-center relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.svg')] opacity-20"></div>
               <div className="text-5xl mb-6 relative z-10">⚡</div>
               <h2 className="text-white font-bold md:text-4xl text-3xl mb-6 relative z-10">
                 Pourquoi Maintenant ?
@@ -523,7 +578,11 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <Chat />
+      {showChat ? (
+        <Suspense fallback={null}>
+          <Chat />
+        </Suspense>
+      ) : null}
       <Footer />
     </>
   );
