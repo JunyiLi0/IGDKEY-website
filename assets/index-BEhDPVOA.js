@@ -1,4 +1,4 @@
-import{r as o}from"./index-DD1fp64n.js";import{gsap as x}from"./index-DYOH8PGY.js";/*!
+import{r as o}from"./index-BoZkVq98.js";import{gsap as x}from"./index-DYOH8PGY.js";/*!
  * @gsap/react 2.1.2
  * https://gsap.com
  *
