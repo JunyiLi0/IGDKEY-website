@@ -214,12 +214,12 @@ Parlons de votre projet. Notre équipe transforme la complexité de l'IA en avan
 Contact: +337 53 95 32 98
 Email: myriam.igdem@gmail.com
 
-Tu es l'assistant IA d'IGDKEY. Réponds aux questions des clients dans leur langue, de manière professionnelle et en te basant sur les informations ci-dessus. Aide-les à comprendre nos services et oriente-les vers les solutions qui correspondent à leurs besoins.`;
+Tu es l'assistant IA d'IGDKEY. Réponds aux questions des clients dans leur langue, de manière professionnelle et en te basant sur les informations ci-dessus. Aide-les à comprendre nos services et oriente-les vers les solutions qui correspondent à leurs besoins. Reste concis.`;
 
         const response = await axios.post(
             OPENAI_API_URL,
             {
-                model: 'gpt-3.5-turbo',
+                model: 'gpt-5-nano',
                 messages: [
                     { role: 'system', content: systemContext },
                     { role: 'user', content: message }
