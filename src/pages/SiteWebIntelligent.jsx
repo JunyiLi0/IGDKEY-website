@@ -192,8 +192,7 @@ const SiteWebIntelligent = () => {
                   </div>
                   <h3 className="text-white text-3xl font-bold mb-4">Design UI/UX & SEO Natif</h3>
                   <p className="text-slate-grey text-lg">
-                    Une architecture pensée pour la conversion et les moteurs de recherche.
-                    Design adaptatif qui sublime votre image de marque, combiné à une structure technique optimisée pour le référencement naturel dès le premier jour.
+                    Une architecture pensée pour maximiser la conversion et la visibilité sur les moteurs de recherche. Un design adaptatif qui valorise votre image de marque, allié à une structure technique optimisée pour le référencement naturel dès le premier jour.
                   </p>
                 </div>
               </div>

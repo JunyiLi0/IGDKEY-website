@@ -212,7 +212,7 @@ Solutions de vision par ordinateur et traitement du langage naturel
 Parlons de votre projet. Notre équipe transforme la complexité de l'IA en avantage compétitif concret.
 
 Contact: +337 53 95 32 98
-Email: myriam.igdem@gmail.com
+Email: contact@igdkey.com
 
 Tu es l'assistant IA d'IGDKEY. Réponds aux questions des clients dans leur langue, de manière professionnelle et en te basant sur les informations ci-dessus. Aide-les à comprendre nos services et oriente-les vers les solutions qui correspondent à leurs besoins. Reste concis.`;
 

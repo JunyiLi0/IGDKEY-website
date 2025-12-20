@@ -30,7 +30,7 @@ const abilities = [
   {
     imgPath: getAssetPath("/images/seo.png"),
     title: "Excellence",
-    desc: "Livrer des résultats de haute qualité tout en maintenant une attention particulière aux détails.",
+    desc: "Livrer des résultats de haute qualité avec une attention particulière aux détails.",
   },
   {
     imgPath: getAssetPath("/images/chat.png"),
@@ -40,7 +40,7 @@ const abilities = [
   {
     imgPath: getAssetPath("/images/time.png"),
     title: "Respect des délais",
-    desc: "Garantir que les projets sont livrés dans les délais, avec qualité et attention aux détails.",
+    desc: "Garantir que les projets sont livrés dans les délais",
   },
 ];
 

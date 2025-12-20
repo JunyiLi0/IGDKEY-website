@@ -358,8 +358,8 @@ const LandingPage = () => {
               <TiltCard className="service-card rounded-2xl h-full">
                 <div className="p-6 flex flex-col h-full text-center items-center">
                   <div className="text-5xl mb-4">🤖</div>
-                  <h3 className="text-white text-xl font-bold mb-3">AI Agents Autonomes</h3>
-                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                  <h3 className="text-white text-2xl font-bold mb-3">AI Agents Autonomes</h3>
+                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Gestion de données</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Traitement de demandes</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Suivi client 24/7</li>
@@ -372,8 +372,8 @@ const LandingPage = () => {
               <TiltCard className="service-card rounded-2xl h-full">
                 <div className="p-6 flex flex-col h-full text-center items-center">
                   <div className="text-5xl mb-4">💬</div>
-                  <h3 className="text-white text-xl font-bold mb-3">Chatbots Avancés</h3>
-                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                  <h3 className="text-white text-2xl font-bold mb-3">Chatbots Avancés</h3>
+                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Réponses instantanées</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Qualification prospects</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Prise de rendez-vous</li>
@@ -386,8 +386,8 @@ const LandingPage = () => {
               <TiltCard className="service-card rounded-2xl h-full">
                 <div className="p-6 flex flex-col h-full text-center items-center">
                   <div className="text-5xl mb-4">⚙️</div>
-                  <h3 className="text-white text-xl font-bold mb-3">Automatisation IA</h3>
-                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                  <h3 className="text-white text-2xl font-bold mb-3">Automatisation IA</h3>
+                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Saisie & analyse données</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Reporting automatique</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Gestion des emails</li>
@@ -403,8 +403,8 @@ const LandingPage = () => {
               <TiltCard className="service-card rounded-2xl h-full">
                 <div className="p-6 flex flex-col h-full text-center items-center">
                   <div className="text-5xl mb-4">📊</div>
-                  <h3 className="text-white text-xl font-bold mb-3">Machine Learning</h3>
-                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                  <h3 className="text-white text-2xl font-bold mb-3">Machine Learning</h3>
+                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Prédiction de ventes</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Segmentation clients</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Détection opportunités</li>
@@ -417,8 +417,8 @@ const LandingPage = () => {
               <TiltCard className="service-card rounded-2xl h-full">
                 <div className="p-6 flex flex-col h-full text-center items-center">
                   <div className="text-5xl mb-4">🌐</div>
-                  <h3 className="text-white text-xl font-bold mb-3">Sites Web Intelligents</h3>
-                  <ul className="text-slate-grey text-sm space-y-2 text-left w-full">
+                  <h3 className="text-white text-2xl font-bold mb-3">Sites Web Intelligents</h3>
+                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Analyse comportementale</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Optimisation automatique</li>
                     <li className="flex items-start gap-2"><span className="text-mint-cream">✓</span>Intégration agents IA</li>
@@ -473,7 +473,7 @@ const LandingPage = () => {
               <div className="investment-item group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
                 <div className="bg-onyx h-full rounded-xl p-8 text-center">
                   <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">💪</div>
-                  <p className="text-white text-xl font-bold mb-2">Productivité x10</p>
+                  <p className="text-white text-xl font-bold mb-2">Productivité accrue</p>
                   <p className="text-slate-grey group-hover:text-white-50 transition-colors">
                     Plus de résultats en moins de temps
                   </p>
@@ -501,7 +501,7 @@ const LandingPage = () => {
             <div className="w-full p-1 rounded-2xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape mt-10">
               <div className="bg-onyx rounded-xl px-6 py-8 md:px-12 text-center">
                 <p className="text-mint-cream md:text-2xl text-xl font-semibold">
-                  ROI en quelques semaines. Garanti.
+                  Augmentez durablement votre revenu en exploitant tout le potentiel de l’IA.
                 </p>
               </div>
             </div>
@@ -547,7 +547,7 @@ const LandingPage = () => {
                 L'IA évolue vite. Les entreprises qui l'adoptent aujourd'hui dominent demain.
               </p>
               <p className="text-white text-xl font-bold relative z-10">
-                Ne laissez pas vos concurrents prendre de l'avance.
+                Prenez de l'avance sur vos concurrents.
               </p>
             </div>
           </div>
