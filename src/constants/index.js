@@ -13,6 +13,10 @@ const navLinks = [
     name: "Site Web Intelligent",
     link: "/site-intelligent",
   },
+  {
+    name: "IA Auto-hébergée",
+    link: "/ia-auto-hebergie",
+  },
 ];
 
 const words = [

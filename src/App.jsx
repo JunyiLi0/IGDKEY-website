@@ -3,6 +3,7 @@ import { useEffect, useRef, useLayoutEffect, lazy, Suspense } from "react";
 
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const SiteWebIntelligent = lazy(() => import("./pages/SiteWebIntelligent"));
+const SelfHostedAI = lazy(() => import("./pages/SelfHostedAI"));
 const AgentsIA = lazy(() => import("./pages/AgentsIA"));
 const Contact = lazy(() => import("./pages/Contact"));
 const TermsConditions = lazy(() => import("./pages/TermsConditions"));
@@ -76,6 +77,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
+        <Route path="/ia-auto-hebergie" element={<SelfHostedAI />} />
         <Route path="/agents" element={<AgentsIA />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/conditions" element={<TermsConditions />} />
