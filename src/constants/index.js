@@ -15,7 +15,7 @@ const navLinks = [
   },
   {
     name: "IA Auto-hébergée",
-    link: "/ia-auto-hebergie",
+    link: "/ia-privee",
   },
 ];
 

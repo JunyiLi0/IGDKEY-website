@@ -92,7 +92,7 @@ const SelfHostedAI = () => {
           <div className="max-w-6xl mx-auto text-center">
             <div className="inline-block px-4 py-1.5 rounded-full border border-dusty-grape bg-onyx/50 backdrop-blur-md mb-8">
               <span className="bg-gradient-to-r from-pale-sky to-mint-cream bg-clip-text text-transparent font-medium">
-                🛡️ Souveraineté & Performance
+                🛡️ Sécurité & Performance
               </span>
             </div>
             <h1 className="text-white font-bold md:text-7xl text-5xl mb-8 leading-tight tracking-tight">
@@ -113,7 +113,7 @@ const SelfHostedAI = () => {
         </div>
 
         {/* Features Section */}
-        <div ref={featuresRef} className="w-full mb-32" id="features">
+        <div ref={featuresRef} className="w-full mb-32 mt-50" id="features">
           <TitleHeader
             title="Vos données, votre IA, vos règles"
             sub="🔒 Sécurité & Contrôle"
@@ -133,7 +133,7 @@ const SelfHostedAI = () => {
                 </div>
               </div>
               <div className="order-1 lg:order-2 flex flex-col gap-6">
-                 <div className="p-6 rounded-xl bg-gradient-to-br from-onyx to-dusty-grape/20 border border-white/5 backdrop-blur-sm">
+                <div className="p-6 rounded-xl bg-gradient-to-br from-onyx to-dusty-grape/20 border border-white/5 backdrop-blur-sm">
                   <span className="text-pale-sky font-mono text-sm block mb-2">{`> Serveur Local`}</span>
                   <p className="text-white">Traitement des données en interne...</p>
                   <div className="w-full bg-white/10 rounded-full h-2 mt-4">
@@ -146,20 +146,20 @@ const SelfHostedAI = () => {
             {/* Feature 2: Économies */}
             <div className="feature-row grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-1 lg:order-1 flex justify-center">
-                 <div className="relative w-full rounded-2xl overflow-hidden border border-dusty-grape/30 flex items-center justify-center p-10 bg-onyx">
-                    <div className="text-center">
-                        <div className="text-5xl mb-4">💸</div>
-                        <h4 className="text-2xl text-white font-bold">Zéro Coût par Token</h4>
-                        <p className="text-slate-grey mt-2">Investissement fixe matériel vs abonnement mensuel</p>
-                    </div>
-                 </div>
+                <div className="relative w-full rounded-2xl overflow-hidden border border-dusty-grape/30 flex items-center justify-center p-10 bg-onyx">
+                  <div className="text-center">
+                    <div className="text-5xl mb-4">💸</div>
+                    <h4 className="text-2xl text-white font-bold">Zéro Coût par Token</h4>
+                    <p className="text-slate-grey mt-2">Investissement fixe matériel vs abonnement mensuel</p>
+                  </div>
+                </div>
               </div>
               <div className="order-2 lg:order-2 relative group">
                 <div className="absolute inset-0 bg-gradient-to-l from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
                 <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 h-full flex flex-col justify-center min-h-[300px]">
                   <h3 className="text-white text-3xl font-bold mb-4">Économies & Prévisibilité</h3>
                   <p className="text-slate-grey text-lg">
-                    Arrêtez de payer à chaque requête. Avec l'IA auto-hébergée, vous ne payez pas au token. Votre coût est fixe, quel que soit le volume d'utilisation. Rentabilité assurée pour les gros volumes de traitement.
+                    Ne payez plus à chaque requête. Avec l'IA auto-hébergée, votre coût est fixe, quel que soit le volume d'utilisation.
                   </p>
                 </div>
               </div>
@@ -178,7 +178,7 @@ const SelfHostedAI = () => {
                 </div>
               </div>
               <div className="order-1 lg:order-2 grid grid-cols-1 gap-4 h-full">
-                 <div className="bg-dusty-grape/20 p-6 rounded-xl border border-white/5 flex items-center justify-between hover:bg-dusty-grape/30 transition-colors">
+                <div className="bg-dusty-grape/20 p-6 rounded-xl border border-white/5 flex items-center justify-between hover:bg-dusty-grape/30 transition-colors">
                   <span className="text-pale-sky font-bold">Latence Réseau</span>
                   <span className="text-mint-cream font-mono">&lt; 10ms</span>
                 </div>
@@ -226,7 +226,7 @@ const SelfHostedAI = () => {
                 Technologies de Pointe
               </h2>
               <p className="text-pale-sky text-lg max-w-2xl mx-auto relative z-10">
-                Nous déployons les meilleurs modèles Open Source (Llama 3, Mistral, Mixtral) optimisés pour votre matériel, avec des solutions de vectorisation locales (ChromaDB, Weaviate).
+                Nous déployons les meilleurs modèles Open Source (Llama 3, Mistral, Mixtral) optimisés pour votre matériel, avec des solutions de vectorisation locales.
               </p>
             </div>
           </div>
@@ -240,7 +240,7 @@ const SelfHostedAI = () => {
                 Prêt à sécuriser votre IA ?
               </h2>
               <p className="text-slate-grey md:text-xl text-lg mb-8 leading-relaxed">
-                Discutons de votre infrastructure et de vos besoins en souveraineté numérique.
+                Discutons de votre infrastructure et de vos besoins en indépendance numérique.
               </p>
               <div className="flex justify-center">
                 <a

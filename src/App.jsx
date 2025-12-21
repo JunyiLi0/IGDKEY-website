@@ -77,7 +77,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
-        <Route path="/ia-auto-hebergie" element={<SelfHostedAI />} />
+        <Route path="/ia-privee" element={<SelfHostedAI />} />
         <Route path="/agents" element={<AgentsIA />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/conditions" element={<TermsConditions />} />

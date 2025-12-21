@@ -552,10 +552,10 @@ const LandingPage = () => {
               <div className="flex justify-center">
                 <a
                   href="/contact"
-                  className="md:w-96 w-full h-14 cta-wrapper group"
+                  className="md:w-auto w-full h-14 cta-wrapper group"
                 >
-                  <div className="cta-button bg-pale-sky hover:bg-dusty-grape">
-                    <p className="button-text text-onyx group-hover:text-white">Réserver une consultation gratuite</p>
+                  <div className="cta-button bg-pale-sky hover:bg-dusty-grape px-8">
+                    <p className="button-text text-onyx group-hover:text-white whitespace-nowrap">Réserver une consultation gratuite</p>
                   </div>
                 </a>
               </div>

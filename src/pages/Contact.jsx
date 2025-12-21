@@ -70,18 +70,6 @@ const Contact = () => {
         start: "top 75%",
       },
     });
-
-    // Why contact cards animation
-    gsap.from(".why-contact-card", {
-      y: 40,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: whyContactRef.current,
-        start: "top 75%",
-      },
-    });
   }, []);
 
   const handleChange = (e) => {
@@ -122,7 +110,7 @@ const Contact = () => {
           <div className="text-center mb-12">
             <h1 className="text-white font-bold md:text-5xl text-4xl mb-6 leading-tight">
               Prêt à{" "}
-              <span className="bg-gradient-to-r from-pale-sky to-dusty-grape bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-pale-sky via-white to-dusty-grape bg-clip-text text-transparent">
                 Transformer
               </span>{" "}
               Votre Entreprise ?
@@ -235,43 +223,6 @@ const Contact = () => {
                   </div>
                 )}
               </form>
-            </div>
-          </div>
-        </div>
-
-        {/* Why Contact Us Section */}
-        <div ref={whyContactRef} className="w-full">
-          <TitleHeader
-            title="Pourquoi Nous Contacter ?"
-            sub="✨ Nos engagements"
-          />
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-onyx to-dusty-grape">
-              <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-mint-cream text-xl font-semibold mb-3">
-                Consultation Gratuite
-              </h3>
-              <p className="text-pale-sky text-lg leading-relaxed">
-                Discutons de vos besoins sans engagement. Une première consultation pour comprendre vos objectifs.
-              </p>
-            </div>
-            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-onyx to-dusty-grape">
-              <div className="text-5xl mb-4">⚡</div>
-              <h3 className="text-mint-cream text-xl font-semibold mb-3">
-                Devis Personnalisé
-              </h3>
-              <p className="text-pale-sky text-lg leading-relaxed">
-                Recevez une proposition détaillée et adaptée à votre budget rapidement.
-              </p>
-            </div>
-            <div className="why-contact-card card-border rounded-xl p-8 bg-gradient-to-br from-onyx to-dusty-grape">
-              <div className="text-5xl mb-4">🤝</div>
-              <h3 className="text-mint-cream text-xl font-semibold mb-3">
-                Accompagnement de A à Z
-              </h3>
-              <p className="text-pale-sky text-lg leading-relaxed">
-                De l'analyse de vos besoins jusqu'au déploiement, nous sommes à vos côtés.
-              </p>
             </div>
           </div>
         </div>
