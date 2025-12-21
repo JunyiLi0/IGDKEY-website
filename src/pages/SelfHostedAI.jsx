@@ -226,7 +226,7 @@ const SelfHostedAI = () => {
                 Technologies de Pointe
               </h2>
               <p className="text-pale-sky text-lg max-w-2xl mx-auto relative z-10">
-                Nous déployons les meilleurs modèles Open Source (Llama 3, Mistral, Mixtral) optimisés pour votre matériel, avec des solutions de vectorisation locales.
+                Nous déployons les meilleurs modèles Open Source (Llama 3, Mistral, GPT-OSS) optimisés pour votre matériel, avec des solutions de vectorisation locales.
               </p>
             </div>
           </div>
