@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, lazy, Suspense } from "react";
+import { useEffect, useRef } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../sections/Footer";
 import TitleHeader from "../components/TitleHeader";
@@ -8,8 +8,6 @@ import { getAssetPath } from "../config";
 import IGDKeyLogo from "../components/AnimatedLetters";
 import Button from "../components/Button";
 import TiltCard from "../components/TiltCard";
-
-const Chat = lazy(() => import("../components/Chat"));
 
 const LandingPage = () => {
   const heroRef = useRef(null);
@@ -21,15 +19,6 @@ const LandingPage = () => {
   const investmentRef = useRef(null);
   const urgencyRef = useRef(null);
   const ctaRef = useRef(null);
-  const [showChat, setShowChat] = useState(false);
-
-  useEffect(() => {
-    // Load the chat widget when the browser is idle (keeps initial bundle smaller)
-    const schedule = window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 1500));
-    const cancel = window.cancelIdleCallback ?? ((id) => window.clearTimeout(id));
-    const id = schedule(() => setShowChat(true), { timeout: 3000 });
-    return () => cancel(id);
-  }, []);
 
   useEffect(() => {
     // Defer GSAP + ScrollTrigger to idle time to reduce render-blocking JS on first load
@@ -564,11 +553,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {showChat ? (
-        <Suspense fallback={null}>
-          <Chat />
-        </Suspense>
-      ) : null}
       <Footer />
     </>
   );

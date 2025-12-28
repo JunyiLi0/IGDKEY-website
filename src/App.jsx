@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useLayoutEffect, lazy, Suspense } from "react";
+import { useEffect, useRef, useLayoutEffect, lazy, Suspense, useState } from "react";
 
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const SiteWebIntelligent = lazy(() => import("./pages/SiteWebIntelligent"));
@@ -7,6 +7,7 @@ const SelfHostedAI = lazy(() => import("./pages/SelfHostedAI"));
 const AgentsIA = lazy(() => import("./pages/AgentsIA"));
 const Contact = lazy(() => import("./pages/Contact"));
 const TermsConditions = lazy(() => import("./pages/TermsConditions"));
+const Chat = lazy(() => import("./components/Chat"));
 
 // Component to handle 404.html redirects for GitHub Pages
 const RedirectHandler = () => {
@@ -69,21 +70,38 @@ const ScrollToTop = () => {
   return null;
 };
 
-const App = () => (
-  <>
-    <RedirectHandler />
-    <ScrollToTop />
-    <Suspense fallback={null}>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
-        <Route path="/ia-privee" element={<SelfHostedAI />} />
-        <Route path="/agents" element={<AgentsIA />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/conditions" element={<TermsConditions />} />
-      </Routes>
-    </Suspense>
-  </>
-);
+const App = () => {
+  const [showChat, setShowChat] = useState(false);
+
+  useEffect(() => {
+    // Load the chat widget when the browser is idle (keeps initial bundle smaller)
+    const schedule = window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 1500));
+    const cancel = window.cancelIdleCallback ?? ((id) => window.clearTimeout(id));
+    const id = schedule(() => setShowChat(true), { timeout: 3000 });
+    return () => cancel(id);
+  }, []);
+
+  return (
+    <>
+      <RedirectHandler />
+      <ScrollToTop />
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
+          <Route path="/ia-privee" element={<SelfHostedAI />} />
+          <Route path="/agents" element={<AgentsIA />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/conditions" element={<TermsConditions />} />
+        </Routes>
+      </Suspense>
+      {showChat && (
+        <Suspense fallback={null}>
+          <Chat />
+        </Suspense>
+      )}
+    </>
+  );
+};
 
 export default App;
