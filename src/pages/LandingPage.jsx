@@ -8,6 +8,7 @@ import { getAssetPath } from "../config";
 import IGDKeyLogo from "../components/AnimatedLetters";
 import Button from "../components/Button";
 import TiltCard from "../components/TiltCard";
+import TrustCarousel from "../components/TrustCarousel";
 
 const LandingPage = () => {
   const heroRef = useRef(null);
@@ -528,7 +529,12 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Final CTA Section */}
+      </section>
+
+      <TrustCarousel />
+
+      {/* Final CTA Section */}
+      <section className="section-padding padding-x-lg overflow-hidden">
         <div ref={ctaRef} className="w-full mb-12">
           <div className="max-w-4xl mx-auto">
             <div className="card-border rounded-2xl p-10 md:p-16 bg-gradient-to-br from-dusty-grape/10 to-pale-sky/10 text-center backdrop-blur-sm">

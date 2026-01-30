@@ -470,27 +470,33 @@ section {
 
 .gradient-line {
   width: 2px;
-  background: linear-gradient(0deg,
-      rgba(69, 222, 196, 0) 0%,
-      #62e0ff 25%,
-      #52aeff 37.51%,
-      #fd5c79 62.83%,
-      #6d45ce 92.91%);
+  background: linear-gradient(
+    0deg,
+    rgba(69, 222, 196, 0) 0%,
+    #62e0ff 25%,
+    #52aeff 37.51%,
+    #fd5c79 62.83%,
+    #6d45ce 92.91%
+  );
 }
 
 .gradient-edge:nth-of-type(1) {
   left: 0;
   background: rgb(0, 0, 0);
-  background: linear-gradient(90deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .gradient-edge:nth-of-type(2) {
   right: 0;
-  background: linear-gradient(-90deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 /* marquee */
@@ -526,6 +532,62 @@ section {
 
 /* marquee end */
 
+/* Trust carousel */
+.trust-section {
+  position: relative;
+}
+
+.trust-band {
+  background: #ebf5ee;
+  padding: 20px 0;
+}
+
+.trust-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.trust-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  width: max-content;
+  animation: trustScroll 30s linear infinite;
+}
+
+.trust-logo-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+.trust-logo-item img {
+  max-height: 60px;
+  max-width: 140px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.trust-logo-item img:hover {
+  transform: scale(1.1);
+}
+
+@keyframes trustScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Trust carousel end */
+
 .card {
   --start: 0;
   position: relative;
@@ -546,11 +608,14 @@ section {
   border: 2px solid transparent;
   background: var(--gradient);
   background-attachment: fixed;
-  mask: linear-gradient(#0000, #0000),
-    conic-gradient(from calc((var(--start) - 15) * 1deg),
+  mask:
+    linear-gradient(#0000, #0000),
+    conic-gradient(
+      from calc((var(--start) - 15) * 1deg),
       #ffffff1f 0deg,
       white,
-      #ffffff00 100deg);
+      #ffffff00 100deg
+    );
   mask-composite: intersect;
   mask-clip: padding-box, border-box;
   opacity: 0;
