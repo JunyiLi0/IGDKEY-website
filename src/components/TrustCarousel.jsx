@@ -25,25 +25,19 @@ const partnerLogos = [
   },
 ];
 
-import TitleHeader from "./TitleHeader";
-
 const TrustCarousel = () => {
   return (
-    <section className="trust-section">
-      <TitleHeader title="Nos Partenaires" />
-
-      <div className="trust-band mt-6">
-        <div className="trust-carousel">
-          <div className="trust-carousel-track">
-            {[...partnerLogos, ...partnerLogos].map((logo, index) => (
-              <div key={index} className="trust-logo-item">
-                <img src={logo.src} alt={logo.alt} loading="lazy" />
-              </div>
-            ))}
-          </div>
+    <div className="trust-band md:mt-20 mt-10">
+      <div className="trust-carousel">
+        <div className="trust-carousel-track">
+          {[...partnerLogos, ...partnerLogos].map((logo, index) => (
+            <div key={index} className="trust-logo-item">
+              <img src={logo.src} alt={logo.alt} loading="lazy" />
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
