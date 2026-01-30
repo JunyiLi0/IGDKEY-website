@@ -49,7 +49,7 @@ section {
   }
 
   .section-padding {
-    @apply px-5 md:px-10 md:mt-20 mt-10;
+    @apply px-5 md:px-10 md:mt-40 mt-20;
   }
 
   .mt-responsive {
@@ -111,7 +111,7 @@ section {
 
   .hero-logo-wrapper {
     @apply w-full max-w-xl mx-auto;
-    @apply py-6 md:py-8;
+    @apply py-3 md:py-4;
   }
 
   .hero-cta-wrapper {

@@ -245,7 +245,7 @@ const LandingPage = () => {
         <AnimatedCounter />
       </section>
 
-      <section className="section-padding padding-x-lg overflow-hidden">
+      <section className="md:mt-20 mt-10 padding-x-lg overflow-hidden">
         {/* Transform Your Business Section */}
         <div ref={transformRef} className="w-full mb-32 relative">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-pale-sky/10 rounded-full blur-[80px] -z-10"></div>
