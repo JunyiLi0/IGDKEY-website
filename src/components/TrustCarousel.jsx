@@ -15,6 +15,10 @@ const partnerLogos = [
   },
   { src: "/images/partenaires-igdkey/logo-veoma-1.webp", alt: "Veoma" },
   {
+    src: "/images/partenaires-igdkey/permabilis-logo.png",
+    alt: "Permabilis",
+  },
+  {
     src: "/images/partenaires-igdkey/logo_panthéon_assas.png",
     alt: "Panthéon Assas",
   },
@@ -23,6 +27,7 @@ const partnerLogos = [
     src: "/images/partenaires-igdkey/universite-paris-cite-logo.png",
     alt: "Université Paris Cité",
   },
+  { src: "/images/partenaires-igdkey/bforge-logo.png", alt: "BForge" },
 ];
 
 const TrustCarousel = () => {
