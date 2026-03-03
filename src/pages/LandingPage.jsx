@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../sections/Footer";
 import TitleHeader from "../components/TitleHeader";
 import AnimatedCounter from "../components/AnimatedCounter";
-import { words, abilities } from "../constants";
+import { words, engagements } from "../constants";
 import { getAssetPath } from "../config";
 import IGDKeyLogo from "../components/AnimatedLetters";
 import Button from "../components/Button";
@@ -13,8 +13,7 @@ import TrustCarousel from "../components/TrustCarousel";
 const LandingPage = () => {
   const heroRef = useRef(null);
   const transformRef = useRef(null);
-  const whyChooseRef = useRef(null);
-  const valuesRef = useRef(null);
+  const engagementsRef = useRef(null);
   const servicesRef = useRef(null);
   const targetAudienceRef = useRef(null);
   const investmentRef = useRef(null);
@@ -65,19 +64,26 @@ const LandingPage = () => {
             });
           }
 
-          // Why choose us cards - alternating from sides
-          const whyChooseCards = gsap.utils.toArray(".why-choose-card");
-          whyChooseCards.forEach((card, i) => {
-            gsap.from(card, {
-              x: i % 2 === 0 ? -100 : 100,
-              opacity: 0,
-              duration: 1,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 85%",
+          // Nos Engagements - bento grid stagger
+          if (engagementsRef.current) {
+            const engagementCards = gsap.utils.toArray(".engagement-card");
+            gsap.fromTo(
+              engagementCards,
+              { y: 40, opacity: 0, scale: 0.95 },
+              {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 0.7,
+                stagger: 0.12,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: engagementsRef.current,
+                  start: "top 80%",
+                },
               },
-            });
-          });
+            );
+          }
 
           // Services cards - scale animation
           if (servicesRef.current) {
@@ -133,19 +139,6 @@ const LandingPage = () => {
             );
           }
 
-          // Values cards - alternating from sides
-          const valueCards = gsap.utils.toArray(".value-card");
-          valueCards.forEach((card, i) => {
-            gsap.from(card, {
-              x: i % 2 === 0 ? -100 : 100,
-              opacity: 0,
-              duration: 1,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 85%",
-              },
-            });
-          });
 
           // Urgency section animation
           if (urgencyRef.current) {
@@ -278,67 +271,67 @@ const LandingPage = () => {
           <TrustCarousel />
         </div>
 
-        {/* Why Choose Us Section */}
-        <div ref={whyChooseRef} className="w-full mb-32">
-          <TitleHeader title="Pourquoi Nous Choisir ?" />
-          <div className="mt-16 space-y-12 max-w-4xl mx-auto">
-            {/* Card 1 */}
-            <div className="why-choose-card relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 flex items-center gap-6">
-                <div className="size-16 flex-shrink-0 flex items-center justify-center rounded-full bg-dusty-grape/30 text-3xl">
-                  ⚡
-                </div>
-                <div>
-                  <h3 className="text-white text-2xl font-bold mb-2">
-                    Expertise IA Complète
-                  </h3>
-                  <p className="text-slate-grey text-lg leading-relaxed">
-                    Technologies de pointe : agents autonomes, modèles
-                    prédictifs, automatisation intelligente. Solutions sur
-                    mesure pour chaque entreprise.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="why-choose-card relative group">
-              <div className="absolute inset-0 bg-gradient-to-l from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 flex items-center gap-6">
-                <div className="size-16 flex-shrink-0 flex items-center justify-center rounded-full bg-dusty-grape/30 text-3xl">
-                  🎯
-                </div>
-                <div>
-                  <h3 className="text-white text-2xl font-bold mb-2">
-                    Approche 100% Personnalisée
-                  </h3>
-                  <p className="text-slate-grey text-lg leading-relaxed">
-                    Chaque entreprise est unique. Nos solutions s'adaptent à
-                    votre secteur, vos objectifs et votre budget.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="why-choose-card relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-pale-sky to-white opacity-10 blur-xl rounded-2xl group-hover:opacity-20 transition-opacity duration-500"></div>
-              <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 flex items-center gap-6">
-                <div className="size-16 flex-shrink-0 flex items-center justify-center rounded-full bg-dusty-grape/30 text-3xl">
-                  🤝
-                </div>
-                <div>
-                  <h3 className="text-white text-2xl font-bold mb-2">
-                    Accompagnement de A à Z
-                  </h3>
-                  <p className="text-slate-grey text-lg leading-relaxed">
-                    De l'audit initial à la mise en production, nous vous
-                    guidons à chaque étape.
-                  </p>
-                </div>
-              </div>
-            </div>
+        {/* Nos Engagements Section — Bento Grid */}
+        <div ref={engagementsRef} className="w-full mb-32">
+          <TitleHeader title="Nos Engagements" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mt-16">
+            {engagements.map(({ imgPath, title, desc, featured, wide }) => (
+              <TiltCard
+                key={title}
+                className={`engagement-card ${
+                  featured
+                    ? "md:row-span-2"
+                    : wide
+                      ? "md:col-span-2 lg:col-span-3"
+                      : ""
+                }`}
+              >
+                {featured ? (
+                  /* Hero card — spans 2 rows */
+                  <div className="relative p-8 h-full flex flex-col">
+                    <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-[0.03] pointer-events-none rounded-2xl" />
+                    <div className="w-16 h-16 mb-6 rounded-xl bg-gradient-to-br from-dusty-grape/30 to-pale-sky/10 flex items-center justify-center">
+                      <img src={imgPath} alt={title} className="w-10 h-10" />
+                    </div>
+                    <h3 className="text-white text-2xl lg:text-3xl font-bold mb-4">
+                      {title}
+                    </h3>
+                    <p className="text-slate-grey text-lg leading-relaxed flex-grow">
+                      {desc}
+                    </p>
+                    <div className="mt-6 w-16 h-1 rounded-full bg-gradient-to-r from-pale-sky to-dusty-grape group-hover:w-24 transition-all duration-500" />
+                  </div>
+                ) : wide ? (
+                  /* Wide bottom card — horizontal layout */
+                  <div className="p-6 h-full flex items-center gap-6">
+                    <div className="w-12 h-12 flex-shrink-0 rounded-xl bg-dusty-grape/20 flex items-center justify-center group-hover:bg-dusty-grape/40 transition-colors duration-300">
+                      <img src={imgPath} alt={title} className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <h3 className="text-white text-xl font-bold mb-1">
+                        {title}
+                      </h3>
+                      <p className="text-slate-grey text-base leading-relaxed group-hover:text-pale-sky transition-colors duration-300">
+                        {desc}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  /* Standard card */
+                  <div className="p-6 h-full flex flex-col">
+                    <div className="w-12 h-12 mb-5 rounded-xl bg-dusty-grape/20 flex items-center justify-center group-hover:bg-dusty-grape/40 transition-colors duration-300">
+                      <img src={imgPath} alt={title} className="w-7 h-7" />
+                    </div>
+                    <h3 className="text-white text-xl font-bold mb-3">
+                      {title}
+                    </h3>
+                    <p className="text-slate-grey text-base leading-relaxed group-hover:text-pale-sky transition-colors duration-300">
+                      {desc}
+                    </p>
+                  </div>
+                )}
+              </TiltCard>
+            ))}
           </div>
         </div>
 
@@ -587,30 +580,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Values Section */}
-        <div ref={valuesRef} className="w-full mb-32">
-          <TitleHeader title="Nos Valeurs" />
-          <div className="mt-16 space-y-12 max-w-4xl mx-auto">
-            {abilities.map(({ imgPath, title, desc }, i) => (
-              <div key={title} className="value-card relative group">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-${i % 2 === 0 ? "r" : "l"} from-dusty-grape to-pale-sky opacity-20 blur-xl rounded-2xl group-hover:opacity-30 transition-opacity duration-500`}
-                ></div>
-                <div className="relative bg-onyx border border-dusty-grape rounded-2xl p-8 flex items-center gap-6">
-                  <div className="size-16 flex-shrink-0 flex items-center justify-center rounded-full bg-dusty-grape/30">
-                    <img src={imgPath} alt={title} className="size-10" />
-                  </div>
-                  <div>
-                    <h3 className="text-white text-2xl font-bold mb-2">
-                      {title}
-                    </h3>
-                    <p className="text-slate-grey text-lg">{desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* Urgency Section */}
         <div ref={urgencyRef} className="w-full mb-20">
