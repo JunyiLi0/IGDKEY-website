@@ -1,6 +1,8 @@
-import axios from 'axios';
+import OpenAI from 'openai';
 
-const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 /**
  * Rate Limiter Class
@@ -79,7 +81,6 @@ function validateMessage(message) {
         return { valid: false, error: 'Message must be a non-empty string' };
     }
 
-    // Check message length (max 40 characters for testing)
     if (message.length > 4000) {
         return { valid: false, error: 'Message too long (max 4000 characters)' };
     }
@@ -104,79 +105,7 @@ function validateMessage(message) {
     return { valid: true };
 }
 
-export default async (req, res) => {
-    // Get client IP for rate limiting
-    const clientIP = req.headers['x-forwarded-for'] ||
-        req.headers['x-real-ip'] ||
-        req.connection?.remoteAddress ||
-        'unknown';
-
-    // Check rate limit
-    const rateLimitResult = rateLimiter.checkLimit(clientIP);
-    if (!rateLimitResult.allowed) {
-        // Set rate limit headers
-        res.setHeader('X-RateLimit-Limit', rateLimiter.maxRequests);
-        res.setHeader('X-RateLimit-Remaining', rateLimitResult.remaining);
-        res.setHeader('X-RateLimit-Reset', new Date(rateLimitResult.resetTime).toISOString());
-        res.setHeader('Retry-After', rateLimitResult.retryAfter);
-
-        return res.status(429).json({
-            error: 'Too many requests. Please wait before trying again.',
-            retryAfter: rateLimitResult.retryAfter
-        });
-    }
-
-    // Set rate limit headers for successful requests
-    res.setHeader('X-RateLimit-Limit', rateLimiter.maxRequests);
-    res.setHeader('X-RateLimit-Remaining', rateLimitResult.remaining);
-    res.setHeader('X-RateLimit-Reset', new Date(rateLimitResult.resetTime).toISOString());
-
-    // Set CORS headers - restrict to your domain only
-    const allowedOrigins = [
-        'http://localhost:3000',
-        'http://localhost:5173',
-        'https://igdkey.com',
-        'https://www.igdkey.com'
-    ];
-
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Credentials', 'false');
-
-    // Handle preflight requests IMMEDIATELY
-    if (req.method === 'OPTIONS') {
-        res.status(200).json({});
-        return;
-    }
-
-    // Only allow POST requests
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
-
-    // Check request size limit (prevent large payloads)
-    const contentLength = parseInt(req.headers['content-length'] || '0');
-    const maxRequestSize = 10 * 1024; // 10KB limit
-
-    if (contentLength > maxRequestSize) {
-        return res.status(413).json({ error: 'Request too large' });
-    }
-
-    try {
-        const { message } = req.body;
-
-        // Validate message input
-        const validation = validateMessage(message);
-        if (!validation.valid) {
-            return res.status(400).json({ error: validation.error });
-        }
-
-        const systemContext = `Tu es l'assistant IA d'IGDKEY. Voici quelques informations sur IGDKEY : 
+const systemContext = `Tu es l'assistant IA d'IGDKEY. Voici quelques informations sur IGDKEY :
 
 Nous sommes une agence française innovante spécialisée dans le développement web et la création d'intelligences artificielles personnalisées. Notre mission : transformer vos idées en solutions digitales sur mesure, en alliant sites et plateformes web performants à des algorithmes d'IA puissants pour booster votre compétitivité.
 
@@ -216,26 +145,109 @@ Email: contact@igdkey.com
 
 Tu es l'assistant IA d'IGDKEY. Réponds aux questions des clients dans leur langue, de manière professionnelle et en te basant sur les informations ci-dessus. Aide-les à comprendre nos services et oriente-les vers les solutions qui correspondent à leurs besoins. Reste concis.`;
 
-        const response = await axios.post(
-            OPENAI_API_URL,
-            {
-                model: 'gpt-5-nano',
-                messages: [
-                    { role: 'system', content: systemContext },
-                    { role: 'user', content: message }
-                ],
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
+export default async (req, res) => {
+    // Get client IP for rate limiting
+    const clientIP = req.headers['x-forwarded-for'] ||
+        req.headers['x-real-ip'] ||
+        req.connection?.remoteAddress ||
+        'unknown';
 
-        res.json({ reply: response.data.choices[0].message.content });
+    // Check rate limit
+    const rateLimitResult = rateLimiter.checkLimit(clientIP);
+    if (!rateLimitResult.allowed) {
+        res.setHeader('X-RateLimit-Limit', rateLimiter.maxRequests);
+        res.setHeader('X-RateLimit-Remaining', rateLimitResult.remaining);
+        res.setHeader('X-RateLimit-Reset', new Date(rateLimitResult.resetTime).toISOString());
+        res.setHeader('Retry-After', rateLimitResult.retryAfter);
+
+        return res.status(429).json({
+            error: 'Too many requests. Please wait before trying again.',
+            retryAfter: rateLimitResult.retryAfter
+        });
+    }
+
+    // Set rate limit headers for successful requests
+    res.setHeader('X-RateLimit-Limit', rateLimiter.maxRequests);
+    res.setHeader('X-RateLimit-Remaining', rateLimitResult.remaining);
+    res.setHeader('X-RateLimit-Reset', new Date(rateLimitResult.resetTime).toISOString());
+
+    // Set CORS headers
+    const allowedOrigins = [
+        'http://localhost:3000',
+        'http://localhost:5173',
+        'https://igdkey.com',
+        'https://www.igdkey.com'
+    ];
+
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', 'false');
+
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+        res.status(200).json({});
+        return;
+    }
+
+    // Only allow POST requests
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    // Check request size limit
+    const contentLength = parseInt(req.headers['content-length'] || '0');
+    const maxRequestSize = 10 * 1024; // 10KB limit
+
+    if (contentLength > maxRequestSize) {
+        return res.status(413).json({ error: 'Request too large' });
+    }
+
+    try {
+        const { message } = req.body;
+
+        // Validate message input
+        const validation = validateMessage(message);
+        if (!validation.valid) {
+            return res.status(400).json({ error: validation.error });
+        }
+
+        // Set SSE headers for streaming
+        res.setHeader('Content-Type', 'text/event-stream');
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Connection', 'keep-alive');
+
+        const stream = await openai.chat.completions.create({
+            model: 'gpt-4.1-nano',
+            messages: [
+                { role: 'system', content: systemContext },
+                { role: 'user', content: message }
+            ],
+            stream: true,
+        });
+
+        for await (const chunk of stream) {
+            const content = chunk.choices[0]?.delta?.content || '';
+            if (content) {
+                res.write(`data: ${JSON.stringify({ content })}\n\n`);
+            }
+        }
+
+        res.write('data: [DONE]\n\n');
+        res.end();
     } catch (error) {
-        console.error('OpenAI API Error:', error.response?.data || error.message);
-        res.status(500).json({ error: 'Erreur serveur' });
+        console.error('OpenAI API Error:', error.message);
+        // If headers already sent (streaming started), just end
+        if (res.headersSent) {
+            res.write(`data: ${JSON.stringify({ error: 'Erreur serveur' })}\n\n`);
+            res.write('data: [DONE]\n\n');
+            res.end();
+        } else {
+            res.status(500).json({ error: 'Erreur serveur' });
+        }
     }
 };

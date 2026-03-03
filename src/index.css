@@ -588,6 +588,29 @@ section {
 
 /* Trust carousel end */
 
+/* Chat scrollbar */
+.chat-messages::-webkit-scrollbar {
+  width: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #484a6e;
+  border-radius: 2px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #8e90ac;
+}
+
+/* Chat markdown overrides */
+.chat-markdown > *:last-child {
+  margin-bottom: 0 !important;
+}
+
 .card {
   --start: 0;
   position: relative;

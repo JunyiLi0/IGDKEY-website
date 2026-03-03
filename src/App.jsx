@@ -7,7 +7,7 @@ const SelfHostedAI = lazy(() => import("./pages/SelfHostedAI"));
 const AgentsIA = lazy(() => import("./pages/AgentsIA"));
 const Contact = lazy(() => import("./pages/Contact"));
 const TermsConditions = lazy(() => import("./pages/TermsConditions"));
-const Chat = lazy(() => import("./components/Chat"));
+const Chat = lazy(() => import("./components/chat/Chat"));
 
 // Component to handle 404.html redirects for GitHub Pages
 const RedirectHandler = () => {
