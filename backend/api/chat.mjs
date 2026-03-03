@@ -201,20 +201,35 @@ export default async (req, res) => {
 
     // Check request size limit
     const contentLength = parseInt(req.headers['content-length'] || '0');
-    const maxRequestSize = 10 * 1024; // 10KB limit
+    const maxRequestSize = 50 * 1024; // 50KB limit (includes conversation history)
 
     if (contentLength > maxRequestSize) {
         return res.status(413).json({ error: 'Request too large' });
     }
 
     try {
-        const { message } = req.body;
+        const { message, history } = req.body;
 
         // Validate message input
         const validation = validateMessage(message);
         if (!validation.valid) {
             return res.status(400).json({ error: validation.error });
         }
+
+        // Build messages array with conversation history
+        const chatMessages = [{ role: 'system', content: systemContext }];
+
+        if (Array.isArray(history)) {
+            // Limit to last 20 messages to prevent abuse
+            const recentHistory = history.slice(-20);
+            for (const msg of recentHistory) {
+                if (msg.role === 'user' || msg.role === 'assistant') {
+                    chatMessages.push({ role: msg.role, content: String(msg.content).slice(0, 4000) });
+                }
+            }
+        }
+
+        chatMessages.push({ role: 'user', content: message });
 
         // Set SSE headers for streaming
         res.setHeader('Content-Type', 'text/event-stream');
@@ -223,10 +238,7 @@ export default async (req, res) => {
 
         const stream = await openai.chat.completions.create({
             model: 'gpt-4.1-nano',
-            messages: [
-                { role: 'system', content: systemContext },
-                { role: 'user', content: message }
-            ],
+            messages: chatMessages,
             stream: true,
         });
 

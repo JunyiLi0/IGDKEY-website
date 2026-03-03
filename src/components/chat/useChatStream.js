@@ -44,10 +44,18 @@ export function useChatStream() {
         abortControllerRef.current = new AbortController();
 
         try {
+            // Build conversation history from existing messages (skip initial greeting and streaming placeholders)
+            const history = messages
+                .filter((m) => m.id !== 1 && !m.isStreaming && m.text)
+                .map((m) => ({
+                    role: m.sender === "user" ? "user" : "assistant",
+                    content: m.text,
+                }));
+
             const res = await fetch(API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: input }),
+                body: JSON.stringify({ message: input, history }),
                 signal: abortControllerRef.current.signal,
             });
 
