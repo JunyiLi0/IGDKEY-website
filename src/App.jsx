@@ -5,6 +5,7 @@ const LandingPage = lazy(() => import("./pages/LandingPage"));
 const SiteWebIntelligent = lazy(() => import("./pages/SiteWebIntelligent"));
 const SelfHostedAI = lazy(() => import("./pages/SelfHostedAI"));
 const AgentsIA = lazy(() => import("./pages/AgentsIA"));
+const LaFondatrice = lazy(() => import("./pages/LaFondatrice"));
 const Contact = lazy(() => import("./pages/Contact"));
 const TermsConditions = lazy(() => import("./pages/TermsConditions"));
 const Chat = lazy(() => import("./components/chat/Chat"));
@@ -91,6 +92,7 @@ const App = () => {
           <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
           <Route path="/ia-privee" element={<SelfHostedAI />} />
           <Route path="/agents" element={<AgentsIA />} />
+          <Route path="/fondatrice" element={<LaFondatrice />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/conditions" element={<TermsConditions />} />
         </Routes>

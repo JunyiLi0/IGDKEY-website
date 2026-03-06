@@ -1,13 +1,8 @@
 const partnerLogos = [
-  { src: "/images/partenaires-igdkey/bpi-logo.png", alt: "BPI France" },
   { src: "/images/partenaires-igdkey/efrei-logo.webp", alt: "Efrei" },
   {
     src: "/images/partenaires-igdkey/france-2030-logo.png",
     alt: "France 2030",
-  },
-  {
-    src: "/images/partenaires-igdkey/logo-french-tech.png",
-    alt: "French Tech",
   },
   {
     src: "/images/partenaires-igdkey/logo-neorecoovre-scaled.png",

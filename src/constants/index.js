@@ -17,6 +17,10 @@ const navLinks = [
     name: "IA Auto-hébergée",
     link: "/ia-privee",
   },
+  {
+    name: "La Fondatrice",
+    link: "/fondatrice",
+  },
 ];
 
 const words = [

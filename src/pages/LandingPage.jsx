@@ -18,8 +18,6 @@ const LandingPage = () => {
   const targetAudienceRef = useRef(null);
   const investmentRef = useRef(null);
   const urgencyRef = useRef(null);
-  const founderRef = useRef(null);
-  const ctaRef = useRef(null);
 
   useEffect(() => {
     // Defer GSAP + ScrollTrigger to idle time to reduce render-blocking JS on first load
@@ -154,31 +152,6 @@ const LandingPage = () => {
             });
           }
 
-          // Founder section animation
-          if (founderRef.current) {
-            gsap.from(founderRef.current, {
-              opacity: 0,
-              y: 50,
-              duration: 1,
-              scrollTrigger: {
-                trigger: founderRef.current,
-                start: "top 85%",
-              },
-            });
-          }
-
-          // CTA section animation with scale
-          if (ctaRef.current) {
-            gsap.from(ctaRef.current, {
-              opacity: 0,
-              scale: 0.9,
-              duration: 0.8,
-              scrollTrigger: {
-                trigger: ctaRef.current,
-                start: "top 85%",
-              },
-            });
-          }
         } catch (e) {
           // If GSAP fails to load, keep the page functional without animations
           console.warn("GSAP deferred load failed:", e);
@@ -596,7 +569,7 @@ const LandingPage = () => {
 
 
 
-        {/* Urgency Section */}
+        {/* Urgency + CTA Section */}
         <div ref={urgencyRef} className="w-full mb-20">
           <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape max-w-3xl mx-auto">
             <div className="bg-onyx rounded-[22px] px-6 py-16 md:px-20 text-center relative overflow-hidden">
@@ -609,76 +582,10 @@ const LandingPage = () => {
                 L'IA évolue vite. Les entreprises qui l'adoptent aujourd'hui
                 dominent demain.
               </p>
-              <p className="text-white text-xl font-bold relative z-10">
+              <p className="text-white text-xl font-bold relative z-10 mb-8">
                 Prenez de l'avance sur vos concurrents.
               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Founder Section */}
-        <div ref={founderRef} className="w-full mb-20">
-          <TitleHeader title="La Fondatrice" />
-          <div className="max-w-5xl mx-auto mt-10">
-            <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape">
-              <div className="bg-onyx rounded-[22px] px-6 py-12 md:px-16 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.svg')] opacity-20"></div>
-                <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
-                  {/* Photo */}
-                  <div className="flex-shrink-0">
-                    <div className="w-48 h-48 md:w-56 md:h-56 rounded-full p-1 bg-gradient-to-br from-pale-sky to-dusty-grape">
-                      <img
-                        src={getAssetPath("/images/Myriam.jpeg")}
-                        alt="Myriam IGDEM"
-                        className="w-full h-full rounded-full object-cover"
-                      />
-                    </div>
-                  </div>
-                  {/* Bio */}
-                  <div className="text-center md:text-left">
-                    <h3 className="text-white font-bold text-2xl md:text-3xl mb-2">
-                      Myriam IGDEM
-                    </h3>
-                    <p className="text-pale-sky font-semibold text-lg mb-4">
-                      PDG & Fondatrice d'IGDKEY
-                    </p>
-                    <p className="text-slate-grey leading-relaxed mb-3">
-                      Diplômée de l'Université Paris Cité en finance et contrôle
-                      de gestion, Myriam quitte le parcours académique à 20 ans
-                      pour se consacrer à sa vision entrepreneuriale. Forte de
-                      plus de cinq ans en trading, elle développe un esprit
-                      stratégique aiguisé et une maîtrise des KPI et de la
-                      gestion du risque.
-                    </p>
-                    <p className="text-slate-grey leading-relaxed">
-                      Passionnée d'informatique et d'innovation, formée à l'IA
-                      et lauréate d'un concours d'innovation chez Salesforce en
-                      conception 3D, elle fonde IGDKEY avec une conviction :
-                      exploiter toute la puissance de l'intelligence artificielle
-                      tout en conservant un contrôle total sur ses données
-                      stratégiques. Aujourd'hui, une équipe de 9 experts
-                      l'accompagne dans cette mission.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="mt-10 md:mt-16 padding-x-lg overflow-hidden">
-        <div ref={ctaRef} className="w-full mb-12">
-          <div className="max-w-4xl mx-auto">
-            <div className="card-border rounded-2xl p-10 md:p-16 bg-gradient-to-br from-dusty-grape/10 to-pale-sky/10 text-center backdrop-blur-sm">
-              <h2 className="text-white font-bold md:text-5xl text-3xl mb-6 leading-tight">
-                Prêt à Transformer Votre Entreprise ?
-              </h2>
-              <p className="text-slate-grey md:text-xl text-lg mb-8 leading-relaxed">
-                Consultation gratuite. Stratégie IA sur mesure.
-              </p>
-              <div className="flex justify-center">
+              <div className="flex justify-center relative z-10">
                 <a
                   href="/contact"
                   className="md:w-auto w-full h-14 cta-wrapper group"
