@@ -9,6 +9,188 @@ import IGDKeyLogo from "../components/AnimatedLetters";
 import Button from "../components/Button";
 import TiltCard from "../components/TiltCard";
 import TrustCarousel from "../components/TrustCarousel";
+import {
+  BrainCircuit,
+  MessagesSquare,
+  Workflow,
+  TrendingUp,
+  MonitorSmartphone,
+  Check,
+  Flame,
+  Landmark,
+  ShoppingBag,
+  Building2,
+  HeartPulse,
+  Factory,
+  Wallet,
+  GraduationCap,
+  Handshake,
+  UserCircle,
+  Gauge,
+  ArrowUpRight,
+  Crosshair,
+  Zap,
+} from "lucide-react";
+import { motion } from "framer-motion";
+
+const services = [
+  {
+    Icon: BrainCircuit,
+    title: "AI Agents Autonomes",
+    tagline: "Vos employés numériques infatigables",
+    metric: "24/7",
+    metricLabel: "disponibilité",
+    iconColor: "text-violet-400",
+    iconBg: "bg-violet-400/10",
+    iconBorder: "border-violet-400/20",
+    glowFrom: "from-violet-500/20",
+    glowTo: "to-violet-900/10",
+    hoverBorder: "group-hover:border-violet-400/40",
+    accentLine: "via-violet-400/60",
+    hoverGlow: "from-violet-400/[0.03]",
+    checkColor: "text-violet-400/70",
+    features: [
+      "Gestion de données",
+      "Traitement de demandes",
+      "Suivi client 24/7",
+      "Veille automatisée",
+    ],
+  },
+  {
+    Icon: MessagesSquare,
+    title: "Chatbots Avancés",
+    tagline: "Convertissez chaque visiteur en client",
+    metric: "x3",
+    metricLabel: "taux de conversion",
+    iconColor: "text-cyan-400",
+    iconBg: "bg-cyan-400/10",
+    iconBorder: "border-cyan-400/20",
+    glowFrom: "from-cyan-500/20",
+    glowTo: "to-cyan-900/10",
+    hoverBorder: "group-hover:border-cyan-400/40",
+    accentLine: "via-cyan-400/60",
+    hoverGlow: "from-cyan-400/[0.03]",
+    checkColor: "text-cyan-400/70",
+    features: [
+      "Réponses instantanées",
+      "Qualification prospects",
+      "Prise de rendez-vous",
+      "Langage naturel",
+    ],
+  },
+  {
+    Icon: Workflow,
+    title: "Automatisation IA",
+    tagline: "Libérez votre équipe des tâches répétitives",
+    metric: "-70%",
+    metricLabel: "temps administratif",
+    iconColor: "text-amber-400",
+    iconBg: "bg-amber-400/10",
+    iconBorder: "border-amber-400/20",
+    glowFrom: "from-amber-500/20",
+    glowTo: "to-amber-900/10",
+    hoverBorder: "group-hover:border-amber-400/40",
+    accentLine: "via-amber-400/60",
+    hoverGlow: "from-amber-400/[0.03]",
+    checkColor: "text-amber-400/70",
+    features: [
+      "Saisie & analyse données",
+      "Reporting automatique",
+      "Gestion des emails",
+      "Facturation",
+    ],
+  },
+  {
+    Icon: TrendingUp,
+    title: "Machine Learning",
+    tagline: "Anticipez, prédisez, optimisez",
+    metric: "+40%",
+    metricLabel: "précision décisions",
+    iconColor: "text-emerald-400",
+    iconBg: "bg-emerald-400/10",
+    iconBorder: "border-emerald-400/20",
+    glowFrom: "from-emerald-500/20",
+    glowTo: "to-emerald-900/10",
+    hoverBorder: "group-hover:border-emerald-400/40",
+    accentLine: "via-emerald-400/60",
+    hoverGlow: "from-emerald-400/[0.03]",
+    checkColor: "text-emerald-400/70",
+    features: [
+      "Prédiction de ventes",
+      "Segmentation clients",
+      "Détection opportunités",
+      "Forecasting avancé",
+    ],
+  },
+  {
+    Icon: MonitorSmartphone,
+    title: "Sites Web Intelligents",
+    tagline: "Un site qui s'adapte à chaque visiteur",
+    metric: "x2",
+    metricLabel: "engagement utilisateur",
+    iconColor: "text-rose-400",
+    iconBg: "bg-rose-400/10",
+    iconBorder: "border-rose-400/20",
+    glowFrom: "from-rose-500/20",
+    glowTo: "to-rose-900/10",
+    hoverBorder: "group-hover:border-rose-400/40",
+    accentLine: "via-rose-400/60",
+    hoverGlow: "from-rose-400/[0.03]",
+    checkColor: "text-rose-400/70",
+    features: [
+      "Analyse comportementale",
+      "Optimisation automatique",
+      "Intégration agents IA",
+      "Expériences personnalisées",
+    ],
+  },
+];
+
+const audiences = [
+  { Icon: Flame, label: "PME & Startups", color: "text-orange-400", bg: "bg-orange-400/10", hoverBg: "group-hover:bg-orange-400/20" },
+  { Icon: Landmark, label: "Cabinets pro", color: "text-indigo-400", bg: "bg-indigo-400/10", hoverBg: "group-hover:bg-indigo-400/20" },
+  { Icon: ShoppingBag, label: "E-commerce", color: "text-pink-400", bg: "bg-pink-400/10", hoverBg: "group-hover:bg-pink-400/20" },
+  { Icon: Building2, label: "Immobilier", color: "text-sky-400", bg: "bg-sky-400/10", hoverBg: "group-hover:bg-sky-400/20" },
+  { Icon: HeartPulse, label: "Santé", color: "text-red-400", bg: "bg-red-400/10", hoverBg: "group-hover:bg-red-400/20" },
+  { Icon: Factory, label: "Industrie", color: "text-slate-400", bg: "bg-slate-400/10", hoverBg: "group-hover:bg-slate-400/20" },
+  { Icon: Wallet, label: "Finance", color: "text-emerald-400", bg: "bg-emerald-400/10", hoverBg: "group-hover:bg-emerald-400/20" },
+  { Icon: GraduationCap, label: "Éducation", color: "text-yellow-400", bg: "bg-yellow-400/10", hoverBg: "group-hover:bg-yellow-400/20" },
+  { Icon: Handshake, label: "B2B", color: "text-teal-400", bg: "bg-teal-400/10", hoverBg: "group-hover:bg-teal-400/20" },
+  { Icon: UserCircle, label: "B2C", color: "text-purple-400", bg: "bg-purple-400/10", hoverBg: "group-hover:bg-purple-400/20" },
+];
+
+const roiItems = [
+  {
+    Icon: Gauge,
+    title: "Productivité accrue",
+    desc: "Plus de résultats en moins de temps",
+    iconColor: "text-cyan-400",
+    glowFrom: "from-cyan-400/15",
+    glowTo: "to-cyan-900/25",
+    border: "border-cyan-400/40",
+    hoverBorder: "group-hover:border-cyan-400/50",
+  },
+  {
+    Icon: ArrowUpRight,
+    title: "Revenus Boostés",
+    desc: "Convertissez plus, vendez mieux",
+    iconColor: "text-emerald-400",
+    glowFrom: "from-emerald-400/15",
+    glowTo: "to-emerald-900/25",
+    border: "border-emerald-400/40",
+    hoverBorder: "group-hover:border-emerald-400/50",
+  },
+  {
+    Icon: Crosshair,
+    title: "Avantage Décisif",
+    desc: "Dépassez vos concurrents",
+    iconColor: "text-amber-400",
+    glowFrom: "from-amber-400/15",
+    glowTo: "to-amber-900/25",
+    border: "border-amber-400/40",
+    hoverBorder: "group-hover:border-amber-400/50",
+  },
+];
 
 const LandingPage = () => {
   const heroRef = useRef(null);
@@ -138,7 +320,6 @@ const LandingPage = () => {
             );
           }
 
-
           // Urgency section animation
           if (urgencyRef.current) {
             gsap.from(urgencyRef.current, {
@@ -151,7 +332,6 @@ const LandingPage = () => {
               },
             });
           }
-
         } catch (e) {
           // If GSAP fails to load, keep the page functional without animations
           console.warn("GSAP deferred load failed:", e);
@@ -244,8 +424,8 @@ const LandingPage = () => {
             <div className="w-full p-1 rounded-2xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape">
               <div className="bg-onyx rounded-xl px-6 py-8 md:px-12">
                 <p className="text-mint-cream md:text-2xl text-xl font-semibold">
-                  🔥 Notre mission : gagner du temps, réduire vos coûts,
-                  augmenter vos revenus.
+                  Notre mission : gagner du temps, réduire vos coûts, augmenter
+                  vos revenus.
                 </p>
               </div>
             </div>
@@ -325,149 +505,80 @@ const LandingPage = () => {
         {/* Services Section */}
         <div ref={servicesRef} className="w-full mb-32" id="services">
           <TitleHeader title="Nos Solutions IA" />
-          <div className="mt-12">
-            {/* Top Row: 3 Columns */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              {/* Service 1 - AI Agents */}
-              <TiltCard className="service-card rounded-2xl h-full">
-                <div className="p-6 flex flex-col h-full text-center items-center">
-                  <div className="text-5xl mb-4">🤖</div>
-                  <h3 className="text-white text-2xl font-bold mb-3">
-                    AI Agents Autonomes
-                  </h3>
-                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Gestion de
-                      données
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Traitement de
-                      demandes
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Suivi client
-                      24/7
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Veille
-                      automatisée
-                    </li>
-                  </ul>
-                </div>
-              </TiltCard>
+          <div className="mt-12 max-w-6xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-6">
+              {services.map((s) => (
+                <motion.div
+                  key={s.title}
+                  className="service-card w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                  whileHover={{
+                    y: -8,
+                    transition: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                    },
+                  }}
+                >
+                  <div
+                    className={`group relative h-full p-6 md:p-8 rounded-2xl bg-onyx border border-white/[0.08] ${s.hoverBorder} transition-colors duration-300`}
+                  >
+                    {/* Accent line at top */}
+                    <div
+                      className={`absolute top-0 inset-x-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-transparent ${s.accentLine} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    />
+                    {/* Subtle background glow */}
+                    <div
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${s.hoverGlow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+                    />
 
-              {/* Service 2 - Chatbots */}
-              <TiltCard className="service-card rounded-2xl h-full">
-                <div className="p-6 flex flex-col h-full text-center items-center">
-                  <div className="text-5xl mb-4">💬</div>
-                  <h3 className="text-white text-2xl font-bold mb-3">
-                    Chatbots Avancés
-                  </h3>
-                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Réponses
-                      instantanées
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Qualification
-                      prospects
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Prise de
-                      rendez-vous
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Langage naturel
-                    </li>
-                  </ul>
-                </div>
-              </TiltCard>
+                    {/* Icon with colored glow */}
+                    <div className="relative w-14 h-14 mb-5">
+                      <div
+                        className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${s.glowFrom} ${s.glowTo} blur-lg group-hover:blur-xl transition-all duration-300`}
+                      />
+                      <div
+                        className={`relative w-14 h-14 rounded-2xl ${s.iconBg} border ${s.iconBorder} flex items-center justify-center`}
+                      >
+                        <s.Icon
+                          className={`w-7 h-7 ${s.iconColor}`}
+                          strokeWidth={1.5}
+                        />
+                      </div>
+                    </div>
 
-              {/* Service 3 - Automation */}
-              <TiltCard className="service-card rounded-2xl h-full">
-                <div className="p-6 flex flex-col h-full text-center items-center">
-                  <div className="text-5xl mb-4">⚙️</div>
-                  <h3 className="text-white text-2xl font-bold mb-3">
-                    Automatisation IA
-                  </h3>
-                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Saisie & analyse
-                      données
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Reporting
-                      automatique
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Gestion des
-                      emails
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Facturation
-                    </li>
-                  </ul>
-                </div>
-              </TiltCard>
-            </div>
-
-            {/* Bottom Row: 2 Columns centered */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:w-4/5 lg:mx-auto gap-6">
-              {/* Service 4 - Machine Learning */}
-              <TiltCard className="service-card rounded-2xl h-full">
-                <div className="p-6 flex flex-col h-full text-center items-center">
-                  <div className="text-5xl mb-4">📊</div>
-                  <h3 className="text-white text-2xl font-bold mb-3">
-                    Machine Learning
-                  </h3>
-                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Prédiction de
-                      ventes
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Segmentation
-                      clients
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Détection
-                      opportunités
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Forecasting
-                      avancé
-                    </li>
-                  </ul>
-                </div>
-              </TiltCard>
-
-              {/* Service 5 - Web Development */}
-              <TiltCard className="service-card rounded-2xl h-full">
-                <div className="p-6 flex flex-col h-full text-center items-center">
-                  <div className="text-5xl mb-4">🌐</div>
-                  <h3 className="text-white text-2xl font-bold mb-3">
-                    Sites Web Intelligents
-                  </h3>
-                  <ul className="text-slate-grey text-base space-y-2 text-left w-full">
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Analyse
-                      comportementale
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Optimisation
-                      automatique
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Intégration
-                      agents IA
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-mint-cream">✓</span>Expériences
-                      personnalisées
-                    </li>
-                  </ul>
-                </div>
-              </TiltCard>
+                    {/* Title */}
+                    <h3 className="text-white text-xl font-bold mb-1">
+                      {s.title}
+                    </h3>
+                    {/* Tagline */}
+                    <p className={`${s.iconColor} opacity-80 text-sm font-medium mb-4`}>
+                      {s.tagline}
+                    </p>
+                    {/* Metric */}
+                    <div className="flex items-baseline gap-2 mb-5">
+                      <span className="text-2xl font-bold text-white">
+                        {s.metric}
+                      </span>
+                      <span className="text-slate-grey text-sm">
+                        {s.metricLabel}
+                      </span>
+                    </div>
+                    {/* Features */}
+                    <ul className="text-slate-grey text-sm space-y-2.5">
+                      {s.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2.5">
+                          <Check
+                            className={`w-4 h-4 ${s.checkColor} flex-shrink-0`}
+                            strokeWidth={2.5}
+                          />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
@@ -477,25 +588,14 @@ const LandingPage = () => {
           <TitleHeader title="Pour Qui ?" />
           <div className="mt-12 max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {[
-                { icon: "🚀", label: "PME & Startups" },
-                { icon: "🏢", label: "Cabinets pro" },
-                { icon: "🛒", label: "E-commerce" },
-                { icon: "🏠", label: "Immobilier" },
-                { icon: "🏥", label: "Santé" },
-                { icon: "🏭", label: "Industrie" },
-                { icon: "💳", label: "Finance" },
-                { icon: "📚", label: "Éducation" },
-                { icon: "🤝", label: "B2B" },
-                { icon: "🛍️", label: "B2C" },
-              ].map((item, index) => (
+              {audiences.map((item, index) => (
                 <div
                   key={index}
                   className="audience-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300"
                 >
                   <div className="bg-onyx h-full rounded-xl p-4 flex flex-col items-center text-center">
-                    <div className="text-3xl mb-2 transform group-hover:scale-110 transition-transform duration-300">
-                      {item.icon}
+                    <div className={`w-10 h-10 mb-3 rounded-lg ${item.bg} ${item.hoverBg} flex items-center justify-center transition-all duration-300`}>
+                      <item.Icon className={`w-5 h-5 ${item.color} transition-colors duration-300`} strokeWidth={1.5} />
                     </div>
                     <p className="text-white text-sm font-semibold group-hover:text-mint-cream transition-colors">
                       {item.label}
@@ -516,45 +616,24 @@ const LandingPage = () => {
           <TitleHeader title="ROI Immédiat" />
           <div className="mt-12 max-w-5xl mx-auto">
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="investment-item group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
-                <div className="bg-onyx h-full rounded-xl p-8 text-center">
-                  <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                    💪
+              {roiItems.map(({ Icon, title, desc, iconColor, glowFrom, glowTo, border, hoverBorder }) => (
+                <div key={title} className="investment-item group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
+                  <div className="bg-onyx h-full rounded-xl p-8 text-center">
+                    <div className="relative w-14 h-14 mx-auto mb-5">
+                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${glowFrom} ${glowTo} blur-lg group-hover:blur-xl transition-all duration-300`} />
+                      <div className={`relative w-14 h-14 rounded-2xl bg-onyx ${border} flex items-center justify-center ${hoverBorder} transition-all duration-300`}>
+                        <Icon className={`w-7 h-7 ${iconColor} transition-colors duration-300`} strokeWidth={1.5} />
+                      </div>
+                    </div>
+                    <p className="text-white text-xl font-bold mb-2">
+                      {title}
+                    </p>
+                    <p className="text-slate-grey group-hover:text-white/50 transition-colors">
+                      {desc}
+                    </p>
                   </div>
-                  <p className="text-white text-xl font-bold mb-2">
-                    Productivité accrue
-                  </p>
-                  <p className="text-slate-grey group-hover:text-white-50 transition-colors">
-                    Plus de résultats en moins de temps
-                  </p>
                 </div>
-              </div>
-              <div className="investment-item group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
-                <div className="bg-onyx h-full rounded-xl p-8 text-center">
-                  <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                    💰
-                  </div>
-                  <p className="text-white text-xl font-bold mb-2">
-                    Revenus Boostés
-                  </p>
-                  <p className="text-slate-grey group-hover:text-white-50 transition-colors">
-                    Convertissez plus, vendez mieux
-                  </p>
-                </div>
-              </div>
-              <div className="investment-item group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300">
-                <div className="bg-onyx h-full rounded-xl p-8 text-center">
-                  <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                    🎯
-                  </div>
-                  <p className="text-white text-xl font-bold mb-2">
-                    Avantage Décisif
-                  </p>
-                  <p className="text-slate-grey group-hover:text-white-50 transition-colors">
-                    Dépassez vos concurrents
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
             <div className="w-full p-1 rounded-2xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape mt-10">
               <div className="bg-onyx rounded-xl px-6 py-8 md:px-12 text-center">
@@ -567,14 +646,17 @@ const LandingPage = () => {
           </div>
         </div>
 
-
-
         {/* Urgency + CTA Section */}
         <div ref={urgencyRef} className="w-full mb-20">
           <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape max-w-3xl mx-auto">
             <div className="bg-onyx rounded-[22px] px-6 py-16 md:px-20 text-center relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.svg')] opacity-20"></div>
-              <div className="text-5xl mb-6 relative z-10">⚡</div>
+              <div className="relative w-16 h-16 mx-auto mb-6 z-10">
+                <div className="absolute inset-0 rounded-full bg-yellow-400/20 blur-xl animate-pulse" />
+                <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400/20 to-amber-900/30 border border-yellow-400/30 flex items-center justify-center">
+                  <Zap className="w-8 h-8 text-yellow-400" strokeWidth={1.5} />
+                </div>
+              </div>
               <h2 className="text-white font-bold md:text-4xl text-3xl mb-6 relative z-10">
                 Pourquoi Maintenant ?
               </h2>
