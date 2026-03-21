@@ -360,7 +360,7 @@ const LandingPage = () => {
             <header className="hero-header">
               {/* Main Heading with Animated Word Slider */}
               <div className="space-y-6">
-                <h1 className="hero-title">
+                <h1 className="hero-title text-1xl">
                   <div className="hero-text-animated">
                     <div className="flex items-center justify-center gap-3">
                       <span className="slide">
@@ -376,7 +376,7 @@ const LandingPage = () => {
                         </span>
                       </span>
                     </div>
-                    <span className="mt-2">Votre Entreprise avec l'IA</span>
+                    <span className="mt-2">Votre Entreprise avec votre IA auto hébergé et sécurisé</span>
                   </div>
                 </h1>
 
@@ -585,7 +585,7 @@ const LandingPage = () => {
 
         {/* Target Audience Section */}
         <div ref={targetAudienceRef} className="w-full mb-32">
-          <TitleHeader title="Pour Qui ?" />
+          <TitleHeader title="Pour les PME, ETI et Grands comptes" />
           <div className="mt-12 max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {audiences.map((item, index) => (
