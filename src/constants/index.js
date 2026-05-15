@@ -18,8 +18,8 @@ const navLinks = [
     link: "/ia-privee",
   },
   {
-    name: "La Fondatrice",
-    link: "/fondatrice",
+    name: "À propos de nous",
+    link: "/equipe",
   },
 ];
 

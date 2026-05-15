@@ -12,9 +12,42 @@ if (typeof window !== "undefined") {
   window.__ScrollTrigger = ScrollTrigger;
 }
 
+const teamMembers = [
+  {
+    name: "Myriam IGDEM",
+    title: "Founder & CEO",
+    photo: "/images/team/Myriam.jpg",
+  },
+  {
+    name: "Slohane IGDEM",
+    title: "COO — Chief Operating Officer",
+    photo: "/images/team/Slohane.jpg",
+  },
+  {
+    name: "Junyi Li",
+    title: "AI Engineer",
+    photo: "/images/team/Junyi.jpg",
+  },
+  {
+    name: "Franck DOM",
+    title: "Security & Data Lead",
+    photo: "/images/team/Franck.jpg",
+  },
+  {
+    name: "Haytham Tannouch",
+    title: "Full Stack & AI Engineer",
+    photo: "/images/team/Haytham.jpeg",
+  },
+  {
+    name: "Yanis Kedyem",
+    title: "Business Developer",
+    photo: "/images/team/Yanis.jpg",
+  },
+];
+
 const LaFondatrice = () => {
   const heroRef = useRef(null);
-  const storyRef = useRef(null);
+  const teamRef = useRef(null);
   const igdkeyRef = useRef(null);
   const ctaRef = useRef(null);
 
@@ -26,13 +59,13 @@ const LaFondatrice = () => {
       ease: "power3.out",
     });
 
-    gsap.from(".story-block", {
+    gsap.from(".team-card", {
       opacity: 0,
       y: 40,
-      duration: 0.8,
-      stagger: 0.2,
+      duration: 0.6,
+      stagger: 0.1,
       scrollTrigger: {
-        trigger: storyRef.current,
+        trigger: teamRef.current,
         start: "top 80%",
       },
     });
@@ -62,112 +95,66 @@ const LaFondatrice = () => {
     <>
       <NavBar />
       <section className="section-padding padding-x-lg overflow-hidden">
-        {/* Hero - Photo + Name */}
-        <div ref={heroRef} className="w-full mb-24 mt-10 relative">
+        {/* Hero — Page title */}
+        <div ref={heroRef} className="w-full mb-20 mt-10 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-dusty-grape/20 rounded-full blur-[100px] -z-10"></div>
           <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
-            <div className="w-52 h-52 md:w-64 md:h-64 rounded-full p-1 bg-gradient-to-br from-pale-sky to-dusty-grape mb-8">
-              <img
-                src={getAssetPath("/images/Myriam.jpeg")}
-                alt="Myriam IGDEM"
-                className="w-full h-full rounded-full object-cover"
-              />
-            </div>
-            <h1 className="text-white font-bold md:text-6xl text-4xl mb-3 tracking-tight">
-              Myriam IGDEM
-            </h1>
-            <p className="text-pale-sky font-semibold md:text-2xl text-xl mb-6">
-              PDG & Fondatrice d'IGDKEY
+            <p className="text-pale-sky font-semibold md:text-lg text-base uppercase tracking-widest mb-4">
+              À propos de nous
             </p>
+            <h1 className="text-white font-bold md:text-6xl text-4xl mb-6 tracking-tight">
+              Notre Équipe
+            </h1>
             <p className="text-slate-grey md:text-lg text-base max-w-2xl leading-relaxed">
-              Une vision entrepreneuriale forgée par la finance, le trading et
-              une passion profonde pour la technologie.
+              Une équipe pluridisciplinaire unie autour d'une conviction : l'IA
+              doit être au service de votre stratégie, pas l'inverse.
             </p>
           </div>
         </div>
 
-        {/* Story Sections */}
-        <div ref={storyRef} className="w-full mb-24">
-          <div className="max-w-4xl mx-auto space-y-16">
-            {/* Block 1 - Le Choix */}
-            <div className="story-block">
-              <div className="w-full p-px rounded-2xl bg-gradient-to-r from-dusty-grape via-pale-sky/30 to-dusty-grape">
-                <div className="bg-onyx rounded-2xl px-6 py-10 md:px-12 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.svg')] opacity-20"></div>
-                  <div className="relative z-10">
-                    <h2 className="text-white font-bold text-2xl md:text-3xl mb-6">
-                      Le Choix de l'Entrepreneuriat
-                    </h2>
-                    <p className="text-slate-grey leading-relaxed md:text-lg">
-                      À seulement 20 ans, Myriam IGDEM prend une décision que
-                      peu osent faire : quitter un parcours académique tracé
-                      pour se consacrer entièrement à sa vision
-                      entrepreneuriale. Diplômée de l'Université Paris
-                      Cité/Descartes en finance, pilotage de performance et
-                      contrôle de gestion, elle comprend rapidement que sa place
-                      ne se limite pas à analyser la performance des entreprises
-                      — elle veut la transformer.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Team Grid */}
+        <div ref={teamRef} className="w-full mb-24">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {teamMembers.map((member, index) => (
+              <div
+                key={member.name}
+                className="team-card group relative rounded-2xl overflow-hidden cursor-default"
+                style={{ aspectRatio: "3/4" }}
+              >
+                {/* Photo fills entire card */}
+                <img
+                  src={getAssetPath(member.photo)}
+                  alt={member.name}
+                  className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
 
-            {/* Block 2 - Trading */}
-            <div className="story-block">
-              <div className="w-full p-px rounded-2xl bg-gradient-to-r from-dusty-grape via-pale-sky/30 to-dusty-grape">
-                <div className="bg-onyx rounded-2xl px-6 py-10 md:px-12 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.svg')] opacity-20"></div>
-                  <div className="relative z-10">
-                    <h2 className="text-white font-bold text-2xl md:text-3xl mb-6">
-                      L'Esprit Stratégique
-                    </h2>
-                    <p className="text-slate-grey leading-relaxed md:text-lg">
-                      Son expérience de plus de cinq ans en trading forge son
-                      esprit stratégique. Les marchés lui apprennent la rigueur,
-                      la lecture fine des indicateurs, l'importance des KPI et la
-                      prise de décision rapide. Elle développe une compréhension
-                      approfondie des dynamiques de performance, de gestion du
-                      risque et d'optimisation financière. Mais au-delà des
-                      chiffres, elle observe une réalité frappante : les
-                      entreprises évoluent dans un environnement où la
-                      technologie progresse plus vite que leur capacité à
-                      l'adopter avec confiance et maîtrise.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+                {/* Permanent gradient overlay — ensures text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0a0b] via-[#0d0a0b]/30 to-transparent" />
 
-            {/* Block 3 - Innovation */}
-            <div className="story-block">
-              <div className="w-full p-px rounded-2xl bg-gradient-to-r from-dusty-grape via-pale-sky/30 to-dusty-grape">
-                <div className="bg-onyx rounded-2xl px-6 py-10 md:px-12 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.svg')] opacity-20"></div>
-                  <div className="relative z-10">
-                    <h2 className="text-white font-bold text-2xl md:text-3xl mb-6">
-                      La Passion de l'Innovation
-                    </h2>
-                    <p className="text-slate-grey leading-relaxed md:text-lg mb-4">
-                      Passionnée par l'informatique et l'innovation depuis son
-                      plus jeune âge, Myriam imagine et conçoit déjà, dans sa
-                      chambre, ses propres projets novateurs. Cette curiosité l'a
-                      naturellement conduite à participer à un concours
-                      d'innovation chez Salesforce, axé sur la conception 3D.
-                    </p>
-                    <p className="text-slate-grey leading-relaxed md:text-lg">
-                      Animée par cette même passion, elle s'est ensuite formée à
-                      l'intelligence artificielle afin de mieux en comprendre les
-                      enjeux et d'explorer son potentiel pour les innovations de
-                      demain. Au fil de ses études et de ses stages au sein de
-                      grandes entreprises, elle a pris conscience des défis et
-                      des tensions existant entre le marché économique et le
-                      marché technologique.
-                    </p>
-                  </div>
+                {/* Hover border glow */}
+                <div
+                  className="absolute inset-0 rounded-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"
+                  style={{ boxShadow: "inset 0 0 0 1px #bfd1e5aa" }}
+                />
+
+                {/* Monospace index — top left */}
+                <span className="absolute top-5 left-5 font-mono text-xs tracking-[0.25em] select-none transition-colors duration-300 text-[#484a6e] group-hover:text-[#bfd1e5]/50">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                {/* Name & title — bottom overlay */}
+                <div className="absolute bottom-0 left-0 right-0 px-6 pb-7 pt-20 bg-gradient-to-t from-[#0d0a0b] to-transparent">
+                  <h3 className="text-white font-bold text-xl leading-tight mb-1 tracking-tight">
+                    {member.name}
+                  </h3>
+                  <p className="text-[#bfd1e5] text-sm font-medium leading-snug">
+                    {member.title}
+                  </p>
+                  {/* Sweep line on hover */}
+                  <div className="mt-4 h-px w-0 group-hover:w-full bg-gradient-to-r from-[#bfd1e5] to-[#484a6e] transition-all duration-500 ease-out" />
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 
