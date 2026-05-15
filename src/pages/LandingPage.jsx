@@ -504,7 +504,7 @@ const LandingPage = () => {
 
         {/* Services Section */}
         <div ref={servicesRef} className="w-full mb-32" id="services">
-          <TitleHeader title="ENOR.IA" />
+          <TitleHeader title="ENOR.IA" titleClassName="bg-gradient-to-r from-pale-sky via-white to-dusty-grape bg-clip-text text-transparent" />
           <p className="text-slate-grey md:text-xl text-lg text-center mt-4 mb-8 max-w-3xl mx-auto leading-relaxed">
             C'est vous qui construisez votre IA, nous sommes là pour la développer ensemble.
           </p>

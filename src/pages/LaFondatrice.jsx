@@ -16,7 +16,7 @@ const teamMembers = [
   {
     name: "Myriam IGDEM",
     title: "Founder & CEO",
-    photo: "/images/team/Myriam.jpg",
+    photo: "/images/team/Myriam.jpeg",
   },
   {
     name: "Slohane IGDEM",
@@ -102,7 +102,7 @@ const LaFondatrice = () => {
             <p className="text-pale-sky font-semibold md:text-lg text-base uppercase tracking-widest mb-4">
               À propos de nous
             </p>
-            <h1 className="text-white font-bold md:text-6xl text-4xl mb-6 tracking-tight">
+            <h1 className="font-bold md:text-6xl text-4xl mb-6 tracking-tight bg-gradient-to-r from-pale-sky via-white to-dusty-grape bg-clip-text text-transparent">
               Notre Équipe
             </h1>
             <p className="text-slate-grey md:text-lg text-base max-w-2xl leading-relaxed">
@@ -174,10 +174,11 @@ const LaFondatrice = () => {
                       se moderniser et intégrer l'intelligence artificielle dans
                       leurs processus internes. Pourtant, la peur freine
                       l'innovation. Les IA génératives publiques sont souvent
-                      bloquées au sein des entreprises, perçues comme des risques
-                      potentiels. La crainte des fuites de données, du manque de
-                      contrôle et de la dépendance aux plateformes externes
-                      empêche les dirigeants de franchir le cap technologique.
+                      bloquées au sein des entreprises, perçues comme des
+                      risques potentiels. La crainte des fuites de données, du
+                      manque de contrôle et de la dépendance aux plateformes
+                      externes empêche les dirigeants de franchir le cap
+                      technologique.
                     </p>
                     <p className="text-white font-semibold text-xl md:text-2xl text-center py-4">
                       IGDKEY a été créée pour répondre précisément à cette
@@ -186,10 +187,10 @@ const LaFondatrice = () => {
                     <p>
                       Le cabinet développe des solutions d'intelligence
                       artificielle sur mesure, privées et auto-hébergées,
-                      conçues pour protéger les données internes tout en libérant
-                      le potentiel technologique des organisations. L'objectif
-                      n'est pas simplement d'implémenter un outil, mais de
-                      construire une infrastructure stratégique robuste,
+                      conçues pour protéger les données internes tout en
+                      libérant le potentiel technologique des organisations.
+                      L'objectif n'est pas simplement d'implémenter un outil,
+                      mais de construire une infrastructure stratégique robuste,
                       sécurisée et alignée avec les enjeux métiers.
                     </p>
                     <p>
