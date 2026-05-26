@@ -9,6 +9,8 @@ import IGDKeyLogo from "../components/AnimatedLetters";
 import Button from "../components/Button";
 import TiltCard from "../components/TiltCard";
 import TrustCarousel from "../components/TrustCarousel";
+import { Smartphone } from "lucide-react";
+import { PiggyBank } from "lucide-react";
 import {
   BrainCircuit,
   MessagesSquare,
@@ -30,6 +32,8 @@ import {
   ArrowUpRight,
   Crosshair,
   Zap,
+  ShieldCheck,
+  LockKeyhole,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -53,7 +57,7 @@ const services = [
       "Gestion de données",
       "Traitement de demandes",
       "Suivi client 24/7",
-      "Veille automatisée",
+      "Traitement de demandes",
     ],
   },
   {
@@ -144,6 +148,55 @@ const services = [
       "Expériences personnalisées",
     ],
   },
+  //Bloc Ajouter
+  {
+    Icon: Smartphone,
+    title: "Application Mobile Intelligente",
+    tagline: "L’IA au cœur de l’expérience mobile",
+    metric: "75%",
+    metricLabel: "des apps intégreront l’IA d’ici 2026 (Gartner)",
+    iconColor: "text-sky-400",
+    iconBg: "bg-sky-400/10",
+    iconBorder: "border-sky-400/20",
+    glowFrom: "from-sky-500/20",
+    glowTo: "to-sky-900/10",
+    hoverBorder: "group-hover:border-sky-400/40",
+    accentLine: "via-sky-400/60",
+    hoverGlow: "from-sky-400/[0.03]",
+    checkColor: "text-sky-400/70",
+    features: [
+      "Expérience utilisateur personnalisée",
+      "Recommandations IA en temps réel",
+      "Automatisation intelligente",
+      "Performance optimisée on-device",
+    ],
+  },
+
+  {
+    Icon: LockKeyhole,
+    title: "IA privée auto-hébergée",
+    tagline: "Votre intelligence artificielle sécurisée et souveraine",
+    metric: "100%",
+    metricLabel: "contrôle des données",
+    iconColor: "text-cyan-400",
+    iconBg: "bg-cyan-400/10",
+    iconBorder: "border-cyan-400/20",
+    glowFrom: "from-cyan-500/20",
+    glowTo: "to-cyan-900/10",
+    hoverBorder: "group-hover:border-cyan-400/40",
+    accentLine: "via-cyan-400/60",
+    hoverGlow: "from-cyan-400/[0.03]",
+    checkColor: "text-cyan-400/70",
+    features: [
+      "Développement d'IA privée auto-hébergée",
+      "LLM auto-hébergé sécurisé",
+      "LLM Privé",
+      "Auto-hébergé",
+      "Conforme RGPD",
+      "Souverain",
+      "Made in France",
+    ],
+  },
 ];
 
 const audiences = [
@@ -189,6 +242,88 @@ const roiItems = [
     glowTo: "to-amber-900/25",
     border: "border-amber-400/40",
     hoverBorder: "group-hover:border-amber-400/50",
+  },
+];
+
+const aiPacks = [
+  {
+    name: "SPARK",
+    audience: "TPE · PME · Startup",
+    subtitle:
+      "Solutions adaptées pour le lancement de votre entreprise",
+    price: "À partir de 3 000 €",
+    maintenance: "À partir de 150 €/mois",
+    color: "cyan",
+    features: [
+      "Cadrage rapide du besoin",
+      "Définition d'un cas d'usage principal",
+      "Déploiement initial",
+      "Documentation + prise en main",
+    ],
+    modules: [
+      "LLM / IA Générative",
+      "Chatbot",
+      "Site Web Intelligent",
+      "Application Intelligente",
+      "Automatisation (flux simple)",
+    ],
+    unavailable: [
+      "Agent IA non disponible",
+      "Auto-hébergement non disponible",
+    ],
+  },
+
+  {
+    name: "SCALE",
+    audience: "PME structurée · ETI",
+    subtitle:
+      "Systèmes connectés aux opérations et automatisations avancées",
+    price: "À partir de 8 000 €",
+    maintenance: "À partir de 400 €/mois",
+    featured: true,
+    color: "violet",
+    features: [
+      "Cadrage approfondi",
+      "Conception de l'architecture technique",
+      "1 à 2 cas d'usage intégrés",
+      "Intégration aux outils existants",
+      "Mise en production",
+    ],
+    modules: [
+      "LLM / IA Générative avancée",
+      "Chatbot connecté",
+      "Site Web Intelligent",
+      "Application métier IA",
+      "Automatisation flux complexes",
+      "Agent IA (1 à 3 agents)",
+      "Auto-hébergement (option)",
+    ],
+  },
+
+  {
+    name: "CORE",
+    audience: "ETI · Grand Compte",
+    subtitle:
+      "Systèmes critiques orientés performance et ROI",
+    price: "À partir de 20 000 €",
+    maintenance: "À partir de 900 €/mois",
+    color: "emerald",
+    features: [
+      "Audit complet (technique + business)",
+      "Conception sur mesure",
+      "Architecture scalable",
+      "Déploiement multi-cas d'usage",
+      "Pilotage projet",
+    ],
+    modules: [
+      "LLM / IA sur mesure",
+      "Chatbot avancé omnicanal",
+      "Applications métier critiques",
+      "Automatisation complète",
+      "Agents IA multi-agents",
+      "Auto-hébergement sécurisé",
+      "Fine-tuning & optimisation continue",
+    ],
   },
 ];
 
@@ -376,11 +511,19 @@ const LandingPage = () => {
                         </span>
                       </span>
                     </div>
-                    <span className="mt-2">Votre Entreprise avec votre IA auto hébergé et sécurisé</span>
+                    <div className="mt-2 text-center ">
+                      <span className="text-[55px]">
+                        Votre Entreprise avec votre
+                      </span>
+                      <br />
+                      <span className="text-[45px] bg-gradient-to-r from-pale-sky via-white to-dusty-grape bg-clip-text text-transparent font-semibold">
+                        IA auto hébergé et sécurisé
+                      </span>
+                    </div>
                   </div>
                 </h1>
 
-                <p className="hero-subtitle">
+                <p className="hero-subtitle font-bold">
                   L'agence qui fusionne vos technologies avec celles de demain
                 </p>
               </div>
@@ -445,13 +588,12 @@ const LandingPage = () => {
             {engagements.map(({ imgPath, title, desc, featured, wide }) => (
               <TiltCard
                 key={title}
-                className={`engagement-card ${
-                  featured
-                    ? "md:row-span-2"
-                    : wide
-                      ? "md:col-span-2 lg:col-span-3"
-                      : ""
-                }`}
+                className={`engagement-card ${featured
+                  ? "md:row-span-2"
+                  : wide
+                    ? "md:col-span-2 lg:col-span-3"
+                    : ""
+                  }`}
               >
                 {featured ? (
                   /* Hero card — spans 2 rows */
@@ -502,9 +644,392 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Services Section */}
-        <div ref={servicesRef} className="w-full mb-32" id="services">
-          <TitleHeader title="Nos Solutions IA" />
+        {/* PROGRAMME ENOR IA */}
+        <section
+          ref={servicesRef}
+          className="w-full mb-32 relative z-20"
+          id="services"
+        >
+
+          <TitleHeader
+            title={
+              <>
+                Programme{" "}
+                <span className="bg-gradient-to-r from-pale-sky via-white to-dusty-grape bg-clip-text text-transparent">
+                  ENOR.IA
+                </span>
+              </>
+            }
+          />
+
+          <p className="text-center text-slate-grey mt-5 mb-14">
+            Des solutions IA adaptées à votre maturité et vos ambitions.
+          </p>
+
+          {/* PACKS IA */}
+
+          <div
+            className="
+             grid
+             grid-cols-1
+             md:grid-cols-2
+             lg:grid-cols-3
+             gap-8
+             max-w-7xl
+             mx-auto
+             relative
+             z-20
+            "
+          >
+
+            {aiPacks.map((pack) => (
+
+              <div
+                key={pack.name}
+                className={`
+                  relative
+                  flex
+                  flex-col
+                  rounded-3xl
+                  border
+                 ${pack.featured
+                    ? "border-pale-sky scale-[1.02]"
+                    : "border-white/10"
+                  }
+                 bg-[#101827]
+                 p-8
+                 min-h-[760px]
+                 shadow-xl
+                 transition-all
+                 duration-300
+                 hover:-translate-y-2
+                 hover:border-pale-sky/40
+                `}
+              >
+
+                {pack.featured && (
+
+                  <div className="absolute top-5 right-5">
+
+                    <span
+                      className="
+                        px-3
+                        py-1
+                        rounded-full
+                        bg-pale-sky
+                        text-onyx
+                        text-sm
+                        font-semibold
+                      "
+                    >
+                      Recommandé
+                    </span>
+
+                  </div>
+
+                )}
+
+                {/* TITRE */}
+
+                <h3 className="text-white text-4xl font-bold">
+                  {pack.name}
+                </h3>
+
+                <p className="text-pale-sky mt-3">
+                  {pack.audience}
+                </p>
+
+                <p className="text-slate-grey mt-3 leading-relaxed">
+                  {pack.subtitle}
+                </p>
+
+                {/* PRIX */}
+
+                <div className="mt-8">
+
+                  <p className="text-white text-3xl font-bold">
+                    {pack.price}
+                  </p>
+
+                  <p className="text-slate-grey">
+                    sur devis
+                  </p>
+
+                </div>
+
+                {/* FONCTIONNALITÉS */}
+
+                <div className="mt-8">
+
+                  <p className="font-semibold text-white mb-4">
+                    Inclus :
+                  </p>
+
+                  <ul className="space-y-3">
+
+                    {pack.features.map((item) => (
+
+                      <li
+                        key={item}
+                        className="
+                          flex
+                          items-start
+                          gap-3
+                          text-white
+                        "
+                      >
+
+                        <Check
+                          className="
+                            w-5
+                            h-5
+                            text-emerald-400
+                            shrink-0
+                            mt-[2px]
+                          "
+                        />
+
+                        <span>
+                          {item}
+                        </span>
+
+                      </li>
+
+                    ))}
+
+                  </ul>
+
+                </div>
+
+                {/* MODULES */}
+
+                <div className="mt-8">
+
+                  <p className="font-semibold text-pale-sky mb-4">
+                    Modules disponibles
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+
+                    {pack.modules.map((module) => (
+
+                      <span
+                        key={module}
+                        className="
+                          px-3
+                          py-2
+                          rounded-full
+                          border
+                          border-white/10
+                          bg-white/5
+                          text-sm
+                          text-white
+                        "
+                      >
+                        {module}
+                      </span>
+
+                    ))}
+
+                  </div>
+
+                </div>
+
+                {/* NON DISPONIBLE */}
+
+                {pack.unavailable && (
+
+                  <div className="mt-6 space-y-2">
+
+                    {pack.unavailable.map((item) => (
+
+                      <p
+                        key={item}
+                        className="text-red-300 text-sm"
+                      >
+                        ❌ {item}
+                      </p>
+
+                    ))}
+
+                  </div>
+
+                )}
+
+                {/* MAINTENANCE */}
+
+                <div className="mt-auto pt-8">
+
+                  <div>
+
+                    <p className="text-slate-grey">
+                      Maintenance
+                    </p>
+
+                    <p className="text-white font-medium">
+                      {pack.maintenance}
+                    </p>
+
+                  </div>
+
+                  <a
+                    href="/contact"
+                    className="
+                      mt-6
+                      block
+                      text-center
+                      rounded-xl
+                      bg-pale-sky
+                      hover:bg-dusty-grape
+                      text-onyx
+                      hover:text-white
+                      py-4
+                      font-semibold
+                      transition-all
+                    "
+                  >
+                    Demander un devis
+                  </a>
+
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+          {/* CONSULTING IA */}
+
+          <div className="mt-32">
+
+            <div
+              className="
+                max-w-6xl
+                mx-auto
+                rounded-3xl
+                border
+                border-white/10
+                bg-gradient-to-br
+                from-[#0D1320]
+                to-[#141C2E]
+                p-12
+              "
+            >
+
+              <p
+                className="
+                  text-pale-sky
+                  uppercase
+                  tracking-[0.25em]
+                  font-semibold
+                  mb-5
+                "
+              >
+                CONSULTING IA
+              </p>
+
+              <h2
+                className="
+                  text-white
+                  text-5xl
+                  font-bold
+                  leading-tight
+                  max-w-4xl
+                "
+              >
+
+                Transformer vos idées en
+
+                <span
+                  className="
+                    bg-gradient-to-r
+                    from-pale-sky
+                    via-white
+                    to-dusty-grape
+                    bg-clip-text
+                    text-transparent
+                  "
+                >
+                  {" "}
+                  stratégie IA actionnable
+                </span>
+
+              </h2>
+
+              <p
+                className="
+                  text-slate-grey
+                  mt-8
+                  text-lg
+                  max-w-3xl
+                "
+              >
+                Nous accompagnons PME, ETI
+                et grands comptes dans la
+                construction d'une stratégie
+                IA rentable et directement
+                connectée à vos objectifs.
+              </p>
+
+              <div
+                className="
+                  grid
+                  md:grid-cols-4
+                  gap-4
+                  mt-10
+                "
+              >
+
+                {[
+                  "Audit IA",
+                  "Roadmap stratégique",
+                  "Priorisation ROI",
+                  "Pilotage transformation",
+                ].map((item) => (
+
+                  <div
+                    key={item}
+                    className="
+                      bg-white/[0.04]
+                      border
+                      border-white/10
+                      rounded-xl
+                      p-5
+                      text-center
+                      text-white
+                    "
+                  >
+                    {item}
+                  </div>
+
+                ))}
+
+              </div>
+
+              <a
+                href="/contact"
+                className="
+                  inline-block
+                  mt-10
+                  bg-pale-sky
+                  px-8
+                  py-4
+                  rounded-xl
+                  text-onyx
+                  hover:bg-dusty-grape
+                  hover:text-white
+                  transition
+                  font-semibold
+                "
+              >
+                Parler à un consultant IA
+              </a>
+
+            </div>
+
+          </div>
+
           <div className="mt-12 max-w-6xl mx-auto">
             <div className="flex flex-wrap justify-center gap-6">
               {services.map((s) => (
@@ -581,35 +1106,129 @@ const LandingPage = () => {
               ))}
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Target Audience Section */}
         <div ref={targetAudienceRef} className="w-full mb-32">
-          <TitleHeader title="Pour les PME, ETI et Grands comptes" />
-          <div className="mt-12 max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {audiences.map((item, index) => (
-                <div
-                  key={index}
-                  className="audience-card group relative p-1 rounded-2xl bg-gradient-to-b from-white/10 to-white/0 hover:from-pale-sky/50 transition-all duration-300"
-                >
-                  <div className="bg-onyx h-full rounded-xl p-4 flex flex-col items-center text-center">
-                    <div className={`w-10 h-10 mb-3 rounded-lg ${item.bg} ${item.hoverBg} flex items-center justify-center transition-all duration-300`}>
-                      <item.Icon className={`w-5 h-5 ${item.color} transition-colors duration-300`} strokeWidth={1.5} />
-                    </div>
-                    <p className="text-white text-sm font-semibold group-hover:text-mint-cream transition-colors">
-                      {item.label}
-                    </p>
+          <TitleHeader
+            title="Pour les PME, ETI et Grands comptes"
+            titleClassName="mt-2 text-[clamp(1.2rem,2.5vw,2rem)] leading-tight"
+          />
+
+          <p className="text-white md:text-xl text-lg text-center mt-10 leading-relaxed font-semibold">
+            Processus, données ou site web ? L'IA peut vous faire gagner de
+            l'argent.
+          </p>
+        </div>
+
+
+        {/*Bloc Ajouter*/}
+
+        {/* Security / Sovereignty Section */}
+        <div className="w-full mb-32">
+          <div className="max-w-6xl mx-auto relative overflow-hidden rounded-3xl border border-white/10 bg-[#0B0F19]">
+
+            {/* Background glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.12),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(168,85,247,0.12),transparent_35%)]" />
+
+            {/* Noise texture */}
+            <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-10 pointer-events-none" />
+
+            <div className="relative z-10 grid lg:grid-cols-2 gap-10 items-center px-8 py-12 md:px-14 md:py-16">
+
+              {/* Left content */}
+              <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 mb-6">
+                  <ShieldCheck className="w-4 h-4 text-cyan-300" />
+                  <span className="text-cyan-200 text-sm font-medium tracking-wide">
+                    Sécurité & souveraineté
+                  </span>
+                </div>
+
+                <h2 className="text-white text-3xl md:text-5xl font-bold leading-tight mb-6">
+                  Adapté à votre métier,
+                  <span className="block bg-gradient-to-r from-cyan-300 via-white to-violet-300 bg-clip-text text-transparent">
+                    tout en restant sécurisé.
+                  </span>
+                </h2>
+
+                <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-2xl">
+                  Vos données restent vos données : chiffrées, souveraines et protégées
+                  par une infrastructure pensée pour les entreprises exigeantes.
+                  Nous intégrons l’IA sans compromis sur la confidentialité.
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/10 bg-white/[0.03]">
+                    <LockKeyhole className="w-5 h-5 text-violet-300" />
+                    <span className="text-white text-sm font-medium">
+                      Chiffrement des données
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/10 bg-white/[0.03]">
+                    <ShieldCheck className="w-5 h-5 text-cyan-300" />
+                    <span className="text-white text-sm font-medium">
+                      IA auto-hébergée
+                    </span>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Right visual card */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-cyan-400/10 blur-3xl rounded-full" />
+
+                <div className="relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-xl p-8 overflow-hidden">
+
+                  {/* Grid effect */}
+                  <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_32px]" />
+
+                  <div className="relative z-10">
+
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-violet-500/20 border border-white/10 flex items-center justify-center mb-8">
+                      <LockKeyhole
+                        className="w-10 h-10 text-cyan-200"
+                        strokeWidth={1.5}
+                      />
+                    </div>
+
+                    <div className="space-y-5">
+                      <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                        <span className="text-slate-400 text-sm">
+                          Hébergement
+                        </span>
+                        <span className="text-white font-medium">
+                          Sécurisé & souverain
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                        <span className="text-slate-400 text-sm">
+                          Protection
+                        </span>
+                        <span className="text-white font-medium">
+                          Chiffrement avancé
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-slate-400 text-sm">
+                          Confidentialité
+                        </span>
+                        <span className="text-emerald-300 font-medium">
+                          100% maîtrisée
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
-            <p className="text-white md:text-xl text-lg text-center mt-10 leading-relaxed font-semibold">
-              Processus, données ou site web ? L'IA peut vous faire gagner de
-              l'argent.
-            </p>
           </div>
         </div>
+
 
         {/* Investment ROI Section */}
         <div ref={investmentRef} className="w-full mb-32">
@@ -646,6 +1265,51 @@ const LandingPage = () => {
           </div>
         </div>
 
+        {/* Aide financière */}
+        <div className="w-full mb-32">
+          <div className="max-w-5xl mx-auto relative p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape">
+
+            <div className="bg-onyx rounded-[22px] px-8 py-14 md:px-16 text-center relative overflow-hidden">
+
+              {/* Glow background */}
+              <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-20 pointer-events-none" />
+
+              {/* Icon */}
+              <div className="relative w-16 h-16 mx-auto mb-6">
+                <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-xl" />
+                <div className="relative w-16 h-16 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center">
+                  <PiggyBank className="w-8 h-8 text-emerald-400" strokeWidth={1.5} />
+                </div>
+              </div>
+
+              {/* Title */}
+              <h2 className="text-white font-bold md:text-4xl text-3xl mb-4">
+                Aides financières & subventions
+              </h2>
+
+              {/* Text */}
+              <p className="text-slate-grey text-lg max-w-2xl mx-auto mb-8">
+                De nombreuses entreprises peuvent bénéficier de dispositifs de financement
+                pour intégrer l’intelligence artificielle et digitaliser leurs processus.
+                Nous vous accompagnons dans ces démarches.
+              </p>
+
+              <p className="text-white font-semibold mb-10">
+                Vérifiez votre éligibilité dès maintenant.
+              </p>
+
+              {/* CTA Button */}
+              <a href="/contact" className="inline-block">
+                <div className="bg-pale-sky hover:bg-dusty-grape transition px-8 py-4 rounded-xl">
+                  <p className="text-onyx font-semibold hover:text-white transition">
+                    Parler à un expert
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Urgency + CTA Section */}
         <div ref={urgencyRef} className="w-full mb-20">
           <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape max-w-3xl mx-auto">
@@ -660,12 +1324,12 @@ const LandingPage = () => {
               <h2 className="text-white font-bold md:text-4xl text-3xl mb-6 relative z-10">
                 Pourquoi Maintenant ?
               </h2>
-              <p className="text-pale-sky text-lg max-w-2xl mx-auto relative z-10 mb-4">
-                L'IA évolue vite. Les entreprises qui l'adoptent aujourd'hui
-                dominent demain.
+              <p className="text-pale-sky text-lg max-w-2xl mx-auto relative z-10 mb-4 space-y-2">
+                <span className="block">L’intelligence artificielle redéfinit les règles du jeu.</span>
+                <span className="block">Les entreprises qui l’intègrent aujourd’hui construisent l’avantage de demain.</span>
               </p>
               <p className="text-white text-xl font-bold relative z-10 mb-8">
-                Prenez de l'avance sur vos concurrents.
+                Prenez une longueur d’avance dès aujourd’hui.
               </p>
               <div className="flex justify-center relative z-10">
                 <a
@@ -683,6 +1347,8 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+
+
 
       <Footer />
     </>
