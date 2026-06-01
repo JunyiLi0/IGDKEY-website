@@ -1128,7 +1128,7 @@ const LandingPage = () => {
               ))}
             </div>
           </div>
-        </section>
+        </div>
 
         {/* Target Audience Section */}
         <div ref={targetAudienceRef} className="w-full mb-32">
@@ -1250,6 +1250,8 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
+        </section>
+        
 
 
         {/* Investment ROI Section */}

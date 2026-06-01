@@ -6,6 +6,7 @@ const TitleHeader = ({ title, titleClassName = "" }) => {
         <h1 className={`font-semibold md:text-5xl text-3xl text-center ${titleClassName}`}>
           {title}
         </h1>
+        </h1>
       </div>
     </div>
   );
