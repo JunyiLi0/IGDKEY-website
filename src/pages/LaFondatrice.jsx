@@ -29,7 +29,7 @@ const teamMembers = [
     photo: "/images/team/Junyi.jpg",
   },
   {
-    name: "Franck DOM",
+    name: "Franck KOM",
     title: "Security & Data Lead",
     photo: "/images/team/Franck.jpg",
   },
@@ -38,11 +38,11 @@ const teamMembers = [
     title: "Full Stack & AI Engineer",
     photo: "/images/team/Haytham.jpeg",
   },
-  {
+ /* {
     name: "Yanis Kedyem",
     title: "Business Developer",
     photo: "/images/team/Yanis.jpg",
-  },
+  },*/
 ];
 
 const LaFondatrice = () => {

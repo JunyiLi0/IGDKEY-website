@@ -528,10 +528,7 @@ const LandingPage = () => {
                 </p>
               </div>
 
-              {/* Logo */}
-              <div className="hero-logo-wrapper">
-                <IGDKeyLogo />
-              </div>
+
 
               {/* CTA Buttons */}
               <div className="hero-cta-wrapper flex flex-col md:flex-row gap-4">
@@ -1335,41 +1332,7 @@ const LandingPage = () => {
         </div>
 
         {/* Urgency + CTA Section */}
-        <div ref={urgencyRef} className="w-full mb-20">
-          <div className="w-full p-1 rounded-3xl bg-gradient-to-r from-dusty-grape via-pale-sky to-dusty-grape max-w-3xl mx-auto">
-            <div className="bg-onyx rounded-[22px] px-6 py-16 md:px-20 text-center relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/noise.svg')] opacity-20"></div>
-              <div className="relative w-16 h-16 mx-auto mb-6 z-10">
-                <div className="absolute inset-0 rounded-full bg-yellow-400/20 blur-xl animate-pulse" />
-                <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400/20 to-amber-900/30 border border-yellow-400/30 flex items-center justify-center">
-                  <Zap className="w-8 h-8 text-yellow-400" strokeWidth={1.5} />
-                </div>
-              </div>
-              <h2 className="text-white font-bold md:text-4xl text-3xl mb-6 relative z-10">
-                Pourquoi Maintenant ?
-              </h2>
-              <p className="text-pale-sky text-lg max-w-2xl mx-auto relative z-10 mb-4 space-y-2">
-                <span className="block">L’intelligence artificielle redéfinit les règles du jeu.</span>
-                <span className="block">Les entreprises qui l’intègrent aujourd’hui construisent l’avantage de demain.</span>
-              </p>
-              <p className="text-white text-xl font-bold relative z-10 mb-8">
-                Prenez une longueur d’avance dès aujourd’hui.
-              </p>
-              <div className="flex justify-center relative z-10">
-                <a
-                  href="/contact"
-                  className="md:w-auto w-full h-14 cta-wrapper group"
-                >
-                  <div className="cta-button bg-pale-sky hover:bg-dusty-grape px-8">
-                    <p className="button-text text-onyx group-hover:text-white whitespace-nowrap">
-                      Consultation gratuite
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </section>
 
 
