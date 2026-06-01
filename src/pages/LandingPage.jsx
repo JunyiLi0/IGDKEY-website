@@ -247,12 +247,12 @@ const roiItems = [
 
 const aiPacks = [
   {
-    name: "SPARK",
+    name: "STARTER",
     audience: "TPE · PME · Startup",
     subtitle:
       "Solutions adaptées pour le lancement de votre entreprise",
     price: "À partir de 3 000 €",
-    maintenance: "À partir de 150 €/mois",
+    maintenance: "À partir de 500 €/mois",
     color: "cyan",
     features: [
       "Cadrage rapide du besoin",
@@ -279,7 +279,7 @@ const aiPacks = [
     subtitle:
       "Systèmes connectés aux opérations et automatisations avancées",
     price: "À partir de 8 000 €",
-    maintenance: "À partir de 400 €/mois",
+    maintenance: "À partir de 1000 €/mois",
     featured: true,
     color: "violet",
     features: [
@@ -306,7 +306,7 @@ const aiPacks = [
     subtitle:
       "Systèmes critiques orientés performance et ROI",
     price: "À partir de 20 000 €",
-    maintenance: "À partir de 900 €/mois",
+    maintenance: "À partir de 2000 €/mois",
     color: "emerald",
     features: [
       "Audit complet (technique + business)",
@@ -548,7 +548,7 @@ const LandingPage = () => {
         <AnimatedCounter />
       </section>
 
-      <section className="md:mt-20 mt-10 padding-x-lg overflow-hidden">
+      <section className="padding-x-lg overflow-hidden">
         {/* Transform Your Business Section */}
         <div ref={transformRef} className="w-full mb-32 relative">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-pale-sky/10 rounded-full blur-[80px] -z-10"></div>
@@ -858,19 +858,35 @@ const LandingPage = () => {
 
                 {/* MAINTENANCE */}
 
-                <div className="mt-auto pt-8">
+                <div className="mt-auto pt-8 border-t border-white/10">
+                  <p className="text-pale-sky font-semibold mb-2">
+                    Accompagnement continu
+                  </p>
 
-                  <div>
+                  <p className="text-white text-xl font-bold mb-4">
+                    {pack.advisory}
+                  </p>
 
-                    <p className="text-slate-grey">
-                      Maintenance
-                    </p>
+                
+
+                  <p className="text-slate-grey">
+                    Maintenance
+                  </p>
+
+                    <ul className="space-y-2 text-sm text-slate-grey">
+                      <li>✓ Points stratégiques réguliers</li>
+                      <li>✓ Ajustement de la roadmap</li>
+                      <li>✓ Suivi des performances</li>
+                      <li>✓ Recommandations continues</li>
+                      <li>✓ Support décisionnel</li>
+
+                    </ul>
 
                     <p className="text-white font-medium">
                       {pack.maintenance}
                     </p>
 
-                  </div>
+                  
 
                   <a
                     href="/contact"
