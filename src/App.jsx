@@ -92,7 +92,7 @@ const App = () => {
           <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
           <Route path="/ia-privee" element={<SelfHostedAI />} />
           <Route path="/agents" element={<AgentsIA />} />
-          <Route path="/fondatrice" element={<LaFondatrice />} />
+          <Route path="/equipe" element={<LaFondatrice />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/conditions" element={<TermsConditions />} />
         </Routes>

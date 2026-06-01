@@ -536,8 +536,8 @@ const LandingPage = () => {
               {/* CTA Buttons */}
               <div className="hero-cta-wrapper flex flex-col md:flex-row gap-4">
                 <Button
-                  text="Découvrir nos services"
-                  className="md:w-80 w-full h-14"
+                  text="Découvrir notre programme ENOR.IA"
+                  className="md:w-auto w-full h-14"
                   id="services"
                 />
               </div>
@@ -1046,6 +1046,12 @@ const LandingPage = () => {
 
           </div>
 
+        {/* Services Section */}
+        <div ref={servicesRef} className="w-full mb-32" id="services">
+          <TitleHeader title="ENOR.IA" titleClassName="bg-gradient-to-r from-pale-sky via-white to-dusty-grape bg-clip-text text-transparent" />
+          <p className="text-slate-grey md:text-xl text-lg text-center mt-4 mb-8 max-w-3xl mx-auto leading-relaxed">
+            C'est vous qui construisez votre IA, nous sommes là pour la développer ensemble.
+          </p>
           <div className="mt-12 max-w-6xl mx-auto">
             <div className="flex flex-wrap justify-center gap-6">
               {services.map((s) => (

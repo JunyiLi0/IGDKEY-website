@@ -3,6 +3,7 @@ const TitleHeader = ({ title, titleClassName = "" }) => {
     <div className="flex flex-col items-center gap-5">
       <div>
         <h1 className="font-semibold md:text-5xl text-3xl text-center ${titleClassName}">
+        <h1 className={`font-semibold md:text-5xl text-3xl text-center ${titleClassName}`}>
           {title}
         </h1>
       </div>

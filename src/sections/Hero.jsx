@@ -66,8 +66,8 @@ const Hero = () => {
             {/* CTA Button */}
             <div className="hero-cta-wrapper">
               <Button
-                text="Découvrir nos services"
-                className="md:w-80 w-full h-12"
+                text="Découvrir notre programme ENOR.IA"
+                className="md:w-auto w-full h-12"
                 id="counter"
               />
             </div>
