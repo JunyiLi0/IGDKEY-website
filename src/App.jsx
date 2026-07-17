@@ -3,6 +3,10 @@ import { useEffect, useRef, useLayoutEffect, lazy, Suspense, useState } from "re
 
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const SiteWebIntelligent = lazy(() => import("./pages/SiteWebIntelligent"));
+const ENOR_IA = lazy(() => import("./pages/ENOR_IA"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const Consulting = lazy(() => import("./pages/Consulting"));
+const Cas_dusage = lazy(() => import("./pages/Cas_dusage"));
 const SelfHostedAI = lazy(() => import("./pages/SelfHostedAI"));
 const AgentsIA = lazy(() => import("./pages/AgentsIA"));
 const LaFondatrice = lazy(() => import("./pages/LaFondatrice"));
@@ -90,6 +94,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
+          <Route path="/ENOR_IA" element={<ENOR_IA />} />
+          <Route path="/Pricing" element={<Pricing />} />
+          <Route path="/Consulting" element={<Consulting />} />
+          <Route path="/Cas_dusage" element={<Cas_dusage />} />
           <Route path="/ia-privee" element={<SelfHostedAI />} />
           <Route path="/agents" element={<AgentsIA />} />
           <Route path="/equipe" element={<LaFondatrice />} />

@@ -537,10 +537,13 @@ section {
   position: relative;
 }
 
+
+
 .trust-band {
   background: #ebf5ee;
   padding: 20px 0;
 }
+
 
 .trust-carousel {
   position: relative;
@@ -557,6 +560,9 @@ section {
   animation: trustScroll 30s linear infinite;
 }
 
+
+
+
 .trust-logo-item {
   flex-shrink: 0;
   display: flex;
@@ -564,6 +570,7 @@ section {
   justify-content: center;
   height: 60px;
 }
+
 
 .trust-logo-item img {
   max-height: 60px;
@@ -575,7 +582,11 @@ section {
 
 .trust-logo-item img:hover {
   transform: scale(1.1);
+  opacity: 1;
+  filter: grayscale(0%);
 }
+
+
 
 @keyframes trustScroll {
   0% {

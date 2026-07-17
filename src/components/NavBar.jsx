@@ -67,11 +67,11 @@ const NavBar = () => {
 
         <nav className="desktop">
           <ul>
-            {navLinks.map(({ link, name }) => {
+            {navLinks.map((item) => {
               // Si c'est un lien externe (commence par #), utiliser <a>, sinon utiliser <Link>
-              const isExternalLink = link.startsWith("#");
+              const isExternalLink = item.Link?.startsWith("#");
               // Si c'est le lien Accueil "/", on applique la même logique que le logo pour forcer le scroll top via reload si besoin
-              const isHomeLink = link === "/";
+              const isHomeLink = item.link === "/";
 
               const handleHomeClick = (e) => {
                 if (isHomeLink && location.pathname !== "/") {
@@ -85,19 +85,96 @@ const NavBar = () => {
               };
 
               return (
-                <li key={name} className="group">
-                  {isExternalLink ? (
-                    <a href={location.pathname === "/" ? link : `/${link}`}>
-                      <span>{name}</span>
-                      <span className="underline" />
-                    </a>
-                  ) : (
-                    <Link to={link} onClick={handleHomeClick}>
-                      <span>{name}</span>
-                      <span className="underline" />
-                    </Link>
-                  )}
-                </li>
+                <li
+                    key={item.name}
+                    className="group relative"
+                  >
+                    {item.children ? (
+                      <>
+                        <button 
+                        className="
+                           flex
+                          items-center
+                          gap-2
+                          text-white
+                          hover:text-pale-sky
+                          transition-colors
+
+                        ">
+                          <span>{item.name}</span>
+                          <svg
+                            className="w-4 h-4 transition-transform group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+
+                          <span className="underline" />
+                        </button>
+
+                        <div
+                          className="
+                            absolute
+                            top-full
+                            left-0
+                            mt-4
+                            w-60
+                            rounded-2xl
+                            border
+                            border-white/10
+                            bg-[#0B1220]
+                            backdrop-blur-xl
+                            opacity-0
+                            invisible
+                            translate-y-3
+                            group-hover:opacity-100
+                            group-hover:visible
+                            group-hover:translate-y-0
+                            transition-all
+                            duration-300
+                            shadow-2xl
+                            z-50
+                          "
+                        >
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              to={child.link}
+                              onClick={() => {
+                                closeMenu();
+                              }}
+                              className="
+                                block
+                                px-6
+                                py-4
+                                text-white
+                                hover:bg-pale-sky/10
+                                hover:text-pale-sky
+                                transition
+                              "
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </>
+                    ) : (
+                      <Link 
+                      to={item.link}
+                      onClick={handleHomeClick}
+                      >
+                        <span>{item.name}</span>
+                        <span className="underline" />
+                      </Link>
+                    )}
+                  </li>
               );
             })}
           </ul>
@@ -113,9 +190,9 @@ const NavBar = () => {
       {/* Mobile menu */}
       <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
-          {navLinks.map(({ link, name }) => {
-            const isExternalLink = link.startsWith("#");
-            const isHomeLink = link === "/";
+          {navLinks.map((item) => {
+            const isExternalLink = item.link?.startsWith("#");
+            const isHomeLink = item.link === "/";
 
             const handleHomeClick = (e) => {
               closeMenu();
@@ -128,20 +205,35 @@ const NavBar = () => {
             };
 
             return (
-              <li key={name}>
-                {isExternalLink ? (
-                  <a
-                    href={location.pathname === "/" ? link : `/${link}`}
-                    onClick={closeMenu}
-                  >
-                    {name}
-                  </a>
-                ) : (
-                  <Link to={link} onClick={handleHomeClick}>
-                    {name}
-                  </Link>
-                )}
-              </li>
+              <li key={item.name}>
+                  {item.children ? (
+                    <>
+                      <p className="text-pale-sky font-semibold px-4 py-2">
+                        {item.name}
+                      </p>
+
+                      <ul className="pl-4">
+                        {item.children.map((child) => (
+                          <li key={child.name}>
+                            <Link
+                              to={child.link}
+                              onClick={closeMenu}
+                            >
+                              {child.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <Link
+                      to={item.link}
+                      onClick={closeMenu}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </li>
             );
           })}
           <li>

@@ -17,6 +17,28 @@ const navLinks = [
     name: "IA Auto-hébergée",
     link: "/ia-privee",
   },
+ 
+  {
+    name: "PRICING",
+    children: [
+      {
+        name: "ENOR.IA",
+        link: "/ENOR_IA",
+      },
+      {
+        name: "Programme ENOR.IA",
+        link: "/Pricing",
+      },
+      {
+        name: "Consulting",
+        link: "/Consulting",
+      },
+    ],
+  },
+  {
+    name: "Cas d'Usage",
+    link: "/Cas_dusage"
+  },
   {
     name: "À propos de nous",
     link: "/equipe",

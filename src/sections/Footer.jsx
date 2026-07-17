@@ -10,7 +10,7 @@ const Footer = () => {
 
         {/* Colonne 1 */}
         <div>
-          <h3 className="text-white font-bold text-lg mb-4">Loumia</h3>
+          <h3 className="text-white font-bold text-lg mb-4">IGDKEY</h3>
           <p className="text-slate-grey text-sm leading-relaxed">
             Serveur IA local et auto-hébergé pour professionnels français.
             Intelligence artificielle souveraine, données hébergées chez 
