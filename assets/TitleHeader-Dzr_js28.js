@@ -1,0 +1,1 @@
+import{j as e}from"./index-DCN7oTW9.js";const x=({title:t,titleClassName:s=""})=>e.jsx("div",{className:"flex flex-col items-center gap-5",children:e.jsx("div",{children:e.jsx("h1",{className:"font-semibold md:text-5xl text-3xl text-center ${titleClassName}",children:e.jsx("h1",{className:`font-semibold md:text-5xl text-3xl text-center ${s}`,children:t})})})});export{x as T};
