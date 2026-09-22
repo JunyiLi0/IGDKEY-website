@@ -15,6 +15,12 @@ import {
   ShieldCheck,
   Brain,
   BarChart3,
+  UserRound,
+  MessageCircle,
+  CalendarDays,
+  Target,
+  Bell,
+  RefreshCw,
 } from "lucide-react";
 
 
@@ -83,7 +89,7 @@ const Cas_dusage = () => {
 
             </div>
 
-            <h1 className="text-white font-bold text-5xl lg:text-7xl leading-tight">
+            <h1 className="text-white font-bold text-2xl lg:text-5xl leading-tight">
 
               Exemples de cas d'usage
 
@@ -437,41 +443,48 @@ const Cas_dusage = () => {
                         "
                     >
 
-                <h3 className="text-white text-2xl font-bold mb-8">
+                        <h3 className="text-white text-2xl font-bold mb-10 px-6 pt-6">
 
-                    Fonctionnalités principales
+                            Fonctionnalités principales
 
-                </h3>
+                        </h3>
 
-                <div className="space-y-5">
+                        <div className="space-y-5 px-6 pb-6">
 
-                    {[
-                    "Accueil automatique des visiteurs",
-                    "Réponses instantanées aux questions",
-                    "Prise de rendez-vous dans votre agenda",
-                    "Qualification des prospects",
-                    "Notifications à vos commerciaux",
-                    "Relances automatiques",
-                    ].map((item) => (
+                            {[
+                                "Accueil automatique des visiteurs",
+                                "Réponses instantanées aux questions",
+                                "Prise de rendez-vous dans votre agenda",
+                                "Qualification des prospects",
+                                "Notifications à vos commerciaux",
+                                "Relances automatiques",
+                            ].map((item) => (
 
-                    <div
-                        key={item}
-                        className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4"
-                    >
+                                <div
+                                    key={item}
+                                    className="
+                                        flex
+                                        items-center
+                                        gap-4
+                                        rounded-xl
+                                        border
+                                        border-white/10
+                                        bg-white/[0.03]
+                                        p-5
+                                    "
+                                >
 
-                        <Check className="w-5 h-5 text-emerald-400" />
+                                    <Check className="w-5 h-5 text-emerald-400 shrink-0" />
 
-                        <span className="text-white">
+                                    <span className="text-white">
+                                        {item}
+                                    </span>
 
-                        {item}
+                                </div>
 
-                        </span>
+                            ))}
 
-                    </div>
-
-                    ))}
-
-                </div>
+                        </div>
 
                 </div>
 
