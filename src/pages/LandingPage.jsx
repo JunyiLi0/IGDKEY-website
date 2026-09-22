@@ -9,6 +9,8 @@ import IGDKeyLogo from "../components/AnimatedLetters";
 import Button from "../components/Button";
 import TiltCard from "../components/TiltCard";
 import TrustCarousel from "../components/TrustCarousel";
+import Chat from "../components/chat/Chat";
+import ChatButton from "../components/chat/ChatButton";
 
 
 
@@ -39,6 +41,7 @@ import {
   PiggyBank,
   ExternalLink,
   MapPinned,
+  ArrowRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -336,7 +339,7 @@ const aiPacks = [
 ];
 
 
-const LandingPage = () => {
+  const LandingPage = ({ onOpenChat }) => {
   const heroRef = useRef(null);
   const transformRef = useRef(null);
   const engagementsRef = useRef(null);
@@ -503,7 +506,7 @@ const LandingPage = () => {
           <div className="hero-content-wrapper">
             <header className="hero-header">
               {/* Main Heading with Animated Word Slider */}
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <h1 className="hero-title text-1xl">
                   <div className="hero-text-animated">
                     <div className="flex items-center justify-center gap-3">
@@ -520,7 +523,7 @@ const LandingPage = () => {
                         </span>
                       </span>
                     </div>
-                    <div className="mt-2 text-center ">
+                    <div className="mt-0 text-center leading-tight">
                       <span className="text-[55px]">
                         Votre Entreprise avec votre
                       </span>
@@ -535,17 +538,35 @@ const LandingPage = () => {
                 <p className="hero-subtitle font-bold">
                   L'agence qui fusionne vos technologies avec celles de demain
                 </p>
-              </div>
+                <ChatButton onClick={onOpenChat} variant="hero" />
 
+                <a
+                  href="/ENOR_IA"
+                  className="
+                    group
+                    inline-flex
+                    items-center
+                    gap-3
+                    mt-3
+                    text-slate-grey
+                    hover:text-pale-sky
+                    transition-colors
+                  "
+                >
+                  <span className="text-sm font-medium tracking-wide">
+                    Découvrir ENOR.IA
+                  </span>
 
-
-              {/* CTA Buttons */}
-              <div className="hero-cta-wrapper flex flex-col md:flex-row gap-4">
-                <Button
-                  text="Découvrir notre programme ENOR.IA"
-                  className="md:w-auto w-full h-14"
-                  id="services"
-                />
+                  <ArrowRight
+                    className="
+                      w-5
+                      h-5
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-2
+                    "
+                  />
+                </a>
               </div>
             </header>
           </div>
@@ -671,7 +692,7 @@ const LandingPage = () => {
           "/>
 
 
-          <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="max-w-6xl mx-auto px-6 text-center -translate-x-20">
 
 
             <h2 className="
@@ -1012,7 +1033,7 @@ const LandingPage = () => {
         <section
           ref={servicesRef}
           id="services"
-          className="relative w-full py-24 md:py-32 overflow-hidden"
+          className="relative w-full py-24 md:py-32 overflow-hidden -translate-x-20"
         >
           {/* Glow */}
           <div className="absolute inset-0 -z-10 flex justify-center">

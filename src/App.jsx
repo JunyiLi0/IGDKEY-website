@@ -65,6 +65,7 @@ const ScrollToTop = () => {
 
 const App = () => {
   const [showChat, setShowChat] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     // Load the chat widget when the browser is idle (keeps initial bundle smaller)
@@ -80,7 +81,10 @@ const App = () => {
       <ScrollToTop />
       <Suspense fallback={null}>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/"
+            element={<LandingPage onOpenChat={() => setIsChatOpen(true)} />}
+          />
           <Route path="/site-intelligent" element={<SiteWebIntelligent />} />
           <Route path="/ENOR_IA" element={<ENOR_IA />} />
           <Route path="/Pricing" element={<Pricing />} />
@@ -95,7 +99,10 @@ const App = () => {
       </Suspense>
       {showChat && (
         <Suspense fallback={null}>
-          <Chat />
+          <Chat 
+            isOpen={isChatOpen}
+            setIsOpen={setIsChatOpen}
+          />
         </Suspense>
       )}
     </>
