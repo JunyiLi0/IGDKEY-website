@@ -262,16 +262,19 @@ const ENOR_IA = () => {
         <section className="relative overflow-hidden pt-40 pb-32">
 
         {/* Background */}
-        <div className="absolute inset-0 -z-20 bg-[#06070a]" />
+        <div className="absolute inset-0 -z-20 bg-black" />
 
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[900px]
-                        rounded-full bg-dusty-grape/20 blur-[180px]" />
+        {/* Halo violet très subtil */}
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[900px]
+                          rounded-full bg-dusty-grape/10 blur-[180px]" />
 
-        <div className="absolute top-32 -left-48 w-[500px] h-[500px]
-                        rounded-full bg-cyan-500/10 blur-[150px]" />
+          {/* Halo cyan très subtil */}
+          <div className="absolute top-32 -left-48 w-[500px] h-[500px]
+                          rounded-full bg-cyan-500/5 blur-[150px]" />
 
-        <div className="absolute bottom-0 -right-48 w-[500px] h-[500px]
-                        rounded-full bg-violet-500/10 blur-[160px]" />
+          {/* Halo violet très subtil */}
+          <div className="absolute bottom-0 -right-48 w-[500px] h-[500px]
+                          rounded-full bg-violet-500/5 blur-[160px]" />
 
         {/* HERO */}
         <motion.div
@@ -292,7 +295,7 @@ const ENOR_IA = () => {
 
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-black leading-tight">
+            <h1 className="text-5xl md:text-5xl font-black leading-tight">
             Construisez
             <span className="bg-gradient-to-r from-pale-sky via-white to-dusty-grape bg-clip-text text-transparent">
                 {" "}
@@ -309,7 +312,7 @@ const ENOR_IA = () => {
 <a
                     href="/Contact"
                     className="
-                      mt-6
+                      mt-5
                       block
                       text-center
                       rounded-xl
