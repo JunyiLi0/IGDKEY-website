@@ -14,7 +14,9 @@ const Footer = () => {
           <p className="text-slate-grey text-sm leading-relaxed">
             Serveur IA local et auto-hébergé pour professionnels français.
             Intelligence artificielle souveraine, données hébergées chez 
-            vous ou selon votre choix.
+            vous ou selon votre choix.</p>
+            <p>
+            Siège social : 231 Rue Saint Honoré, 75001
           </p>
         </div>
 
@@ -24,7 +26,14 @@ const Footer = () => {
           <ul className="text-slate-grey text-sm space-y-2">
             <li>Fonctionnalités</li>
             <li>Sécurité & Données</li>
-            <li>Cas d'usage</li>
+            <li>
+            <Link
+              to="/Cas_dusage"
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Cas d'usage
+            </Link>
+          </li>
           </ul>
         </div>
 
