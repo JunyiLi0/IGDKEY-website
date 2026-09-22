@@ -19,12 +19,8 @@ const navLinks = [
   },
  
   {
-    name: "PRICING",
+    name: "Pricing",
     children: [
-      {
-        name: "ENOR.IA",
-        link: "/ENOR_IA",
-      },
       {
         name: "Programme ENOR.IA",
         link: "/Pricing",
@@ -34,6 +30,10 @@ const navLinks = [
         link: "/Consulting",
       },
     ],
+  },
+  {
+    name: "Enor.IA",
+    link: "/ENOR_IA",
   },
   {
     name: "Cas d'Usage",
