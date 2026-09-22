@@ -692,7 +692,7 @@ const aiPacks = [
           "/>
 
 
-          <div className="max-w-6xl mx-auto px-6 text-center -translate-x-20">
+          <div className="max-w-6xl mx-auto px-6 text-center -translate-x-5 md:-translate-x-20">
 
 
             <h2 className="
@@ -1033,7 +1033,7 @@ const aiPacks = [
         <section
           ref={servicesRef}
           id="services"
-          className="relative w-full py-24 md:py-32 overflow-hidden -translate-x-20"
+          className="relative w-full py-24 md:py-32 overflow-hidden -translate-x-5 md:-translate-x-20"
         >
           {/* Glow */}
           <div className="absolute inset-0 -z-10 flex justify-center">
