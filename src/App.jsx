@@ -1,5 +1,8 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useLayoutEffect, lazy, Suspense, useState } from "react";
+if ("scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
 
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const SiteWebIntelligent = lazy(() => import("./pages/SiteWebIntelligent"));
@@ -45,32 +48,17 @@ const RedirectHandler = () => {
 
 // Component to scroll to top on route change - disables animations during scroll
 const ScrollToTop = () => {
-  const location = useLocation();
-  const previousPath = useRef(location.pathname);
+  const { pathname } = useLocation();
 
-  // Use useLayoutEffect to scroll BEFORE paint (synchronously)
-  useLayoutEffect(() => {
-    // Only act if the route actually changed
-    if (previousPath.current !== location.pathname) {
-      previousPath.current = location.pathname;
-
-      // IMPORTANT: don't dynamically import ScrollTrigger here.
-      // Doing it async can race with the next route and kill *new* triggers.
-      // If GSAP is already loaded by the current/previous route, it exposes ScrollTrigger on window.
-      const ScrollTrigger = window.__ScrollTrigger;
-      if (ScrollTrigger) {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        ScrollTrigger.clearScrollMemory();
-      }
-
-      // Scroll to top instantly without any animation
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
-      requestAnimationFrame(() => {
-        window.__ScrollTrigger?.refresh?.();
-      });
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
     }
-  }, [location.pathname]);
+
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [pathname]);
 
   return null;
 };
