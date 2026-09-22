@@ -279,7 +279,7 @@ export default async (req, res) => {
         res.setHeader('Connection', 'keep-alive');
 
         const stream = await openai.chat.completions.create({
-            model: 'gpt-4.1-nano',
+            model: 'gpt-5-nano',
             messages: chatMessages,
             stream: true,
         });
