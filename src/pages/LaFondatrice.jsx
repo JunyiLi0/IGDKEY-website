@@ -39,7 +39,7 @@ const teamMembers = [
     photo: "/images/team/Haytham.jpeg",
   },
   {
-    name: "Christophe",
+    name: "Christophe BARON",
     title: "Directeur Commercial",
     photo: "/images/team/Christophe.jpg",
   },
