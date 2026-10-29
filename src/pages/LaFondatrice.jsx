@@ -39,9 +39,9 @@ const teamMembers = [
     photo: "/images/team/Haytham.jpeg",
   },
   {
-    name: "Yanis KEDYEM",
-    title: "Business Developer",
-    photo: "/images/team/Yanis.jpg",
+    name: "Christophe",
+    title: "Directeur Commercial",
+    photo: "/images/team/Christophe.jpg",
   },
 ];
 
